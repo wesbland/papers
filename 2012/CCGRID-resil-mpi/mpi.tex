@@ -1,0 +1,61 @@
+\section{MPI} \label{sect:mpi}
+
+% What does the current standard do?
+
+The current MPI standard does not provide much guidance for applications in
+presence of faults. According to the standard, when implementing a high-quality
+MPI library, the application should regain control following a process failure.
+This control gives the application the opportunity to save its state and exit
+gracefully, rather than the usual behavior of being aborted by the MPI
+implementation itself. This makes continuing meaningful execution very difficult
+and usually requires the application to restart itself from a previously saved checkpoint.
+
+% What kind of FT can we do with it?
+
+% One opportunity to use the current MPI standard without modification is to use
+% the MPI error handler MPI\_ERRORS\_RETURN rather than MPI\_ERRORS\_ABORT. This
+% would allow the application to write a checkpoint which it can use to restart
+% itself from the current point with a clean MPI library. However, this requires
+% an application that is already fault tolerant and can continue without the failed
+% process or can recreate the lost data from the failed process. While this class
+% of Application Based Fault Tolerant algorithms does exist, it does not encompass
+% the vast majority of applications.
+
+% What departures did we create from the standard?
+
+Our work deviates from the current standard to provide a more flexible suite
+of tools to implement fault tolerance. 
+%
+If a process failed during an MPI call, the call will return an error code to
+reflect the failure. This allows the application to know that a process has
+failed and to perform any internal recovery operations necessary. Once the
+application has been alerted via the MPI return code, the application will not
+receive another notification until a new process fails. By not requiring an
+acknowledgment from the remaining processes, our method of fault tolerance
+imposes as little burden on the applications as possible and allows failure free
+executions to incur the minimum amount of overhead.
+
+As most of the MPI applications take advantage, in addition from point-to-point
+message, of collective communications, we took a particular interest in
+providing a clear semantic of how fault can integrate with collective
+communications. We are implementing fault
+tolerant collective operations which allow the application to run collectives
+over MPI\_Communicators including failed processes. For collectives which do not
+include any data, such as MPI\_Barrier, this is simple enough operation.  For
+collectives which require data combination, such as MPI\_Gather or MPI\_Reduce,
+this can be a slightly more complicated task. However, all of the MPI collective
+operations can eventually be simplified to a communicator pattern with some
+amount of data, which may or may not be combined with or without an operation in
+the process. When determining how many processes to include in the collective
+operation, our MPI library does not include the failed processes. Also, when a
+process fails during a collective, the operation is updated to remove the failed
+process. Once the participating group is determined, we can continue the MPI
+collective as if no failures occurred.
+
+This work will also eventually include process recovery which will allow the
+application to decide to recreate the failed process by launching a new MPI rank
+on a fault free node. The user will be responsible for bringing the new rank
+back to the point of the failure, but this will support another set of
+applications which require a specific number of processes to continue in the
+presence of a process failure.  The specifics of the process recovery techniques
+are not yet ready for publication.

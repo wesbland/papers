@@ -1,0 +1,94 @@
+set terminal pdf enhanced color
+set output "model.pdf"
+
+TABFT(a, C, R, n) = (a * T + n * (C + R)) / T
+#f(0)=T + c * T/t, f(n) = f(n-1) + r + c*r/t
+TBCC(c, r, t, n) = ((c+t)*(n * r + T)/t) / T
+#f(0)=T + c * T/t, f(n) = f(n-1) + r + t + c*(r+t)/t
+TWCC(c, r, t, n) = ((c+t)*(n * (r+t)+T)/t) / T
+
+set xrange [-0.5:10.5]
+set yrange [1:*]
+
+set key left top
+set xtics 1
+
+set grid
+
+set xlabel "Number of faults"
+set ylabel "Execution slowdown (1=no slowdown)" offset 1
+
+reason="Commodity Cluster with Local Storage on SSD"
+T=3600.*4.*24.
+C=10.*60.
+R=C+0.04*T
+a=1.13
+c=2.0*C
+r=c
+t=T/96.0
+
+set title sprintf("%s\n{/Symbol a}=%.2f, C=%.0fm, R=%.0fm, c=%.0fm, r=%.0fm, t=%.0fm, T=%.0fh\nAll expressed as fraction of total execution time", reason, a, C/60, R/60, c/60, r/60, t/60, T/3600)
+plot "< jot 11 0" u ($1-.25):(TABFT(a, C, R, $1)):(.25) t "ABFT" w boxes fs solid 1,\
+     "< jot 11 0" u ($1):(TBCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Best Case" w boxes fs solid 1,\
+     "< jot 11 0" u ($1+.125):(TWCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Worst Case" w boxes fs solid 1
+
+reason="The same as previous, 10x more checkpoints"
+C=.1
+R=C+.05
+a=1.5
+c=C
+r=c
+t=1./100.
+
+set title sprintf("%s\n{/Symbol a}=%fx, C=%f, R=%f, c=%f, r=%f, t=%f\nAll expressed as fraction of total execution time", reason, a, C, R, c, r, t)
+plot "< jot 11 0" u ($1-.25):(TABFT(a, C, R, $1)):(.25) t "ABFT" w boxes fs solid 1,\
+     "< jot 11 0" u ($1):(TBCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Best Case" w boxes fs solid 1,\
+     "< jot 11 0" u ($1+.125):(TWCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Worst Case" w boxes fs solid 1
+
+reason="Small ckpt time, small slowdown (ideal Kraken)"
+C=.01
+R=C+.005
+a=1.03
+c=C
+r=c
+t=1./10.
+set title sprintf("%s\n{/Symbol a}=%fx, C=%f, R=%f, c=%f, r=%f, t=%f\nAll expressed as fraction of total execution time", reason, a, C, R, c, r, t)
+plot "< jot 11 0" u ($1-.25):(TABFT(a, C, R, $1)):(.25) t "ABFT" w boxes fs solid 1,\
+     "< jot 11 0" u ($1):(TBCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Best Case" w boxes fs solid 1,\
+     "< jot 11 0" u ($1+.125):(TWCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Worst Case" w boxes fs solid 1
+
+reason="The same as previous, 10x more checkpoints"
+C=.01
+R=C+.005
+a=1.03
+c=C
+r=c
+t=1./100.
+set title sprintf("%s\n{/Symbol a}=%fx, C=%f, R=%f, c=%f, r=%f, t=%f\nAll expressed as fraction of total execution time", reason, a, C, R, c, r, t)
+plot "< jot 11 0" u ($1-.25):(TABFT(a, C, R, $1)):(.25) t "ABFT" w boxes fs solid 1,\
+     "< jot 11 0" u ($1):(TBCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Best Case" w boxes fs solid 1,\
+     "< jot 11 0" u ($1+.125):(TWCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Worst Case" w boxes fs solid 1
+
+reason="Small ckpt LOCAL time, small slowdown, big ckpt REMOTE time (if we are totally right)"
+C=.01
+R=C+.05
+a=1.03
+c=5*C
+r=c
+t=1./10.
+set title sprintf("%s\n{/Symbol a}=%fx, C=%f, R=%f, c=%f, r=%f, t=%f\nAll expressed as fraction of total execution time", reason, a, C, R, c, r, t)
+plot "< jot 11 0" u ($1-.25):(TABFT(a, C, R, $1)):(.25) t "ABFT" w boxes fs solid 1,\
+     "< jot 11 0" u ($1):(TBCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Best Case" w boxes fs solid 1,\
+     "< jot 11 0" u ($1+.125):(TWCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Worst Case" w boxes fs solid 1
+
+reason="Small ckpt time, huge slowdown (if we are totally wrong)"
+C=.01
+R=C+.05
+a=1.5
+c=C
+r=c
+t=1./10.
+set title sprintf("%s\n{/Symbol a}=%fx, C=%f, R=%f, c=%f, r=%f, t=%f\nAll expressed as fraction of total execution time", reason, a, C, R, c, r, t)
+plot "< jot 11 0" u ($1-.25):(TABFT(a, C, R, $1)):(.25) t "ABFT" w boxes fs solid 1,\
+     "< jot 11 0" u ($1):(TBCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Best Case" w boxes fs solid 1,\
+     "< jot 11 0" u ($1+.125):(TWCC(c, r, t, $1)):(.125) t "Coordinated Checkpoint Worst Case" w boxes fs solid 1

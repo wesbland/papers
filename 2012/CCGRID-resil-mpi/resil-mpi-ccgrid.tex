@@ -1,0 +1,101 @@
+\documentclass[10pt, conference, compsocconf]{IEEEtran}
+
+\newif\ifnoTBD \noTBDfalse
+
+% Uncomment to remove TBD macros
+%\noTBDtrue
+
+%\ifx\pdftexversion\undefined
+%  \usepackage[dvips]{graphicx}
+%\else
+%  \usepackage[pdftex]{graphicx}
+%  \usepackage{epstopdf}
+%\fi
+
+\ifnoTBD
+\def\TBD#1{\typeout{TBD not done: #1}}
+\else
+\def\TBD#1{\textcolor{blue}{TBD: #1}}
+\AtEndDocument{\typeout{ *** ATTENTION: compilation is in DRAFT
+    mode. There might still be TBD that appear in the document ***}}
+\fi
+
+\usepackage[usenames]{color}
+\usepackage{xspace}
+\usepackage{listings}
+%\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{latexsym}
+%\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{graphicx}
+
+%\hypersetup{%
+%  pdftitle={},
+%  pdfauthor={George Bosilca},
+%  pdfkeywords={network scheduling}
+%  bookmarksnumbered, pdfstartview={FitH},
+%  linkbordercolor={0 0 0},
+%  citebordercolor={0 0 0},
+%  urlbordercolor={0 0 0},
+%  pdfborder={0 0 0},colorlinks={true},
+%  linkcolor={0 0 0},
+%  urlcolor=none,
+%  citecolor=white
+%}%
+
+%\setlength{\oddsidemargin}{0in}   % origin is (1",1") from top-left corner
+%\setlength{\evensidemargin}{0.0in}
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9in}
+%\setlength{\topmargin}{0.0in}
+%\setlength{\headheight}{0pt}
+%\setlength{\headsep}{0pt}
+
+\newcommand{\ompi}{Open\,MPI\xspace}
+\newcommand{\ftla}{FT-LA\xspace}
+\newcommand{\scalapack}{ScaLAPACK\xspace}
+\newcommand{\abft}{Algorithmic Based Fault Tolerance\xspace}
+
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{color}
+\usepackage{amsthm}
+\usepackage{amsfonts} 
+\usepackage{amssymb,amsmath} 
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{Enabling Application Resilience With and Without the MPI Standard}
+\author{
+  \IEEEauthorblockN{Wesley Bland}
+  \IEEEauthorblockA{Innovative Computing Laboratory, University of Tennessee, Knoxville\\
+					wbland@eecs.utk.edu}\\
+}
+
+\maketitle
+
+\input{abstract}
+
+\begin{IEEEkeywords}
+Fault Tolerance, Message Passing Interface, Distributed Runtime
+\end{IEEEkeywords}
+
+\input{intro}
+%\input{background}
+\input{related}
+\input{runtime}
+\input{mpi}
+\input{experimental}
+\input{conclusion}
+
+\newcommand{\BIBdecl}{\setlength{\itemsep}{0.03\baselineskip}} 
+\bibliographystyle{IEEEtran}
+\bibliography{resil-mpi-ccgrid}
+
+\end{document}
+

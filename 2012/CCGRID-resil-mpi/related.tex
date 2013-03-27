@@ -1,0 +1,71 @@
+\section{Related Work} \label{sect:related}
+
+Many groups have worked on fault tolerant runtimes in the past, each
+proposing different methods. Most of these runtimes focus on
+employing checkpoint/restart, but a few also use new ideas to recover
+from process failures.
+
+% Charm++ & Adaptive MPI
+
+Charm++ is an object-oriented parallel programming language developed at the
+University of Illinois at Urbana-Champaign~\cite{Kale93charm++}. In addition to
+message passing, it also performs load balancing, process migration and other
+interesting properties due to the fact that it treats each process as an
+individual object, called ``chares'', that can be saved and moved at any time.
+This has lead to work which leverages these chares to provide fault tolerance
+guarantees~\cite{ZhengFTC}, including an MPI implementation which uses Charm++
+as its runtime~\cite{ampiJournal}. Our work diverges from Charm++ because they
+focus primarily not on MPI, but a separate programming environment of their own
+invention.
+
+% FT-MPI
+
+FT-MPI extended the MPI semantics provided by the MPI standard to include fault
+tolerance. This enabled application developers to adapt their applications
+without the need to rewrite them using an entirely different message passing
+system~\cite{fagg2000ft}. FT-MPI could withstand $n-1$ process failures in a job
+of size $n$. This is similar to the work being done in this paper as both are
+designed to recover from arbitrary fail-stop failures. However, FT-MPI only
+provides this semantic to the functions supported by the version 1.2 of the MPI
+standard. Our work is built in conjunction with \ompi, which has ongoing
+development and includes support for the most recent MPI standard (2.2).
+
+% Other MPI runtimes?
+
+% MPI 3 FT Run-Through Stabilization, Process Recovery
+
+The MPI forum is currently examining options for the future direction of MPI for
+MPI-3. One of the workgroups is dedicated to propose a standard form of
+MPI-supported fault
+tolerance~\footnote{https://svn.mpi-forum.org/trac/mpi-forum-web/wiki/FaultToleranceWikiPage}.
+The proposal outlines a method of run-through stabilization which allows the
+application to acknowledge and repair communications, both collectively and
+between specific ranks in a point-to-point way~\cite{Hursey11MPI3FT}. The
+emphasis of the proposal is a set of "validation" functions which the
+application is required to call to repair and re-enable communication within an
+MPI communicator containing a failed process.
+% To repair point to point wildcard receives, the application needs to
+% collectively call the function MPI\_COMM\_REENABLE\_ANY\_SOURCE. To repair
+% collective communication within a communicator, the application needs to call
+% the function MPI\_COMM\_VALIDATE.
+These functions give the MPI implementation an opportunity to acknowledge
+failures and discover or ensure that other MPI processes also acknowledge the
+same failures. It also gives the MPI library a chance to repair communication
+channels between remaining processes, optimizing communication topologies if
+possible and necessary.
+
+While this method of fault tolerance is sufficient for \abft, it is not without
+its drawbacks. The calls necessary to recover from collectives incur a
+non-trivial overhead even during the fault free case. MPI\_COMM\_VALIDATE
+requires a distributed consensus algorithm which is currently best implemented
+at log scale~\cite{Hursey11LogConsensus}. While this level of overhead might
+exhibit better performance
+than the current state of the art of periodic checkpointing, it still presents a
+significant cost that not all applications want or need to pay
+% to check the validity of the communicators.
+ Also, this proposal does not yet include process
+recovery, which is left to a future proposal to the MPI forum.
+
+The work in this paper could be extended to implement the proposal from the
+MPI forum if accepted. However, it also includes more flexible options for the user when
+selecting a behavior to handle failures.

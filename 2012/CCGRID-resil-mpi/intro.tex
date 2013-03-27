@@ -1,0 +1,68 @@
+\section{Introduction} \label{sect:intro}
+
+% Discuss Capello work to discover failure rates in large scale machines
+
+Fault tolerance is an increasingly necessary consideration in High Performance
+Computing (HPC). As machine sizes increase past hundreds of thousands of
+computing cores\footnote{http://www.top500.org} into the millions of computing
+resources, the likelihood of failures also increases. In 2007, Schroeder and
+Gibson~\cite{schroeder2007understanding} announced a mean time between failure
+(MTBF) on some of the machines at Los Alamos National Laboratory of 8 hours.
+More recently, Heien et. al.~\cite{HeienModellingHPCFailures} observed failures
+at a rate of between 1.8 and 3.6 failures per day on a system of only 635 nodes.
+This research confirms what has become an accepted reality of HPC going forward.
+Failures will occur at an increasing rate and for large scale applications to be
+useful, the failures will need to be handled in software while allowing the
+applications to continue running relatively uninterrupted.
+
+The \ompi Project is an open source MPI-2 implementation that is developed and
+maintained by a consortium of academic, research, and industry
+partners~\footnote{http://www.open-mpi.org}. It has already made strides to
+include some fault tolerance support by developing checkpoint/restart and
+message logging frameworks, allowing users to recover processes that fail by
+reverting to a previously stored snapshot of the application. While this method
+of fault tolerance is useful for many applications, as the number of processes
+increases, the overhead of saving the state of as many as millions of concurrent
+processes becomes untenable and other methods of fault tolerance must be
+envisioned.
+
+Our contribution in this area is to provide a resilient MPI implementation which
+gives the users the familiarity of the MPI standard which their applications
+already use, but also to expand the capabilities of MPI to handle process
+failures with as little intervention as possible from the application. In order
+to meet this goal, our work is two-fold:
+
+\begin{itemize}
+    \item {\bf Runtime Layer:} The runtime layer of \ompi is the low level
+        environment that supports the application by providing a reliable
+        communication library. It is responsible for deploying applications and
+        setting up an efficient application's communication topology. The
+        runtime layer needs to be able to detect a process failure, notify other
+        processes of the detected failure, and perform local recovery techniques
+        necessary for the runtime layer to continue operation.
+
+    \item {\bf MPI Layer:} The MPI layer is the library which the
+        application uses directly. It provides all the MPI standard calls while
+        efficiently implementing communication patterns, such as collective
+        operations. In the MPI layer, changes are necessary to notify the
+        application of a process failure so it may decide whether to abort,
+        continue without the failed process, replace the failed process or any
+        other failure model that may be envisioned.
+\end{itemize}
+
+We also created a model to describe the expected behavior of our work. This
+model shows the efficiency of our work and explains why the performance of our
+implementation will never decrease because of a process failure.
+
+In this paper, we will discuss of the work being done to expand the capability
+of \ompi to handle process failures while allowing application developers to
+decide how to proceed. In Section~\ref{sect:related}, we will describe some of
+the other resilient environments provided by the scientific community.
+Section~\ref{sect:runtime} will describe the work being done to improve the \ompi
+runtime to tolerate process failures.  Section~\ref{sect:mpi} will describe the
+current work and ongoing efforts to give users a well-known MPI environment
+while causing minimal disruptions following a failure.
+Section~\ref{sect:experimental} will demonstrate some of the preliminary results
+observed from this work and lay out the model we have constructed to analyze our
+result. Section~\ref{sect:conclusion} will summarize the work being done and
+describe some of the future work yet to be performed.

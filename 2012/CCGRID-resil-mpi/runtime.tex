@@ -1,0 +1,80 @@
+\section{Runtime} \label{sect:runtime}
+
+We present in this section how the \ompi Runtime Environment
+(ORTE)~\cite{Castain:2008dx} has been modified to become resilient as an example
+of the expected changes that need to be undergone on other runtime environments
+to provide resilient capabilities. We focus first on how the runtime itself has
+been made fault tolerant; then on the additional services that the runtime
+should provide to the MPI library or any other fault-aware parallel environment:
+Failure Detection and Notification. 
+% The modified runtime is capable of running any MPI application.
+%However, since the MPI level does not provide a
+%stabilization interface yet, the MPI application cannot use the additional
+%services to continue its execution.
+
+\subsection{Out-Of-Band Message Consistency Using Epochs} \label{subsect:epochs}
+
+Before implementing process recovery, a way of tracking the status of processes
+is necessary. A commonly used method in literature is to add an epoch to the
+process naming scheme. By incrementing the epoch every time the {\em Head Node
+Process} (HNP) is notified of a failure, we can use it to track the number of
+times an individual process has failed.  The runtime uses this epoch to prevent
+transient process failures from introducing unexpected behavior by cutting off a
+process with an epoch less than the most recent value from interfering with the
+other processes.  As each message is processed by the communication library, it
+is checked against the most recent known epoch for the originating process. If
+the message's epoch is less than the most recently known epoch, the message is
+dropped and will need to be retransmitted to the new version of the previously
+failed process. This essentially imposes a fail-stop fault model~\cite{FLP85}
+upon the processes, simplifying error detection and recovery.
+	
+\subsection{Fault Handling} \label{subsect:failure_handling}
+
+Concurrently with the notification of failure throughout the runtime, the HNP
+and the ORTE daemons (ORTEDs) also perform fault handling tasks to stabilize the
+runtime and allow processes to continue. The most noticeable portion of the
+runtime that must be updated is the routing layer. Most routing layers have some
+sort of underlying topology that passes messages from one node to the next rather than all
+messages being routed through a central entity, or allowing direct communication
+between nodes for the out-of-band messaging system. The latter would require
+$n^2$ opened connections, imposing a huge load on the system. This routing layer
+must be mended after any of the nodes fail. One of the most common routing
+topologies is a tree. When the fault is detected, the tree must remove the
+faulty process and create connections from the failed process's parent to its
+children. This must also take into account any subsequent failures so that if
+necessary, the routing layer will continue to look upward or downward in the
+tree to find the closest living neighbor and prevent any child from becoming
+orphan due to a lack of connection to a living parent.
+%  Another option would be
+% to completely rebuild the tree after each failure. This method introduces other
+% complications such as handling in-flight messages or active collective and this
+% is left for a possible future improvement.
+
+\subsection{Failure Detection} \label{subsect:failure_detection}
+
+Failure detection is accomplished using the existing detectors in ORTE. The
+primary detection method is to monitor the status of communication channels. If
+a connection fails, the ORTE error handler begins the process of managing the
+fault as detailed in Section~\ref{subsect:failure_handling}. In the future, when
+an MPI layer will be placed on top of the runtime, it will need to send errors
+to the runtime to allow errors to be handled in a consistent way. The current
+method of handling failures in \ompi is to abort as soon as possible after
+detecting an error. By passing the error information to the runtime rather than
+acting within the MPI layer, that singular method of handling faults can be
+improved and the application may survive the fault.
+
+\subsection{Failure Notification} \label{subsect:failure_notification}
+
+When a failure occurs, ORTE quickly attempts to stabilize the runtime system to
+allow the surviving processes to continue. The first step in this process is to
+notify the HNP. The HNP is responsible for maintaining the state of the
+application and notifying all runtime processes of any changes to which they
+need to respond. Once the HNP has received the message from the ORTEDs who
+detected the failure, it broadcasts this information to all other daemons.
+While some of them might already know about the failure, because they detected
+it via the direct connections between daemons, by including the epoch of the
+failed process they can prevent duplicate or out-of-order handling of the
+faults. At this point, the runtime would notify the MPI layer of the error,
+therefore allowing the MPI processes themselves to decide how the parallel
+application will react to the fault.
+
