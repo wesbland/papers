@@ -1,0 +1,43 @@
+\section{Motivation}
+\label{sect:motivation}
+
+A major concept followed in the design of any type of parallel programming paradigm, and
+this in order to provide a meaningful and understandable programming approach,
+is the avoidance of any potential deadlocks. In addition to this critical
+requirement the mechanisms involved in the fault management were build with the
+goal of flexibility, simplicity and performance.
+
+Clearly the most important point, no MPI call (point-to-point or collective) can
+block indefinitely after a failure, but must either succeed or raise an MPI
+error. Fault tolerance at the application level is impossible if the application
+cannot regain full control of the execution after a process failure. The MPI
+library must guarantee that it will automatically stabilize itself following a
+process failure, and provide the tools necessary for the application to resolve
+its own deadlock scenarios on an application specific basis.
+% The \ulfm proposal implements this idea with the \mpifunc{MPI\_COMM\_REVOKE}
+% construct, detailed in Section~\ref{sect:newmpi}.
+
+Second, the API should allow varied fault tolerant models to be built. MPI has
+been conceived with the goal of portability and extendability, and have been
+constructed to support libraries leveraging existing MPI constructs to create
+more abstractions or tighter integration with libraries. Maintaining this design
+strength was paramount for \ulfm, and it provides this capability so other
+levels of consistency can be supported as needed by higher-level
+concepts. Transactional fault tolerance, strongly uniform collective operations,
+and other FT techniques can all therefore be built upon the proposed set of
+constructs.
+
+An API should be easy to understand and use in common scenarios, as complex
+tools have a steep learning courve and a slow adoption by the targeted
+communities. To this end, the number of newly proposed constructs have been
+reduced to five (along with nonblocking variants). These five functions provide
+the minimal set of tools to implement fault tolerant applications and libraries.
+
+Two major pitfalls must be avoided when implementing these concepts: jitter
+prone, permanent monitoring of the health of peers a process is not actively
+communicating with, and expensive consensus required for returning consistent
+errors at all ranks.  The operative principle is that fault-related errors are
+local knowledge, and are not indicative of the return status on remote
+processes. Errors are raised at a particular rank, when based on local knowledge
+it is known that a particular operation cannot complete because a participating
+peer has failed.

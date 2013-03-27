@@ -1,0 +1,117 @@
+\section{Implementation Issues}
+\label{sect:algorithms}
+
+\begin{comment}
+
+In this section, we detail the challenges and advantages of the aforementioned
+MPI constructs. They unfold along three main axes, the amount of supplementary
+state and memory to be kept within the MPI library, the additional operations to
+be executed on the critical path of communication routines, and the algorithmic
+cost of failure recovery routines. We discuss, in general, options available to
+implementors, and highlight issues with insight from a prototype implementation
+in Open~MPI~\cite{gabriel04:_open_mpi}.
+
+\subsection{Impact on communication routines}
+
+\paragraph*{Memory:} Because a communicator cannot be repaired,
+tracking the state of failed processes imposes a minimal memory overhead.  From
+a practical perspective each node needs a global list of detected failures,
+shared by all communicators; its size grows linearly with the number of
+failures, and it is empty as long as no failures occur.  Within each
+communicator, the supplementary state is limited to two values: whether the
+communicator is revoked or not, and an index in the global list of failures
+denoting the last acknowledged failure (with
+\mpifunc{MPI\_COMM\_FAILURE\_ACK}). For efficiency reasons, an implementation
+may decide to cache the fact that some failures have happened in the
+communicator so that collective operations and \mpifunc{MPI\_ANY\_SOURCE}
+receptions can bail out quickly. Overall, the supplementary memory consumption
+from fault tolerant constructs is small, independent of the total number of
+nodes, and unlikely to affect the cache and TLB hit rates.
+
+\paragraph*{Conditionals:} Another concern is the number of supplementary
+conditions on the latency critical path. Indeed, most completion operations
+require a supplementary conditional statement to handle the case where the
+underlying communication context has been revoked. However, the prediction
+branching logic of the processor can be hinted to favor the failure free
+outcome, resulting in a single load of a cached value and a single, mostly
+well-predicted, branching instruction, unlikely to affect the instruction
+pipeline. It is notable that non-blocking operations raise errors related to
+process failure only during the completion step, and thus do not need to check
+for revocation before the latency critical section.
+
+\paragraph*{Matching logic:} \mpifunc{MPI\_COMM\_REVOKE} does not have a
+matching call on other processes on which it has an effect. As such, it might
+add detrimental complexity to the matching logic. However, any MPI
+implementation needs to handle unexpected messages. The order of revocation
+message delivery is loose enough that the handling of revocation notices can be
+integrated within the existing unexpected message matching logic. In our
+implementation in Open~MPI, we leverage the active message low level transport
+layer to introduce revocation as a new active message tag, without a single
+change to the matching logic.
+
+\paragraph*{Collective operations:} A typical MPI implementation supports a
+large number of collective algorithms, which are dynamically selected depending
+on criteria such as communicator or message size and hardware topology. The
+loose requirements of the proposal concerning error reporting of process
+failures in collective operations limits the impact it has on collective
+operations. Typically, the collective communication algorithms and selection
+logic are left unchanged. The only new requirement is that failures happening at
+any rank of the communicator cause all processes to exit the collective
+(successfully for some, with an error for others). Due to the underlying
+loosely-connected topologies used by some algorithms, a point-to-point based
+implementation of a collective communication is unlikely to detect all process
+failures.  Fortunately, a practical implementation exists that does not require
+modifying any of the collective operations: when a rank raises an error because
+of a process failure, it can revoke an internal, temporary communication
+context associated with the collective operation. As the revocation notice
+propagates on the internal communicator, it interrupts the point-to-point
+operations of the collective. An error code is returned to the high level MPI
+wrapper, which in turn raises the appropriate error on the user's communicator.
+
+\subsection{Recovery routines}
+
+\end{comment}
+
+Some of the recovery routines described in Section~\ref{sect:newmpi} are
+unique in their ability to deliver a valid result despite the occurrence
+of failures. This specification of correct behavior across failures calls
+for resilient, more complex algorithms. In most cases, these functions
+are intended to be called sparingly by users, only after actual failures have
+happened, as a means of recovering a consistent state across all
+processes. This section describes the algorithms that
+can be used to deliver this specification and their cost. 
+An evaluation of the failure-free impact on implementations can be found in~\cite{Bland:2012tp}.
+
+\paragraph*{Agreement:}
+\label{subsect:agreement}
+
+The agreement can be conceptualized as a failure-resilient reduction on
+a boolean value. Many agreement algorithms have been proposed in the 
+literature; the log-scaling two-phase consensus algorithm used by the \ulfm
+prototype is one of many possible implementations of
+\mpifunc{MPI\_COMM\_AGREE} operation based upon prior work in the field.
+Specifically, this algorithm is a variation of the multi-level two-phase
+commit algorithms~\cite{Mohan_1985}. A more extensive discussion of the
+algorithm and its complexity has been published by Hursey,
+et.al.~\cite{Hursey11LogConsensus}.
+
+\paragraph*{Revoke:}
+\label{subsect:revoke}
+
+A concern with the revoke operation is the number of supplementary
+conditions introduced to the latency critical path. Indeed, most completion operations
+require a supplementary conditional statement to handle the case where the
+underlying communication context has been revoked. However, the prediction
+branching logic of the processor can be hinted to favor the failure free
+outcome, resulting in a single load of a cached value and a single, mostly
+well-predicted, branching instruction, unlikely to affect the instruction
+pipeline. It is notable that non-blocking operations raise errors related to
+process failure only during the completion step, and thus do not need to check
+for revocation before the latency critical section.
+
+\paragraph*{Shrink:} The Shrink operation is, algorithmically, an agreement on
+which the consensus is done on the group of failed processes.
+Hence, the two operations have the same algorithmic complexity. Indeed, in the
+prototype implementation, \mpifunc{MPI\_COMM\_AGREE} and
+\mpifunc{MPI\_COMM\_SHRINK} share the same internal implementation of the
+agreement.

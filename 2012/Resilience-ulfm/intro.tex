@@ -1,0 +1,38 @@
+\section{Introduction}
+\label{sect:intro}
+
+In a constant effort to deliver steady performance improvements, the size of
+High Performance Computing (HPC) systems, as observed by the Top 500
+ranking\footnote{\url{http://www.top500.org/}}, has grown tremendously over the
+last decade. This trend, along with the resultant decrease of the Mean Time 
+Between Failure (MTBF), is unlikely to stop; thereby many computing nodes will 
+inevitably fail during application execution~\cite{ExaScaleResilience09}. It is alarming 
+that most popular fault tolerant approaches see their efficiency plummet at 
+Exascale~\cite{BOSILCA-2012-696154,lawn265}, calling for more efficient
+approaches evolving around application centric failure 
+mitigation strategies~\cite{huang1984algorithm}.
+
+The prevalence of distributed memory machines promotes the use of a message
+passing model. An extensive and varied spectrum of domain science applications
+depend on libraries compliant with the MPI 
+Standard
+%\footnote{http://mpi-forum.org/docs/mpi-2.2/mpi22-report.pdf}.
+Although unconventional programming paradigms are
+emerging, most delegate their data movements to MPI and it is widely acknowledged that 
+MPI is here to stay. However, MPI has to evolve to effectively support the demanding 
+requirements imposed by novel architectures, programing approaches, and dynamic runtime
+systems. In particular, its support for fault tolerance 
+has always been inadequate~\cite{Gropp:2004:FTM:1080704.1080714}. To address
+the growing interest in fault-aware MPI, a working group  in the
+context of the MPI Forum has proposed basic interfaces and semantics called 
+\ulfm~\cite{BlandULFMTechReport} to enable libraries and applications to survive
+the increasing number of failures, and, subsequently, to repair the 
+state of the MPIs world. The contributions of this work are
+at providing a high-level overview of the proposed semantics, and to evaluate
+the difficulties faced by MPI implementors on delivering a low-impact
+implementation on the failure-free performance.
+% to evaluate the difficulties faced by MPI implementors and demonstrate the
+% feasibility of a low-impact implementation on the failure-free performance.
+For a more 
+complete evaluation and discussion of \ulfm and its related work, refer to this 
+abstract's accompanying paper~\cite{Bland:2012tp}.

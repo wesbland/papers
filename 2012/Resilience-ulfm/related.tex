@@ -1,0 +1,19 @@
+\section{Related Work}
+\label{sect:related}
+
+Efforts toward fault tolerance in MPI have previously been attempted.  Automatic
+fault tolerance~\cite{Bouteiller10Redesign,MPICHVblocking} is a compelling
+approach for users, as failures are completely masked and handled internally by
+the MPI library, which requires no new interfaces to MPI or application code
+changes. Unfortunately, many recent studies point out that automatic approaches,
+either based on checkpoints or replication, will exhibit poor efficiency on
+Exaflop platforms~\cite{BOSILCA-2012-696154,lawn265}.
+
+Application Based Fault Tolerance
+(ABFT)~\cite{fthpl2011,pengduppopp12,huang1984algorithm} is another approach
+that promises better scalability, at the cost of significant algorithm and 
+application code changes. Despite some limited 
+successes~\cite{europar12/onfailureckpt,Gropp:2004:FTM:1080704.1080714},
+MPI interfaces need to be extended to effectively support ABFT. The most notable past 
+effort is FT-MPI~\cite{fagg2000ft}, which provided several recovery modes for the user 
+but was never standardized and therefore was not portable enough for most users.

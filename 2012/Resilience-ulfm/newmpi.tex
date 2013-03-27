@@ -1,0 +1,48 @@
+\section{New MPI Constructs}
+\label{sect:newmpi}
+
+\paragraph{\mpifunc{MPI\_COMM\_FAILURE\_ACK} \& \mpifunc{MPI\_COMM\_FAILURE\_GET\_ACKED}:}\label{sect.ack}
+
+These two calls allow the application to determine which processes within a
+communicator have failed. The acknowledgement function serves to mark a point in
+time used as a reference for the second function which returns the group of
+processes which were locally know to have failed. After acknowledging failures,
+the application can resume \mpifunc{MPI\_ANY\_SOURCE} point-to-point operations
+between non-failed processes, but operations involving failed processes will
+continue to raise errors.
+
+\paragraph{\mpifunc{MPI\_COMM\_REVOKE}:}
+
+For scalability purposes, failure detection is local to a process's neighbors as
+defined by the application's communication pattern. This non-global error
+reporting may result in some processes continuing their normal, failure-free
+execution path, while others have diverged to the recovery execution path. As an
+example, if a process, unaware of the failure, posts a reception from another
+process that has switched to the recovery path, the matching send will never be
+posted and the receive operation will deadlock.  The revoke operation
+provides a mechanism for the application to resolve such situations before
+entering the recovery path. A revoked communicator becomes improper for further
+communication, and all future or pending communications on this communicator
+will be interrupted and completed with the new error code
+\mpifunc{MPI\_ERR\_REVOKED}.
+
+\paragraph{\mpifunc{MPI\_COMM\_SHRINK}:}
+
+The shrink operation allows the application to create a new communicator by
+eliminating all failed processes from a revoked communicator. The operation is
+collective and performs a consensus algorithm to ensure that all participating
+processes complete the operation with equivalent groups in the new communicator.
+This function cannot return an error due to process failure. Instead, such
+errors are absorbed as part of the consensus algorithms and will be excluded
+from the resulting communicator.
+
+\paragraph{\mpifunc{MPI\_COMM\_AGREE}:}
+
+This operation provides an agreement algorithm which can be used to determine a
+consistent state between processes when such strong consistency is
+necessary. The function is collective and forms an agreement over a boolean
+value, even when failures have happened or the communicator has been
+revoked. The agreement can be used to resolve a number of consistency issues
+after a failure, such as uniform completion of an algorithmic phase or
+collective operation, or as a key building block for strongly consistent failure
+handling approaches (such as transactions).
