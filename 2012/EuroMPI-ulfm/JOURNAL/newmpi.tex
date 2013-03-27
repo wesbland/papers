@@ -1,0 +1,77 @@
+\section{New MPI Constructs}
+\label{sect:newmpi}
+
+This section succinctly presents the prominent interfaces proposed
+to enable effective support of User-Level Failure Mitigation for MPI
+applications. The interested reader can refer to the technical document
+for a complete description of the interfaces~\cite{BlandULFMTechReport}
+and to the amended standard draft\footnote{http://svn.mpi-forum.org/trac/mpi-forum-web/ticket/323}.
+
+Designing the mechanism that users would use to manage failures was built around
+three concepts: 1) simplicity, the API should be easy to understand
+and use in most common scenarios; 2) flexibility, the API should allow
+varied fault tolerant models to be built as external libraries and; 3) absence
+of deadlock, no MPI call (point-to-point or collective) can block
+indefinitely after a failure, but must either succeed or raise an MPI error.
+Two major pitfalls must be avoided: jitter prone, permanent 
+monitoring of the health of peers a process is not actively
+communicating with, and expensive consensus required for returning
+consistent errors at all ranks. The operative principle is then that
+errors (\mpifunc{MPI\_ERR\_PROC\_FAILED}) are not indicative of the
+return status on remote processes, but are raised only at a particular
+rank, when a particular operation cannot complete because a participating 
+peer has failed. The following functions 
+provide the basic blocks for maintaining consistency and enabling 
+recovery of the state of MPI.
+
+\paragraph{\mpifunc{MPI\_COMM\_FAILURE\_ACK} \& \mpifunc{MPI\_COMM\_FAILURE\_GET\_ACKED}:}\label{sect.ack}
+
+These two calls allow the application to determine which processes within a
+communicator have failed. The acknowledgement function serves to mark a point in
+time which will be used as a reference. The function to get the acknowledged
+failures refers back to this reference point and returns the group of processes
+which were locally known to have failed.
+After acknowledging failures, the application can resume
+\mpifunc{MPI\_ANY\_SOURCE} point-to-point
+operations between non-failed processes, but operations involving failed
+processes (such as collective operations) will likely continue to raise errors.
+
+\paragraph{\mpifunc{MPI\_COMM\_REVOKE}:}
+
+Because failure detection is not global to the communicator, some
+processes may raise an error for an operation, while others do not. This
+inconsistency in error reporting may result in some processes continuing
+their normal, failure-free execution path, while others have diverged to
+the recovery execution path. As an example, if a process, unaware of the
+failure, posts a reception from another process that has switched to the
+recovery path, the matching send will never be posted. Yet no failed 
+process participates in the operation and it should
+not raise an error. The receive operation is effectively deadlocked.
+The revoke operation provides a mechanism for the application to resolve such
+situations before entering the recovery path. A revoked communicator becomes
+improper for further communication, and all future or pending communications on
+this communicator will be interrupted and completed with the new error code
+\mpifunc{MPI\_ERR\_REVOKED}. It is notable that although this operation is not
+collective (a process can enter it alone), it affects remote ranks without a
+matching call.
+
+\paragraph{\mpifunc{MPI\_COMM\_SHRINK}:}
+
+The shrink operation allows the application to create a new communicator by
+eliminating all failed processes from a revoked communicator. The operation is
+collective and performs a consensus algorithm to ensure that all participating
+processes complete the operation with equivalent groups in the new communicator.
+This function cannot return an error due to process failure. Instead, such errors
+are absorbed as part of the consensus algorithms and will be excluded from the
+resulting communicator.
+
+\paragraph{\mpifunc{MPI\_COMM\_AGREE}:}
+
+This operation provides an agreement algorithm which can be used to determine a
+consistent state between processes when such strong consistency is
+necessary. The function is collective and forms an agreement over a boolean
+value, even when failures have happened or the communicator has been
+revoked. The agreement can be used to resolve a number of consistency issues
+after a failure, such as uniform completion of an algorithmic phase or
+collective operation, or as a key building block for strongly consistent failure
+handling approaches (such as transactions).

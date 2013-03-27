@@ -1,0 +1,171 @@
+EuroMPI 2012 CALL FOR PAPERS
+
+Recent Advances in Message Passing Interface. 
+19th European MPI Users' Group Meeting
+
+Austrian Academy of Sciences, Vienna, Austria, September 23-26, 2012
+
+www.eurompi2012.org
+
+BACKGROUND AND TOPICS
+
+EuroMPI is the preeminent meeting for users, developers and
+researchers to interact and discuss new developments and applications
+of message-passing parallel computing, in particular in and related to
+the Message Passing Interface (MPI). The annual meeting has a long,
+rich tradition, and the 19th European MPI Users' Group Meeting will
+again be a lively forum for discussion of everything related to usage
+and implementation of MPI and other parallel programming interfaces.
+Traditionally, the meeting has focused on the efficient implementation
+of aspects of MPI, typically on high-performance computing platforms,
+benchmarking and tools for MPI, short-comings and extensions of MPI,
+parallel I/O and fault tolerance, as well as parallel applications
+using MPI. The meeting is open towards other topics, in particular
+application experience and alternative interfaces for high-performance
+heterogeneous, hybrid, distributed memory systems.
+
+Topics of interest include, but are not limited to:
+
+* MPI implementation issues and improvements
+* Extensions to and shortcomings of MPI
+* Tools and environments for MPI
+* Hybrid and heterogeneous programming with MPI and other interfaces
+* Relation of MPI to alternative interfaces for hybrid/heterogeneous distributed memory systems
+* Interaction between message-passing software and hardware, in particular new high performance architectures
+* Fault tolerance in message-passing implementations and systems
+* Performance evaluation for MPI and MPI based applications
+* Automatic performance tuning of MPI applications and implementations
+* Verification of message passing applications and protocols
+* Applications using message-passing, in particular in Computational Science and Scientific Computing 
+* Non-standard message-passing applications
+* Parallel algorithms in the message-passing paradigm
+* Algorithms using the message-passing paradigm
+
+The meeting will feature contributed talks on the selected,
+peer-reviewed papers, invited expert talks covering upcoming and
+future issues, a vendor session where selected vendors will present
+their new developments in hybrid and heterogeneous cluster and
+high-performance architectures, a poster session, and a tutorial
+day. As in 2011, EuroMPI 2012 will include the special session IMUDI
+dedicated to improving MPI user and developer interaction. The special
+session will have the same deadlines as the conference, but its own
+CFP and feature its own specialist program committee that will review
+all dedicated IMUDI submissions. This session should attract strongly
+application focused papers showing potential or problems with MPI and
+current MPI practice. IMUDI papers may be shorter and may center on
+problem analysis rather than solution, and will thus contribute to
+intensify discussion between MPI developers and application programmers.
+Other, special sessions may be organized, and proposals are
+solicited. Proceedings for EuroMPI 2012 will be published in Springer
+Lecture Notes in Computer Science (LNCS).  A Special Issue of the
+Springer "Computing" journal is planned for a selection of the best
+papers of the conference.
+
+SUBMISSION INFORMATION
+
+Contributors are invited to submit a full paper as a PDF document not
+exceeding 10 pages in English. The title page should contain an
+abstract of at most 100 words and five specific, topical keywords. The
+paper must be formatted according to the Springer LNCS guidelines. The
+usage of LaTeX for preparation of the contribution as well as the
+submission in camera ready format is strongly recommended. Style files
+can be found with Springer
+
+New work that is not yet mature for a full paper, short observations,
+and similar brief announcements are invited for the poster
+session. Contributions to the poster session should be submitted in
+the form of a two page abstract. 
+
+All contributions will be fully peer reviewed by the program
+committee. Papers shall be submitted electronically via Easychair, see
+http://www.easychair.org/conferences/?conf=eurompi2012
+
+Papers with a very strong application focus concerned with use of MPI
+and possible obstacles should be considered for submission to the
+IMUDI special session, see http://press.mcs.anl.gov/imudi
+
+SCHEDULE, IMPORTANT DATES (Note: deadline extended!)
+
+* Submission of full papers and poster abstracts: May 16, 2012
+* Author Notification: June 15th, 2012
+* Camera Ready papers due: July 9th, 2012
+* Tutorial(s): September 23rd, 2012
+* Conference: September 24-26th, 2012
+
+GENERAL CHAIR
+
+Jack Dongarra
+
+ORGANIZERS, PC CHAIRS
+
+Siegfried Benkner, University of Vienna, sigi@par.univie.ac.at
+Jesper Larsson Träff, Vienna University of Technology, traff@par.tuwien.ac.at
+
+PROGRAM COMMITTEE
+
+Pavan Balaji, Argonne National Laboratory, USA
+Siegfried Benkner, University of Vienna, Austria
+Gil Bloch, Mellanox Technologies
+George Bosilca, University of Tennessee, Knoxville, USA
+Ron Brightwell, Sandia National Laboratories, Albuquerque, USA
+Darius Buntinas, Argonne National Laboratory, USA
+Franck Cappello, INRIA, France and University of Illinois at Urbana-Champaign, USA
+Gilles Civario, Irish Centre for High-End Computing
+Yiannis Cotronis, University of Athens, Greece
+Jim Cownie, Intel, UK
+Anthony Danalis, University of Tennessee, Knoxville, USA
+Bronis R. de Supinski, Lawrence Livermore National Laboratory, USA
+Luiz DeRose, Cray, USA
+Edgar Gabriel, University of Houston, USA
+Brice Goglin, INRIA, France
+David Goodell, Argonne National Laboratory, USA
+Ganesh Gopalakrishnan, University of Utah, USA
+Richard Graham, Oak Ridge National Laboratory, USA
+William Gropp, University of Illinois at Urbana-Champaign, USA
+Thomas Herault, University of Tennessee, Knoxville
+Torsten Hoefler, University of Illinois at Urbana-Champaign, USA
+Yutaka Ishikawa, Universty of Tokyo, Japan
+Michael Kagan, Mellanox Technologies
+Dries Kimpe, Argonne National Laboratory, USA
+Jesus Labarta, Technical University of Catalonia, Barcelona Supercomputing Center, Spain
+Dong Li, Oak Ridge National Laboratory, USA
+Ewing Rusty Lusk, Argonne National Laboratory, USA
+Amith Rajith Mamidala, IBM, USA
+Satoshi Matsuoka, Tokyo Institute of Technology, Japan
+Guillaume Mercier, INRIA, France
+Bernd Mohr, Jülich Supercomputing Centre (JSC), Germany
+Matthias Mueller, Center for Information Services and HPC, TU Dresden, Germany
+Rolf Rabenseifner, High Performance Computing Center Stuttgart (HLRS), Germany
+Thomas Rauber, University of Bayreuth, Germany
+Rolf Riesen, IBM, Ireland
+Robert Ross, Argonne National Laboratory, USA
+Peter Sanders Karlsruhe Institute of Technology, Germany
+Mitsuhisa Sato, University of Tsukuba, Japan
+Saba Sehrish, Northwestern University, USA
+Christian Siebert, University of Aachen, Germany
+Stephen Siegel, University of Delaware, USA
+Anna Sikora, Autonomous University of Barcelona, Spain
+Jeff Squyres, Cisco, USA
+Shinji Sumimoto, Fujitsu, Japan
+Rajeev Thakur, Argonne National Laboratory, USA
+Vinod Tipparaju, AMD, USA
+Carsten Trinitis, Technical University of Munich, Germany
+Denis Trystram, Grenoble Institute of Technology, France
+Jesper Larsson Träff, Vienna University of Technology, Austria
+Keith Underwood, Intel, USA
+Robert Van De Geijn, The University of Texas at Austin, USA
+Alan Wagner, University of British Columbia, Canada
+Roland Wismüller, University of Siegen, Germany
+Xin Yuan, Florida State University, USA
+
+CONFERENCE VENUE
+
+EuroMPI 2012 will be held in Vienna, Austria, at the Austrian Academy
+of Sciences. Vienna is easily accessible by plane and train, and in
+addition to the conference has a highly attractive cultural heritage.
+
+CONFERENCE FEES
+
+The conference will hopefully be well supported by sponsors, which will help
+directly towards keeping the fees low. As far as possible, special student 
+fees will be offered.

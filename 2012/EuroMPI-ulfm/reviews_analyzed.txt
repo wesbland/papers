@@ -1,0 +1,25 @@
+* R1: The new fault tolerant MPI interfaces and semantics need users to provide supports at the application level to handle errors. I was wondering how much programming effort is needed in practice. I think the usability is a very important concern for programmers to really embrace these new features. It would be better if the paper can provide a simple scenario to explain the usage of these new interfaces and semantics.
+
+- Due to the page limitation we had to make a choice between depicting the proposed interface and going in details over an example. 
+
+* R1: The paper does not provide enough background information for the readers to fully understand the proposed work. This makes the paper a bit hard to understand. For example, when talking about the recovery routines, there is no explanation for the reliable broadcast and the agreement algorithmic complexity, which makes the reader confused about revoke and agreement semantics.
+
+* R1: In general, the paper demonstrates the small performance impacts of those introduced features on the application. However, for the recovery constructs, I noticed that the overhead of fault detection is impacted by the scale. Particularly the overhead keeps increasing as the system scales. At the extremely large scale, will the overhead become a big concern then? In addition, the overhead of shrink operations is large and almost in linear with the number of processes. This make me wonder if the agreement operations for the shrink is efficient enough. The other operations for the shrink, including the allocation of a new communicator ID and the creation of the communication, may remain the same as the original Open MPI implementation, so the extra overhead must come from the inefficient implementation of the agreement operations. 
+
+* R1: It would be better if the recovery routines can be evaluated in a real application, instead of in a synthetic benchmark. The real application may have inherent fault tolerant mechanisms. It would be interesting to see how the application-level mechanisms and the MPI library interacts and what is the real overhead to the application.
+
+* R2: One fact I would like to see discussed is the impact on energy consumption and how viable these techniques are in a hybrid programming and hybrid hardware world.
+
+* R2: It is to be noted that the these runs do not have any faults. It is merely comparing the two implementations as the fault tolerant enabled MPI has some additional overhead and the results show that the overhead is almost negligible. To asses the performance of recovery constructs, a synthetic benchmark is constructed which is made to fail in each iteration and the operations are timed. MPI_COMM_SHRINK appears to expensive and it increases linearly with number of processes. 
+
+* R3: The scalability of the shrink operation needs to be examined on larger core counts, especially since the proposal is aimed towards exascale computing.
+
+- This is something we must emphasize.
+
+* R4: As far as the reviewer can tell, the MPI_Comm_revoke() call has been named MPIU_Comm_invalidate() in the ULFM proposal at the Forum -- this should be remarked in an foot-note...
+
+* R4: The reviewer understands, that with the proposal, each process may have local failure information -- upon detection of a failure, the application may call MPI_Comm_revoke (), which will send a out-of-order control message to all other participants of the communicator -- leading to a notification storm, if (N-1) processes receive an error value and call MPI_Comm_revoke()?
+
+* R4: The revocation notification by MPI_Comm_revoke() is  a local-call. It  is handled on a peer-to-peer basis, lazily notifying all other processes in the group (sec. 4.2, paragraph "Revoke:"). This revoke message might go unnoticed on some (non-faulty) user processes -- only upon re-entry into MPI using the same (faulty) communicator. The ensuing MPI_Comm_agree() and MPI_Comm_shrink() might therefore hang indefinitely on the remaining (non-faulty) processes on the recovery path. The possibility for live-locks -- think master-slave with some slave not calling into MPI_Comm_revoke() with the faulty communicator -- should be mentioned in ticket #323 as advice to users...
+
+* R5: Why are some URL shown as footnotes, while others are in the references list?

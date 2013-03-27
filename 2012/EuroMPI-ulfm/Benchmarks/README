@@ -1,0 +1,34 @@
+FaultRevokeShrinkSpawnJoin:
+--------------------------
+Example: for np = 8 (-v 1)
+  mpirun --nolocal -np 8 -am ft-enable-mpi frssj -v 1 -n 50
+Data is in:
+  FaultRevokeShrinkSpawnJoin/smoky-data-prefinal.tar.gz
+
+Example: for np = 8 (-v $np-1)
+  mpirun --nolocal -np 8 -am ft-enable-mpi frssj -v 7 -n 50
+Data is in:
+  FaultRevokeShrinkSpawnJoin/smoky-data-final.tar.gz
+
+
+Sequoia AMG:
+------------
+Data summary is in:
+  sequoia-amg/data/smoky-final-openib-sm.data
+
+Data is summary over 25 runs.
+
+Raw data in:
+  sequoia-amg/data/smoky.tar.gz
+
+
+Netpipe:
+--------
+Raw data in:
+  netpipe/data/smoky.tar.gz
+
+A summary of the data is in:
+  netpipe/data/smoky-summary-data.data
+
+Full full data runs look for the "*-full_*" runs:
+  smoky/sm-full_build_ft-run_ft*

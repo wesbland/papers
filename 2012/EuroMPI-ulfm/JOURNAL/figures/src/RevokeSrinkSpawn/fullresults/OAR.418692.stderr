@@ -1,0 +1,163 @@
+frssj: frssj.c:133: benchmark: Assertion `rc != 0' failed.
+[graphene-125:03544] *** Process received signal ***
+[graphene-125:03544] Signal: Aborted (6)
+[graphene-125:03544] Signal code:  (-6)
+[graphene-125:03544] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f57538f6ff0]
+[graphene-125:03544] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f57535b81b5]
+[graphene-125:03544] [ 2] /lib/libc.so.6(abort+0x180) [0x7f57535bafc0]
+[graphene-125:03544] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f57535b1301]
+[graphene-125:03544] [ 4] frssj() [0x40170e]
+[graphene-125:03544] [ 5] frssj(main+0x9e) [0x401cf9]
+[graphene-125:03544] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f57535a4c8d]
+[graphene-125:03544] [ 7] frssj() [0x4012b9]
+[graphene-125:03544] *** End of error message ***
+[graphene-125.nancy.grid5000.fr:03545] [[47061,1],1] ftbasic: agreement) (base  ) Error: Reliable consensus protocol failed (should never happen) ret = -14
+frssj: frssj.c:163: benchmark: Assertion `rc == 0' failed.
+[graphene-125:03545] *** Process received signal ***
+[graphene-125:03545] Signal: Aborted (6)
+[graphene-125:03545] Signal code:  (-6)
+[graphene-125.nancy.grid5000.fr:03549] [[47061,1],5] ftbasic: agreement) (base  ) Error: Reliable consensus protocol failed (should never happen) ret = -14
+frssj: frssj.c:163: benchmark: Assertion `rc == 0' failed.
+[graphene-125:03549] *** Process received signal ***
+[graphene-125:03549] Signal: Aborted (6)
+[graphene-125:03549] Signal code:  (-6)
+[griffon-2.nancy.grid5000.fr:03994] [[47061,1],9] ftbasic: agreement) (base  ) Error: Reliable consensus protocol failed (should never happen) ret = -14
+frssj: frssj.c:163: benchmark: Assertion `rc == 0' failed.
+[griffon-2:03994] *** Process received signal ***
+[griffon-2:03994] Signal: Aborted (6)
+[griffon-2:03994] Signal code:  (-6)
+[griffon-2.nancy.grid5000.fr:03998] [[47061,1],13] ftbasic: agreement) (base  ) Error: Reliable consensus protocol failed (should never happen) ret = -14
+frssj: frssj.c:163: benchmark: Assertion `rc == 0' failed.
+[griffon-2:03998] *** Process received signal ***
+[griffon-2:03998] Signal: Aborted (6)
+[griffon-2:03998] Signal code:  (-6)
+[griffon-2.nancy.grid5000.fr:03996] [[47061,1],11] ftbasic: agreement) (base  ) Error: Reliable consensus protocol failed (should never happen) ret = -14
+frssj: frssj.c:163: benchmark: Assertion `rc == 0' failed.
+[griffon-2:03996] *** Process received signal ***
+[griffon-2:03996] Signal: Aborted (6)
+[griffon-2:03996] Signal code:  (-6)
+[graphene-125:03545] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f7eac4e7ff0]
+[graphene-125:03545] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f7eac1a91b5]
+[graphene-125:03545] [ 2] /lib/libc.so.6(abort+0x180) [0x7f7eac1abfc0]
+[graphene-125:03545] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f7eac1a2301]
+[graphene-125:03545] [ 4] frssj() [0x40176c]
+[graphene-125:03545] [ 5] frssj(main+0x9e) [0x401cf9]
+[graphene-125:03545] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f7eac195c8d]
+[graphene-125:03545] [ 7] frssj() [0x4012b9]
+[graphene-125:03545] *** End of error message ***
+[graphene-125:03549] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f7ef8406ff0]
+[graphene-125:03549] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f7ef80c81b5]
+[graphene-125:03549] [ 2] /lib/libc.so.6(abort+0x180) [0x7f7ef80cafc0]
+[graphene-125:03549] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f7ef80c1301]
+[graphene-125:03549] [ 4] frssj() [0x40176c]
+[graphene-125:03549] [ 5] frssj(main+0x9e) [0x401cf9]
+[graphene-125:03549] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f7ef80b4c8d]
+[graphene-125:03549] [ 7] frssj() [0x4012b9]
+[graphene-125:03549] *** End of error message ***
+[graphene-125.nancy.grid5000.fr:03547] [[47061,1],3] ftbasic: agreement) (base  ) Error: Reliable consensus protocol failed (should never happen) ret = -14
+frssj: frssj.c:163: benchmark: Assertion `rc == 0' failed.
+[griffon-2.nancy.grid5000.fr:04000] [[47061,1],15] ftbasic: agreement) (base  ) Error: Reliable consensus protocol failed (should never happen) ret = -14
+[griffon-2.nancy.grid5000.fr:03992] [[47061,1],7] ftbasic: agreement) (base  ) Error: Reliable consensus protocol failed (should never happen) ret = -14
+frssj: frssj.c:163: benchmark: Assertion `rc == 0' failed.
+[griffon-2:04000] *** Process received signal ***
+[griffon-2:04000] Signal: Aborted (6)
+[griffon-2:04000] Signal code:  (-6)
+frssj: frssj.c:163: benchmark: Assertion `rc == 0' failed.
+[griffon-2:03992] *** Process received signal ***
+[griffon-2:03992] Signal: Aborted (6)
+[griffon-2:03992] Signal code:  (-6)
+[graphene-125:03547] *** Process received signal ***
+[graphene-125:03547] Signal: Aborted (6)
+[graphene-125:03547] Signal code:  (-6)
+[griffon-2:03992] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fe3b7bb7ff0]
+[griffon-2:03992] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7fe3b78791b5]
+[griffon-2:03992] [ 2] /lib/libc.so.6(abort+0x180) [0x7fe3b787bfc0]
+[griffon-2:03992] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7fe3b7872301]
+[griffon-2:03992] [ 4] frssj() [0x40176c]
+[griffon-2:03992] [ 5] frssj(main+0x9e) [0x401cf9]
+[griffon-2:03992] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fe3b7865c8d]
+[griffon-2:03992] [ 7] frssj() [0x4012b9]
+[griffon-2:03992] *** End of error message ***
+[griffon-2:03994] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5f1f6efff0]
+[griffon-2:03994] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f5f1f3b11b5]
+[griffon-2:03994] [ 2] /lib/libc.so.6(abort+0x180) [0x7f5f1f3b3fc0]
+[griffon-2:03994] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f5f1f3aa301]
+[griffon-2:03994] [ 4] frssj() [0x40176c]
+[griffon-2:03994] [ 5] frssj(main+0x9e) [0x401cf9]
+[griffon-2:03994] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5f1f39dc8d]
+[griffon-2:03994] [ 7] frssj() [0x4012b9]
+[griffon-2:03994] *** End of error message ***
+[graphene-125:03547] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f4dbca5aff0]
+[graphene-125:03547] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f4dbc71c1b5]
+[graphene-125:03547] [ 2] /lib/libc.so.6(abort+0x180) [0x7f4dbc71efc0]
+[graphene-125:03547] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f4dbc715301]
+[graphene-125:03547] [ 4] frssj() [0x40176c]
+[graphene-125:03547] [ 5] frssj(main+0x9e) [0x401cf9]
+[graphene-125:03547] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4dbc708c8d]
+[graphene-125:03547] [ 7] frssj() [0x4012b9]
+[graphene-125:03547] *** End of error message ***
+[griffon-2:04000] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f04d9608ff0]
+[griffon-2:04000] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f04d92ca1b5]
+[griffon-2:04000] [ 2] /lib/libc.so.6(abort+0x180) [0x7f04d92ccfc0]
+[griffon-2:04000] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f04d92c3301]
+[griffon-2:04000] [ 4] frssj() [0x40176c]
+[griffon-2:04000] [ 5] frssj(main+0x9e) [0x401cf9]
+[griffon-2:04000] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f04d92b6c8d]
+[griffon-2:04000] [ 7] frssj() [0x4012b9]
+[griffon-2:04000] *** End of error message ***
+[griffon-2:03998] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fa3a9500ff0]
+[griffon-2:03998] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7fa3a91c21b5]
+[griffon-2:03998] [ 2] /lib/libc.so.6(abort+0x180) [0x7fa3a91c4fc0]
+[griffon-2:03998] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7fa3a91bb301]
+[griffon-2:03998] [ 4] frssj() [0x40176c]
+[griffon-2:03998] [ 5] frssj(main+0x9e) [0x401cf9]
+[griffon-2:03998] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fa3a91aec8d]
+[griffon-2:03998] [ 7] frssj() [0x4012b9]
+[griffon-2:03998] *** End of error message ***
+[griffon-2:03996] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fa91e307ff0]
+[griffon-2:03996] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7fa91dfc91b5]
+[griffon-2:03996] [ 2] /lib/libc.so.6(abort+0x180) [0x7fa91dfcbfc0]
+[griffon-2:03996] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7fa91dfc2301]
+[griffon-2:03996] [ 4] frssj() [0x40176c]
+[griffon-2:03996] [ 5] frssj(main+0x9e) [0x401cf9]
+[griffon-2:03996] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fa91dfb5c8d]
+[griffon-2:03996] [ 7] frssj() [0x4012b9]
+[griffon-2:03996] *** End of error message ***
+[[47061,1],2][btl_openib_component.c:3426:handle_wc] from graphene-125.nancy.grid5000.fr to: graphene-125 error polling LP CQ with status RETRY EXCEEDED ERROR status number 12 for wr_id 74aa00 opcode 32767  vendor error 129 qp_idx 0
+--------------------------------------------------------------------------
+The InfiniBand retry count between two MPI processes has been
+exceeded.  "Retry count" is defined in the InfiniBand spec 1.2
+(section 12.7.38):
+
+    The total number of times that the sender wishes the receiver to
+    retry timeout, packet sequence, etc. errors before posting a
+    completion error.
+
+This error typically means that there is something awry within the
+InfiniBand fabric itself.  You should note the hosts on which this
+error has occurred; it has been observed that rebooting or removing a
+particular host from the job can sometimes resolve this issue.
+
+Two MCA parameters can be used to control Open MPI's behavior with
+respect to the retry count:
+
+* btl_openib_ib_retry_count - The number of times the sender will
+  attempt to retry (defaulted to 7, the maximum value).
+* btl_openib_ib_timeout - The local ACK timeout parameter (defaulted
+  to 20).  The actual timeout value used is calculated as:
+
+     4.096 microseconds * (2^btl_openib_ib_timeout)
+
+  See the InfiniBand spec 1.2 (section 12.7.34) for more details.
+
+Below is some information about the host that raised the error and the
+peer to which it was connected:
+
+  Local host:   graphene-125.nancy.grid5000.fr
+  Local device: mlx4_0
+  Peer host:    graphene-125
+
+You may need to consult with your system administrator to get this
+problem fixed.
+--------------------------------------------------------------------------
+[[47061,1],2][btl_openib_component.c:3426:handle_wc] from graphene-125.nancy.grid5000.fr to: graphene-125 error polling HP CQ with status WORK REQUEST FLUSHED ERROR status number 5 for wr_id 7d2b00 opcode 32585  vendor error 244 qp_idx 0

@@ -1,0 +1,271 @@
+Dear George Bosilca,
+
+we are happy to inform you that your paper
+
+An Evaluation of User-Level Failure Mitigation support in MPI
+
+has been accepted for presentation as a full, regular paper at the 
+EuroMPI 2012 conference in Vienna, September 23-26th, see www.eurompi2012.org. 
+
+All papers received at least three reviews (most actually more), which
+formed the basis for the decision by the program chairs. We hope the
+accepted 22 regular papers will provide for an interesting meeting -
+but this of course depends on the final papers, so please take the
+comments of the reviewers into account and especially address/repair
+all technical issued raised when preparing the final version.  You
+will have 10 pages for the final paper in the Springer LNCS format,
+preferably prepared with LaTeX, and we need all sources required to
+produce the final paper plus the Springer COPYRIGHT FORM uploaded in
+easychair as a zip or tar file (separate instructions to follow).  The
+deadline for uploading the final paper is
+
+*** Monday, July 9th, 2012 ***
+
+In order for the paper to be included in the proceedings at least one
+author is required to register for the conference BEFORE THIS DEADLINE
+and be ready to present the paper at the meeting.  Registration is now
+open; the early registration fee is available till 20th July 2012.
+
+Please do not hesitate to contact us if there are any issues or questions.
+
+We look forward to see you at EuroMPI 2012 in Vienna. Thank you for submitting
+to EuroMPI
+
+With kind regards,
+
+Siegfried Benkner
+Jesper Larsson Traff
+EuroMPI 2012 PC chairs
+
+
+----------------------- REVIEW 1 ---------------------
+PAPER: 38
+TITLE: An Evaluation of User-Level Failure Mitigation support in MPI
+AUTHORS: Wesley Bland, Aurelien Bouteiller, Thomas Herault, Joshua Hursey, George Bosilca and Jack Dongarra
+
+OVERALL RATING: 2 (accept)
+Originality: 3 (fair)
+Technical soundness (correctness of arguments and implementations): 4 (good)
+Relevance to CFP: 5 (excellent)
+Quality of presentation (structure, clarity, style, grammar, spelling, English): 3 (fair)
+Scolarship (related work, references, credits, fairness): 4 (good)
+
+Brief summary of contribution
+-----------------------------
+The paper presents the newest progress in MPI standard to enable effective support of user-level failure mitigation for MPI applications. The paper also evaluates the current implementation within Open MPI and studies its impact on MPI performance. 
+
+General comments and overall evaluation
+---------------------------------------
+This paper briefly explains the basic MPI interfaces and new semantics to enable applications and libraries to repair the state of MPI and tolerate failures. I like the discussion in the paper about the challenges and advantages of the new MPI contructs. However, the paper is a bit hard to understand and the performance evaluation is not satisfactory. My detailed comments are listed in the following. 
+
+Detailed comments and suggestions
+---------------------------------
+* The new fault tolerant MPI interfaces and semantics need users to provide supports at the application level to handle errors. I was wondering how much programming effort is needed in practice. I think the usability is a very important concern for programmers to really embrace these new features. It would be better if the paper can provide a simple scenario to explain the usage of these new interfaces and semantics.
+
+* The paper does not provide enough background information for the readers to fully understand the proposed work. This makes the paper a bit hard to understand. For example, when talking about the recovery routines, there is no explanation for the reliable broadcast and the agreement algorithmic complexity, which makes the reader confused about revoke and agreement semantics.
+
+* In general, the paper demonstrates the small performance impacts of those introduced features on the application. However, for the recovery constructs, I noticed that the overhead of fault detection is impacted by the scale. Particularly the overhead keeps increasing as the system scales. At the extremely large scale, will the overhead become a big concern then? In addition, the overhead of shrink operations is large and almost in linear with the number of processes. This make me wonder if the agreement operations for the shrink is efficient enough. The other operations for the shrink, including the allocation of a new communicator ID and the creation of the communication, may remain the same as the original Open MPI implementation, so the extra overhead must come from the inefficient implementation of the agreement operations. 
+
+* It would be better if the recovery routines can be evaluated in a real application, instead of in a synthetic benchmark. The real application may have inherent fault tolerant mechanisms. It would be interesting to see how the application-level mechanisms and the MPI library interacts and what is the real overhead to the application.
+
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 38
+TITLE: An Evaluation of User-Level Failure Mitigation support in MPI
+AUTHORS: Wesley Bland, Aurelien Bouteiller, Thomas Herault, Joshua Hursey, George Bosilca and Jack Dongarra
+
+OVERALL RATING: 2 (accept)
+Originality: 4 (good)
+Technical soundness (correctness of arguments and implementations): 4 (good)
+Relevance to CFP: 5 (excellent)
+Quality of presentation (structure, clarity, style, grammar, spelling, English): 5 (excellent)
+Scolarship (related work, references, credits, fairness): 4 (good)
+
+Brief summary of contribution
+-----------------------------
+
+User-level failure mitigation approaches proposed in the MPI forum are
+evaluated by this work. This 'fault aware' MPI aims to provide users a simple
+flexible scheme to manage failures.
+
+General comments and overall evaluation
+---------------------------------------
+
+The main discussion in the paper is on
+new functions provided to determine the process(es) that have failed in
+a communicator, mechanisms to revoke and shrink communicators, and to
+recover a consistent state. Implementation issues in terms of matching and
+logic, collective support, and minimization of conditional-path latencies
+are discussed.
+
+Performance analysis is conducted on a prototype ULFM implementation.
+The comparison of ULFM and non-ULFM implementations suggests a good overall
+efficiency. Measurements suggest acceptable performance degradations, showing
+that the benefits can far outweight these. Refactoring of application patterns
+is also discussed.
+
+The paper is well written and novel, with no real flaws discernible. 
+
+Otherwise, this paper stemming out of MPI-forum discussions and presented to
+the MPI Users' Working Group workshop is a very good fit, esp. given the
+importance of resilience.
+
+Detailed comments and suggestions
+---------------------------------
+
+One fact
+I would like to see discussed is the impact on energy consumption and how
+viable these techniques are in a hybrid programming and hybrid hardware world.
+
+
+---
+
+An additional review is below
+
+--------------------------------------------------------------
+
+User-Level Failure Mitigation (ULFM) support is a part of the MPI 3.0
+standard. It introduces some new MPI constructs to detect and recover
+in the event of failure. It is to be noted that the failure is
+detected when some MPI process fails and does not respond to communication.
+Faults in the data still go undetected i.e a symptom such as process
+crash should occur to detect faults at the MPI layer.
+
+At exa scale, failure is very likely during the applications execution and
+MPI support for fault tolerance is necessary. Although Algorithm 
+based fault tolerant techniques can detect and restore application's
+state, they don't alter MPI's runtime state. MPI support for
+fault tolerance is required to continue application execution after
+failures. MPI 3.0 introduces new MPI operations for fault tolerance. 
+They are
+MPI_COMM_FAILURE_ACK, MPI_COMM_FAILURE_GET_ACKED
+MPI_COMM_REVOKE
+MPI_COMM_SHRINK
+MPI_COMM_AGREE
+
+The ack calls are useful to find out failed MPI processes. The
+revoke operations basically informs the runtime that the communicator
+is no longer useful due to failed MPI process. The shrink operation
+throws out all failed process from existing communicator and returns
+a new one with the non-failed processes. The agree operation is
+typically used after failures and its used to agree on consistent
+state between processes.
+
+Section 4 discusses a few implementation issues and performance
+concerns in implementing these operations. The issues discussed
+are kept at high level without getting into too many details. 
+
+Section 5 presents performance analysis. It compares the 
+vanilla implementation with the fault tolerance enabled MPI.
+The results shows almost zero or negligible overhead. The
+AMG benchmark was used to test the performance of two MPI
+implementations. It is to be noted that the these runs do
+not have any faults. It is merely comparing the two implementations
+as the fault tolerant enabled MPI has some additional overhead
+and the results show that the overhead is almost negligible. To
+asses the performance of recovery constructs, a synthetic
+benchmark is constructed which is made to fail in each iteration
+and the operations are timed. MPI_COMM_SHRINK appears to
+expensive and it increases linearly with number of processes. 
+
+It appears to be useful study on these new constructs. It provides
+some insights to MPI implementors as well as MPI users on
+what to expect in using these new constructs.
+
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 38
+TITLE: An Evaluation of User-Level Failure Mitigation support in MPI
+AUTHORS: Wesley Bland, Aurelien Bouteiller, Thomas Herault, Joshua Hursey, George Bosilca and Jack Dongarra
+
+OVERALL RATING: 2 (accept)
+Originality: 3 (fair)
+Technical soundness (correctness of arguments and implementations): 4 (good)
+Relevance to CFP: 5 (excellent)
+Quality of presentation (structure, clarity, style, grammar, spelling, English): 4 (good)
+Scolarship (related work, references, credits, fairness): 4 (good)
+
+Brief summary of contribution
+-----------------------------
+The paper describes the new primitives in MPI to assist in Application Based Fault Tolerance (ABFT) that is likely to be one of the popular methods of achieving resilience in the exascale time frame. In particular, the paper outlines the implementation challenges of the new constructs introduced by the working group, such as MPI_COMM_FAILURE_ACK & MPI_COMM_FAILURE_GET_ACKED, MPI_COMM_REVOKE etc. The overhead interms of memory, extra computational cycles required and algorithmic complexity of the agreement/consensus protocols is analyzed. Finally, results to demonstrate the impact of these routines is presented using AMG application and Intel benchmarks. 
+
+General comments and overall evaluation
+---------------------------------------
+The paper describes all the major challenges that a MPI implementation has to handle and solve towards providing fault handling capabilities to the application. The overhead introduced during the normal runs without any failures is not observable. However, the authors observe close to 80 ms to recovery on 256 process job, owing to the delays associated with the shrink  operation. This stems from the agreement problem which is a difficult problem tackled by several researchers in the past. Overall, the new code incorporates the new primitives being described for the ULFM and evaluates them in different settings with good results. The scalability of the shrink operation needs to be examined on larger core counts, especially since the proposal is aimed towards exascale computing.
+
+
+Detailed comments and suggestions
+---------------------------------
+
+
+----------------------- REVIEW 4 ---------------------
+PAPER: 38
+TITLE: An Evaluation of User-Level Failure Mitigation support in MPI
+AUTHORS: Wesley Bland, Aurelien Bouteiller, Thomas Herault, Joshua Hursey, George Bosilca and Jack Dongarra
+
+OVERALL RATING: 2 (accept)
+Originality: 4 (good)
+Technical soundness (correctness of arguments and implementations): 4 (good)
+Relevance to CFP: 5 (excellent)
+Quality of presentation (structure, clarity, style, grammar, spelling, English): 4 (good)
+Scolarship (related work, references, credits, fairness): 4 (good)
+
+Brief summary of contribution
+-----------------------------
+This paper describes the evolution and new work on the User-Level Failure Mitigation (ULFM) proposal, which was submitted to the MPI-Forum (tracked under ticket #323). The paper describes an early implementation using Open MPI and provides some early benchmarks on a Linux IB-Cluster at ORNL and shared-memory results on a large-memory ccNUMA node at UTK.
+
+General comments and overall evaluation
+---------------------------------------
+As expected from this group of scientists, this is a very detailed and well written paper.
+
+As far as the reviewer can tell, the MPI_Comm_revoke() call has been named MPIU_Comm_invalidate() in the ULFM proposal at the Forum -- this should be remarked in an foot-note...
+
+
+Detailed comments and suggestions
+---------------------------------
+
+The reviewer understands, that with the proposal, each process may have local failure information -- upon detection of a failure, the application may call MPI_Comm_revoke (), which will send a out-of-order control message to all other participants of the communicator -- leading to a notification storm, if (N-1) processes receive an error value and call MPI_Comm_revoke()?
+
+The sentence in Sec 4.1: "It is notable, that non-blocking operations raise errors related to process failure only during the completion step" should be described more closely. In the reviewers mind, this boils down to, one should NOT do:
+---------------------------
+rc = MPI_Isend();
+if (MPI_ERR_PROC_FAILED)
+   MPI_Comm_revoke();
+... /* Possibly long, hard-to-reproduce computation */
+rc = MPI_Wait();
+if (MPI_ERR_PROC_FAILED)
+   MPI_Comm_revoke();
+---------------------------
+But should rather check only at the synchronizing MPI_Wait() -- this seems to be counter-intuitive -- and therefore should be explained.
+
+
+The revocation notification by MPI_Comm_revoke() is  a local-call. It  is handled on a peer-to-peer basis, lazily notifying all other processes in the group (sec. 4.2, paragraph "Revoke:"). This revoke message might go unnoticed on some (non-faulty) user processes -- only upon re-entry into MPI using the same (faulty) communicator. The ensuing MPI_Comm_agree() and MPI_Comm_shrink() might therefore hang indefinitely on the remaining (non-faulty) processes on the recovery path. The possibility for live-locks -- think master-slave with some slave not calling into MPI_Comm_revoke() with the faulty communicator -- should be mentioned in ticket #323 as advice to users...
+
+Some knit-pick (and in fact the only one): 
+- Conclusion: "needs be provided" -> "needs TO be provided."
+
+
+----------------------- REVIEW 5 ---------------------
+PAPER: 38
+TITLE: An Evaluation of User-Level Failure Mitigation support in MPI
+AUTHORS: Wesley Bland, Aurelien Bouteiller, Thomas Herault, Joshua Hursey, George Bosilca and Jack Dongarra
+
+OVERALL RATING: 3 (strong accept)
+Originality: 5 (excellent)
+Technical soundness (correctness of arguments and implementations): 5 (excellent)
+Relevance to CFP: 5 (excellent)
+Quality of presentation (structure, clarity, style, grammar, spelling, English): 5 (excellent)
+Scolarship (related work, references, credits, fairness): 4 (good)
+
+Brief summary of contribution
+-----------------------------
+The authors present fault tolerance extensions that are to be incorporated into the upcoming MPI standard. Chapter 1 introduces and motivates the problem by pointing out the growth in zise of high performance computing systems, as can be seen from the TOP500 list. Section 2 gives a very good overview on related work in the field of fault tolerant MPI. The proposed extensions to the MPI standard are explained in section 3, how those are implemented is covered in section 4. Section 5 gives some measurements of several relevant benchmarks on the Smoky cluster at Oak Ridge National Laboratory. It is shown that the overhead imposed by the new functionality mechanisms is tolerable. Section 6 finally concludes,
+
+General comments and overall evaluation
+---------------------------------------
+Well done! Definitely relevant to the MPI community.
+
+Detailed comments and suggestions
+---------------------------------
+Why are some URL shown as footnotes, while others are in the references list?
+

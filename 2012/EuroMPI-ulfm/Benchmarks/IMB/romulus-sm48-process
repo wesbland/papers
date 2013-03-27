@@ -1,0 +1,74 @@
+#!/bin/sh
+
+BENCHMARKS=$(awk '$2=="Benchmarking" {print $3}' final.result.romulus.ft  | sort -u | grep -v Barrier | grep -v Ping)
+
+output_ratio()
+{
+    BENCH=$1
+    SIZE=$2
+    FT=$3
+    VA=$4
+
+    R=$(echo "100.0*($FT-$VA)/$VA" | bc -l )
+    echo "$BENCH $SIZE $R"
+}
+
+for B in $BENCHMARKS; do
+    for s in 4 4194304; do
+	FT=$(awk '$2=="Benchmarking" { bench=($3 == "'$B'"); } $2=="#processes" && bench { line=($4=="48"); } $1=="'$s'" && line && bench { print $3 }' final.result.romulus.ft)
+	VA=$(awk '$2=="Benchmarking" { bench=($3 == "'$B'"); } $2=="#processes" && bench { line=($4=="48"); } $1=="'$s'" && line && bench { print $3 }' final.result.romulus.vanilla)
+	if [ -z "$FT" ]; then
+	    if [ -n "$VA" ]; then
+		echo "Error: benchmark $B at size $s is in FT, but not in Vanilla" >>/dev/stderr
+	    else
+		echo "Error: script does not work for 48 nodes, benchmark $B at size $s" >>/dev/stderr
+	    fi
+	else
+	    if [ -z "$VA" ]; then
+		echo "Error: benchmark $B at size $s is in Vanilla, but not in FT" >>/dev/stderr
+	    else
+		output_ratio $B $s $FT $VA
+	    fi
+	fi
+    done
+done | sed -e 's/4194304/4MB/g' -e "s/4 /4B /g" | awk '{printf("%s-%s   %s\n", $1, $2, $3)}' | sed 's/-1000//g'
+
+BENCHMARKS="PingPing PingPong"
+for B in $BENCHMARKS; do
+    for s in 4 4194304; do
+	FT=$(awk '$2=="Benchmarking" { bench=($3 == "'$B'"); } $2=="#processes" && bench { line=($4=="2"); } $1=="'$s'" && line && bench { print $3 }' result.romulus.rf.ft.sm48)
+	V=$(awk '$2=="Benchmarking" { bench=($3 == "'$B'"); } $2=="#processes" && bench { line=($4=="2"); } $1=="'$s'" && line && bench { print $3 }' final.result.romulus.vanilla)
+	if [ -z "$FT" ]; then
+	    if [ -n "$V" ]; then
+		echo "Error: benchmark $B at size $s is in FT, but not in Vanilla" >>/dev/stderr
+	    else
+		echo "Error: script does not work for 2 nodes, benchmark $B at size $s" >>/dev/stderr
+	    fi
+	else
+	    if [ -z "$V" ]; then
+		echo "Error: benchmark $B at size $s is in Vanilla, but not in FT" >>/dev/stderr
+	    else
+		output_ratio $B $s $FT $V
+	    fi
+	fi
+    done
+done | sed -e 's/4194304/4MB/g' -e "s/4 /4B /g" | awk '{printf("%s-%s   %s\n", $1, $2, $3)}' | sed 's/-1000//g'
+
+BENCHMARKS="Barrier"
+for B in $BENCHMARKS; do
+    FT=$(awk '$2=="Benchmarking" { bench=($3 == "'$B'"); } $2=="#processes" && bench { line=($4=="48"); } $1=="1000" && line && bench { print $3 }' final.result.romulus.ft)
+    V=$(awk '$2=="Benchmarking" { bench=($3 == "'$B'"); } $2=="#processes" && bench { line=($4=="48"); } $1=="1000" && line && bench { print $3 }' final.result.romulus.vanilla)
+    if [ -z "$FT" ]; then
+	if [ -n "$V" ]; then
+	    echo "Error: benchmark $B at repetition 1000 is in FT, but not in Vanilla" >>/dev/stderr
+	else
+	    echo "Error: script does not work for 48 nodes, benchmark $B at repetition 1000" >>/dev/stderr
+	fi
+    else
+	if [ -z "$V" ]; then
+	    echo "Error: benchmark $B at repetition 1000 is in Vanilla, but not in FT" >>/dev/stderr
+	else
+	    output_ratio $B 1000 $FT $V
+	fi
+    fi
+done | sed -e 's/4194304/4MB/g' -e "s/4 /4B /g" | awk '{printf("%s-%s   %s\n", $1, $2, $3)}' | sed 's/-1000//g'

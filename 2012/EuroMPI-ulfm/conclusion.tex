@@ -1,0 +1,29 @@
+\section{Conclusion}
+\label{sect:conclusion}
+
+\vspace{-0.1cm}Many responsible voices agree that sharp increases in the volatility of future,
+extreme scale computing platforms are likely to imperil our ability to use them
+for advanced applications that deliver meaningful scientific results and
+maximize research productivity. Moreover, it is clear that any techniques
+developed to address this volatility must be supported in the programming
+and execution model. Since MPI is currently, and will likely continue to be --
+in the medium-term -- both the de-facto programming model for distributed
+applications and the default execution model for large scale platforms running
+at the bleeding edge, MPI is the place in the software infrastructure where semantic
+and run-time support for application faults needs to be provided.
+
+The \ulfm proposal is a careful but important step forward toward accomplishing
+this goal.  It not only delivers support for a number of new and innovative
+resilience techniques, it provides this support through a simple,
+straightforward and familiar API that requires minimal modifications of the
+underlying MPI implementation. Moreover, it is backward compatible with previous
+versions of the MPI standard, so that non fault-tolerant applications (legacy or
+otherwise) are supported without any changes to the code. Perhaps most
+significantly, applications can use \ulfm-enabled MPI without experiencing any
+degradation in their performance, as we demonstrate in this paper.
+
+Several applications, ranging from Master-Worker to tightly coupled, are
+currently being refactored to take advantage of the semantics in this
+proposal. Beyond applications, the expressivity of this proposal is 
+investigated in the context of providing extended fault tolerance 
+models as convenience, portable libraries.

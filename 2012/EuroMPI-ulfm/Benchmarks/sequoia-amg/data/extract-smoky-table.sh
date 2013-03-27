@@ -1,0 +1,1 @@
+../src/gather-perf.pl -a -np 8 -max_np 256

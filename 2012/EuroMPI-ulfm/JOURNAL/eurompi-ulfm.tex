@@ -1,0 +1,75 @@
+\documentclass[smallextended]{svjour3}
+\usepackage{mathptmx}
+
+\newif\ifnoTBD \noTBDfalse
+% Uncomment to remove TBD macros
+%\noTBDtrue
+\ifnoTBD
+\def\TBD#1{\typeout{TBD not done: #1}}
+\else
+\def\TBD#1{\textcolor{blue}{TBD: #1}}
+\AtEndDocument{\typeout{ *** ATTENTION: compilation is in DRAFT
+    mode. There might still be TBD that appear in the document ***}}
+\fi
+
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+  \usepackage{epstopdf}
+\fi
+\usepackage[usenames]{color}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{comment}
+%\usepackage{amsfonts} 
+%\usepackage{amssymb,amsmath} 
+\usepackage[strings]{underscore}
+
+\usepackage{xspace}
+\newcommand{\ompi}{Open\,MPI\xspace}
+\newcommand{\abft}{Algorithmic Based Fault Tolerance\xspace}
+\newif\ifulfmsaid
+\newcommand{\ulfm}{\ifulfmsaid ULFM\else User-Level Failure Mitigation (ULFM)\ulfmsaidtrue\fi\xspace}
+\newcommand{\mpifunc}[1]{{\tt #1}}
+
+\begin{document}
+
+\title{An Evaluation of User-Level Failure Mitigation Support in MPI}
+\author{ Wesley Bland \and
+         Aurelien Bouteiller \and
+         Thomas Herault \and
+         Joshua Hursey \and
+         George Bosilca \and
+         Jack J. Dongarra}
+       \institute{ Wesley Bland \and Aurelien Bouteiller \and Thomas Herault \and George Bosilca \and Jack J. Dongarra \at 
+         Innovative Computing Laboratory, University of Tennessee\\
+         \email{\{bland, bouteill, herault, bosilca, dongarra\}@icl.utk.edu}
+         \and
+         Joshua Hursey \at
+         University of Wisconsin-La Crosse\\
+         \email{jjhursey@cs.uwlax.edu}
+       }
+\maketitle
+
+
+\input{abstract}
+\CRclass{C.4 Fault Tolerance \and C.5.1 Supercomputers \and D.1.3 Distributed Programming \and D.4.5 Reliability}
+
+
+\input{intro}
+\input{related}
+\input{newmpi}
+\input{algorithms}
+\input{performance}
+\input{conclusion}
+%\pagebreak
+
+%\newcommand{\BIBdecl}{\setlength{\itemsep}{0.03\baselineskip}} 
+\bibliographystyle{spmpsci}
+\bibliography{eurompi-ulfm}
+
+\end{document}
+

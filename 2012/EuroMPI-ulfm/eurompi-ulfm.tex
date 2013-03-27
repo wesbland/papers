@@ -1,0 +1,73 @@
+\documentclass{llncs}
+
+\newif\ifnoTBD \noTBDfalse
+
+% Uncomment to remove TBD macros
+%\noTBDtrue
+
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+  \usepackage{epstopdf}
+\fi
+
+\ifnoTBD
+\def\TBD#1{\typeout{TBD not done: #1}}
+\else
+\def\TBD#1{\textcolor{blue}{TBD: #1}}
+\AtEndDocument{\typeout{ *** ATTENTION: compilation is in DRAFT
+    mode. There might still be TBD that appear in the document ***}}
+\fi
+
+\usepackage[usenames]{color}
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{comment}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{amsfonts} 
+\usepackage{amssymb,amsmath} 
+\usepackage[strings]{underscore}
+
+\newcommand{\ompi}{Open\,MPI\xspace}
+\newcommand{\abft}{Algorithmic Based Fault Tolerance\xspace}
+\newif\ifulfmsaid
+\newcommand{\ulfm}{\ifulfmsaid ULFM\else User-Level Failure Mitigation (ULFM)\ulfmsaidtrue\fi\xspace}
+\newcommand{\mpifunc}[1]{{\tt #1}}
+
+\begin{document}
+
+\title{An Evaluation of User-Level Failure Mitigation Support in MPI}
+\author{ Wesley Bland\inst{1} \and
+               Aurelien Bouteiller\inst{1} \and
+               Thomas Herault\inst{1} \and
+                Joshua Hursey\inst{2} \and
+                George Bosilca\inst{1} \and
+                Jack J. Dongarra\inst{1}}
+                  \institute{ Innovative Computing Laboratory, University of Tennessee\\
+  \email{\{bland, bouteill, herault, bosilca, dongarra\}@eecs.utk.edu}
+					\and
+					Oak Ridge National Laboratory\\
+    					\email{hurseyjj@ornl.gov}
+}
+\maketitle
+
+\input{abstract}
+
+\input{intro}
+\input{related}
+\input{newmpi}
+\input{algorithms}
+\input{performance}
+\input{conclusion}
+\pagebreak
+
+\newcommand{\BIBdecl}{\setlength{\itemsep}{0.03\baselineskip}} 
+\bibliographystyle{splncs03}
+\bibliography{eurompi-ulfm}
+
+\end{document}
+

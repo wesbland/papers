@@ -1,0 +1,51 @@
+frssj: frssj.c:133: benchmark: Assertion `rc != 0' failed.
+[griffon-2:02440] *** Process received signal ***
+[griffon-2:02440] Signal: Aborted (6)
+[griffon-2:02440] Signal code:  (-6)
+[griffon-2:02440] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f25f632eff0]
+[griffon-2:02440] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f25f5ff01b5]
+[griffon-2:02440] [ 2] /lib/libc.so.6(abort+0x180) [0x7f25f5ff2fc0]
+[griffon-2:02440] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f25f5fe9301]
+[griffon-2:02440] [ 4] frssj() [0x40170e]
+[griffon-2:02440] [ 5] frssj(main+0x9e) [0x401cf9]
+[griffon-2:02440] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f25f5fdcc8d]
+[griffon-2:02440] [ 7] frssj() [0x4012b9]
+[griffon-2:02440] *** End of error message ***
+[[50132,1],1][btl_openib_component.c:3426:handle_wc] from griffon-2.nancy.grid5000.fr to: griffon-2 error polling LP CQ with status RETRY EXCEEDED ERROR status number 12 for wr_id a76000 opcode 32767  vendor error 129 qp_idx 0
+--------------------------------------------------------------------------
+The InfiniBand retry count between two MPI processes has been
+exceeded.  "Retry count" is defined in the InfiniBand spec 1.2
+(section 12.7.38):
+
+    The total number of times that the sender wishes the receiver to
+    retry timeout, packet sequence, etc. errors before posting a
+    completion error.
+
+This error typically means that there is something awry within the
+InfiniBand fabric itself.  You should note the hosts on which this
+error has occurred; it has been observed that rebooting or removing a
+particular host from the job can sometimes resolve this issue.
+
+Two MCA parameters can be used to control Open MPI's behavior with
+respect to the retry count:
+
+* btl_openib_ib_retry_count - The number of times the sender will
+  attempt to retry (defaulted to 7, the maximum value).
+* btl_openib_ib_timeout - The local ACK timeout parameter (defaulted
+  to 20).  The actual timeout value used is calculated as:
+
+     4.096 microseconds * (2^btl_openib_ib_timeout)
+
+  See the InfiniBand spec 1.2 (section 12.7.34) for more details.
+
+Below is some information about the host that raised the error and the
+peer to which it was connected:
+
+  Local host:   griffon-2.nancy.grid5000.fr
+  Local device: mlx4_0
+  Peer host:    griffon-2
+
+You may need to consult with your system administrator to get this
+problem fixed.
+--------------------------------------------------------------------------
+[[50132,1],1][btl_openib_component.c:3426:handle_wc] from griffon-2.nancy.grid5000.fr to: griffon-2 error polling HP CQ with status WORK REQUEST FLUSHED ERROR status number 5 for wr_id af0a80 opcode 32611  vendor error 244 qp_idx 0

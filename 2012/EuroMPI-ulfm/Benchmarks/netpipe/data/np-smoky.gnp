@@ -1,0 +1,101 @@
+set format x "% g"
+
+#set size ratio 0 0.4,0.4
+#set origin 0.55,0.2
+set locale "fr_FR.UTF-8"
+
+
+load "style.gnp"
+
+set output "np-smsmoky.eps"
+set terminal postscript eps enhanced color font "helvetica-Bold" 18
+set title "Shared Memory Ping-pong Performance with Fault Tolerance"
+set key bottom right
+
+set size ratio .5
+
+set xtics ("1" 1, "4" 4,"16" 16, "64" 64, "256" 256, "1K" 1024, "4K" 4096, "16K" 16384, "64K" 65536, "256K" 262144, "1M" 1048576, "4M" 4194304, "16M" 16777216, "64M" 67108864, "256M" 268435456, "1G" 1073741824, "2G" 2147483648.0, "4G" 4294967296.0) rotate by 0 offset 0
+#set xlabel "Message Size (bytes)" 
+#set ylabel "Bandwidth (Gb/s)" offset 2
+set xlabel "MESSAGE SIZE (bytes)" 
+set ylabel "BANDWIDTH (Gb/s)" offset 2
+set logscale x 2
+
+
+set multiplot
+set origin 0, 0
+set size 1, 1
+set grid back
+plot "smoky/sm-full_build_ft-run_ft-no-cache-hot--0.data" u 2:($7/1000) w l t "Open MPI" ls OMPI, \
+     "smoky/sm-full_build_ft-run_ft-yes-cache-hot-progress-no--0.data" u 2:($7/1000) w p t "FT Open MPI" ls FTOMPI
+
+set origin 0.08, 0.4
+set size 0.5, 0.45
+
+set xrange [1:1024]
+#set ylabel "Latency (us)" offset 2
+set ylabel "LATENCY (us)" offset 2
+set yrange [0.5:3]
+set xlabel ""
+set xtics axis ("1" 1, "4" 4, "16" 16, "64" 64, "256" 256, "1K" 1024, "4K" 4096, "16K" 16384, "64K" 65536, "256K" 262144, "1M" 1048576, "4M" 4194304, "16M" 16777216, "64M" 67108864, "256M" 268435456, "1G" 1073741824, "2G" 2147483648.0, "4G" 4294967296.0) rotate by 0 offset 0
+unset logscale y
+unset title
+unset key
+
+set grid front
+set object 1 rectangle from 1, 0.2 to 2048, 3 fc rgb "#f0f0f0" lw 0.1
+plot "smoky/sm-full_build_ft-run_ft-no-cache-hot--0.data" u 2:10 w l t "Open MPI" ls OMPI, \
+     "smoky/sm-full_build_ft-run_ft-yes-cache-hot-progress-no--0.data" u 2:10 w p t "FT Open MPI" ls FTOMPI
+
+unset multiplot
+unset object 1
+!epstopdf np-smsmoky.eps
+
+
+set output "np-ibsmoky.eps"
+set terminal postscript eps enhanced color font "helvetica-Bold" 18
+set title "Infiniband 10G Ping-pong Performance with Fault Tolerance"
+set key bottom right
+
+#set size square
+
+set xtics ("1" 1, "4" 4,"16" 16, "64" 64, "256" 256, "1K" 1024, "4K" 4096, "16K" 16384, "64K" 65536, "256K" 262144, "1M" 1048576, "4M" 4194304, "16M" 16777216, "64M" 67108864, "256M" 268435456, "1G" 1073741824, "2G" 2147483648.0, "4G" 4294967296.0) rotate by -45 offset -1
+#set xlabel "Message Size (bytes)" 
+#set ylabel "Bandwidth (Gb/s)" offset 2
+set xlabel "MESSAGE SIZE (bytes)" 
+set ylabel "BANDWIDTH (Gb/s)" offset 2
+set logscale x 2
+
+set multiplot
+set origin 0, 0
+set size 1, 1
+set grid back
+
+set xrange [*:*]
+set yrange [*:*]
+
+plot "smoky/openib-full_build_ft-run_ft-no-cache-hot--0.data" u 2:($7/1000) w l t "Open MPI" ls OMPI, \
+     "smoky/openib-full_build_ft-run_ft-yes-cache-hot-progress-no--0.data" u 2:($7/1000) w p t "FT Open MPI" ls FTOMPI
+
+set origin 0.1, 0.4
+set size 0.5, 0.45
+
+set xrange [1:1024]
+#set ylabel "Latency (us)" offset 2
+set ylabel "LATENCY (us)" offset 2
+set yrange [4:*]
+set xlabel ""
+unset logscale y
+unset title
+unset key
+
+set grid front
+set object 1 rectangle from 1, 4 to 2048, 9 fc rgb "#f0f0f0" lw 0.1
+plot "smoky/openib-full_build_ft-run_ft-no-cache-hot--0.data" u 2:10 w l t "Open MPI" ls OMPI, \
+     "smoky/openib-full_build_ft-run_ft-yes-cache-hot-progress-no--0.data" u 2:10 w p t "FT Open MPI" ls FTOMPI
+
+unset multiplot
+
+!epstopdf np-ibsmoky.eps
+
+#    EOF

@@ -1,0 +1,49 @@
+\section{Introduction}
+\label{sect:intro}
+
+In a constant effort to deliver steady performance improvements, the size of
+High Performance Computing (HPC) systems, as observed by the Top 500
+ranking\footnote{\url{http://www.top500.org/}}, has grown tremendously over the
+last decade. This trend is unlikely to stop, as outlined by the International
+Exascale Software Project (IESP)~\cite{IESP} projection of the Exaflop platform,
+a milestone that should be reached as soon as 2019. Based on the foreseeable
+limits of the infrastructure costs, an Exaflop capable machine is expected to be
+built from gigahertz processing cores, with thousands of cores per computing
+node, thus requiring millions of computing cores to reach the mark. Even under
+the most optimistic assumptions about the individual components' reliability,
+probabilistic amplification from using millions of nodes has a dramatic impact
+on the Mean Time Between Failure (MTBF) of the entire platform. The probability
+of a failure happening \emph{during the next hour} on an Exascale platform is
+disturbingly close to 1; thereby many computing nodes will inevitably fail
+during the execution of an application~\cite{ExaScaleResilience09}.  It is even
+more alarming that most popular fault tolerant approaches see their efficiency
+plummet at Exascale~\cite{BOSILCA-2012-696154,lawn265}, calling for application
+centric failure mitigation strategies~\cite{huang1984algorithm}.
+
+The prevalence of distributed memory machines promotes the use of the message
+passing model. An extensive and varied spectrum of domain science applications
+depend on libraries compliant with the MPI
+standard\footnote{http://mpi-forum.org/docs/mpi-2.2/mpi22-report.pdf}.
+Although unconventional programming paradigms are
+emerging~\cite{springerlink:10.1007/978-3-540-79561-2_4,springerlink:10.1007/978-3-642-19328-6_5},
+most delegate their data movements to MPI and it is widely acknowledged that MPI
+is here to stay. However,  MPI has to evolve to effectively support the demanding requirements
+imposed by novel architectures, programing approaches, and dynamic runtime
+systems.  In particular, its support for fault tolerance 
+has always been inadequate~\cite{Gropp:2004:FTM:1080704.1080714}.  To address
+the growing interest in fault-aware MPI, a working group has been formed in the
+context of the MPI Forum. Their 
+\ulfm~\cite{BlandULFMTechReport} proposal features the basic interface and new semantics to
+enable applications and libraries to repair the state of MPI and tolerate failures. The purpose of this paper is to evaluate the tradeoffs that are needed for the
+integration of this fault mitigation specification and its impact (or lack
+thereof) on MPI performance and scalability. The contributions of this work are
+to evaluate the difficulties faced by MPI implementors, and demonstrate the
+feasibility of a low-impact implementation on the failure-free performance as
+well as an estimate of the recovery time of the MPI state after a failure.
+
+The remainder of this paper is organized as follows: the next section introduces
+a short history of fault tolerance in MPI; Section~\ref{sect:newmpi} presents
+the constructs introduced by the proposal; Section~\ref{sect:algorithms}
+discusses the challenges faced by MPI implementors; then the performance impact
+of the implementation in Open~MPI is discussed in Section~\ref{sect:performance}
+before we conclude in Section~\ref{sect:conclusion}.

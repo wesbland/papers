@@ -1,0 +1,41 @@
+Running the Netpipe wrapper scripts
+-----------------------------------
+- Defines runs:
+  - Create an src/ini/ INI file specifying the run
+- Run the collection script
+  - cd src
+  - ./gather-perf.pl ini/run-ft-lat.ini
+- Or use the submit script
+- Data is written into the data/{machine}/ directory
+
+*Note* You will need to adjust paths to Netpipe install and the paper directory
+       in the scripts to match your environment.
+
+Extract Performance from a prior run
+------------------------------------
+Smoky:
+ cd data
+ (Optional if just from HG) tar -zxf smoky.tar.gz
+ ./extract-perf-smoky.sh
+ cp smoky/full-*--0.data final/smoky/
+
+Chester:
+ cd data
+ ./extract-perf-chester.sh
+ cp chester/full-*--0.data final/chester/
+
+
+Analyze a single INI file
+-------------------------
+$PAPER_DIR/netpipe/src/gather-perf.pl -a $PAPER_DIR/netpipe/src/ini/run-ft-lat.ini
+
+
+
+
+-----------------
+Unsorted Notes:
+-----------------
+Chester/Jaguar:
+---------------
+cd /tmp/work/jjhursey/testing/NetPIPE-3.7.1/
+qsub ~/dev/papers/eurompi/netpipe/src/submit-perf-jaguar.sh

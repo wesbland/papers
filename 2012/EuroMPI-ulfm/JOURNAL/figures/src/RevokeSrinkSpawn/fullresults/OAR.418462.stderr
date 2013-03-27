@@ -1,0 +1,1925 @@
+Warning: Permanently added '[graphene-112.nancy.grid5000.fr]:6667,[172.16.64.112]:6667' (RSA) to the list of known hosts.
+[[40955,11],0][btl_openib_component.c:3426:handle_wc] from graphene-10.nancy.grid5000.fr to: graphene-100 error polling HP CQ with status WORK REQUEST FLUSHED ERROR status number 5 for wr_id 1a9a300 opcode 128  vendor error 244 qp_idx 0
+--------------------------------------------------------------------------
+The OpenFabrics stack has reported a network error event.  Open MPI
+will try to continue, but your job may end up failing.
+
+  Local host:        graphene-10.nancy.grid5000.fr
+  MPI process PID:   2512
+  Error number:      0 (IBV_EVENT_CQ_ERR)
+
+This error may indicate connectivity problems within the fabric;
+please contact your system administrator.
+--------------------------------------------------------------------------
+[graphene-10:02512] *** Process received signal ***
+[graphene-10:02512] Signal: Segmentation fault (11)
+[graphene-10:02512] Signal code: Address not mapped (1)
+[graphene-10:02512] Failing at address: 0x30
+[graphene-10:02512] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f622056dff0]
+[graphene-10:02512] [ 1] /home/abouteiller/FTMPI3/lib/openmpi/mca_oob_tcp.so(+0xb0bd) [0x7f621e9b20bd]
+[graphene-10:02512] [ 2] /home/abouteiller/FTMPI3/lib/openmpi/mca_oob_tcp.so(mca_oob_tcp_msg_complete+0xc4d) [0x7f621e9b3173]
+[graphene-10:02512] [ 3] /home/abouteiller/FTMPI3/lib/openmpi/mca_oob_tcp.so(mca_oob_tcp_peer_send+0x409) [0x7f621e9b5c38]
+[graphene-10:02512] [ 4] /home/abouteiller/FTMPI3/lib/openmpi/mca_oob_tcp.so(mca_oob_tcp_send_nb+0x4c5) [0x7f621e9bbf79]
+[graphene-10:02512] [ 5] /home/abouteiller/FTMPI3/lib/openmpi/mca_rml_oob.so(orte_rml_oob_send+0x36f) [0x7f621ebca8a6]
+[graphene-10:02512] [ 6] /home/abouteiller/FTMPI3/lib/openmpi/mca_rml_oob.so(orte_rml_oob_send_buffer+0xc1) [0x7f621ebcb265]
+[graphene-10:02512] [ 7] /home/abouteiller/FTMPI3/lib/libmpi.so.0(orte_ess_base_app_abort+0xe1) [0x7f62215962e9]
+[graphene-10:02512] [ 8] /home/abouteiller/FTMPI3/lib/libmpi.so.0(orte_errmgr_base_update_state+0) [0x7f6221594594]
+[graphene-10:02512] [ 9] /home/abouteiller/FTMPI3/lib/openmpi/mca_pml_ob1.so(mca_pml_ob1_error_handler+0x33) [0x7f621ccc85f4]
+[graphene-10:02512] [10] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1bddd) [0x7f621c87dddd]
+[graphene-10:02512] [11] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1bedc) [0x7f621c87dedc]
+[graphene-10:02512] [12] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1c4f6) [0x7f621c87e4f6]
+[graphene-10:02512] [13] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1c592) [0x7f621c87e592]
+[graphene-10:02512] [14] /home/abouteiller/FTMPI3/lib/libmpi.so.0(opal_progress+0xbd) [0x7f6221650ced]
+[graphene-10:02512] [15] /home/abouteiller/FTMPI3/lib/libmpi.so.0(orte_ess_base_app_abort+0x201) [0x7f6221596409]
+[graphene-10:02512] [16] /home/abouteiller/FTMPI3/lib/libmpi.so.0(orte_errmgr_base_update_state+0) [0x7f6221594594]
+[graphene-10:02512] [17] /home/abouteiller/FTMPI3/lib/openmpi/mca_pml_ob1.so(mca_pml_ob1_error_handler+0x33) [0x7f621ccc85f4]
+[graphene-10:02512] [18] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1bddd) [0x7f621c87dddd]
+[graphene-10:02512] [19] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1bedc) [0x7f621c87dedc]
+[graphene-10:02512] [20] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1c4f6) [0x7f621c87e4f6]
+[graphene-10:02512] [21] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1c592) [0x7f621c87e592]
+[graphene-10:02512] [22] /home/abouteiller/FTMPI3/lib/libmpi.so.0(opal_progress+0xbd) [0x7f6221650ced]
+[graphene-10:02512] [23] /home/abouteiller/FTMPI3/lib/libmpi.so.0(orte_ess_base_app_abort+0x201) [0x7f6221596409]
+[graphene-10:02512] [24] /home/abouteiller/FTMPI3/lib/libmpi.so.0(orte_errmgr_base_update_state+0) [0x7f6221594594]
+[graphene-10:02512] [25] /home/abouteiller/FTMPI3/lib/openmpi/mca_pml_ob1.so(mca_pml_ob1_error_handler+0x33) [0x7f621ccc85f4]
+[graphene-10:02512] [26] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1bddd) [0x7f621c87dddd]
+[graphene-10:02512] [27] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1bedc) [0x7f621c87dedc]
+[graphene-10:02512] [28] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1c4f6) [0x7f621c87e4f6]
+[graphene-10:02512] [29] /home/abouteiller/FTMPI3/lib/openmpi/mca_btl_openib.so(+0x1c592) [0x7f621c87e592]
+[graphene-10:02512] *** End of error message ***
+[graphene-1:02462] *** Process received signal ***
+[graphene-1:02462] Signal: Segmentation fault (11)
+[graphene-1:02462] Signal code: Address not mapped (1)
+[graphene-1:02462] Failing at address: 0x28
+[graphene-1:02466] *** Process received signal ***
+[graphene-1:02466] Signal: Segmentation fault (11)
+[graphene-1:02466] Signal code: Address not mapped (1)
+[graphene-1:02466] Failing at address: 0x28
+[graphene-10:02508] *** Process received signal ***
+[graphene-1:02470] *** Process received signal ***
+[graphene-1:02470] Signal: Segmentation fault (11)
+[graphene-1:02470] Signal code: Address not mapped (1)
+[graphene-1:02470] Failing at address: 0x28
+[graphene-10:02508] Signal: Segmentation fault (11)
+[graphene-10:02508] Signal code: Address not mapped (1)
+[graphene-10:02508] Failing at address: 0x28
+[graphene-1:02482] *** Process received signal ***
+[graphene-1:02482] Signal: Segmentation fault (11)
+[graphene-1:02482] Signal code: Address not mapped (1)
+[graphene-1:02482] Failing at address: 0x28
+[graphene-10:02508] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fa6505f4ff0]
+[graphene-10:02508] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fa6515bbc90]
+[graphene-10:02508] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fa6515bbf10]
+[graphene-10:02508] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fa6515bbe24]
+[graphene-10:02508] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fa651522547]
+[graphene-10:02508] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fa651549ae0]
+[graphene-10:02508] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fa65156f17d]
+[graphene-10:02508] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-10:02508] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fa6502a2c8d]
+[graphene-10:02508] [ 9] frssj() [0x401329]
+[graphene-10:02508] *** End of error message ***
+[graphene-1:02486] *** Process received signal ***
+[graphene-1:02486] Signal: Segmentation fault (11)
+[graphene-1:02486] Signal code: Address not mapped (1)
+[graphene-1:02486] Failing at address: 0x28
+[graphene-1:02478] *** Process received signal ***
+[graphene-1:02478] Signal: Segmentation fault (11)
+[graphene-1:02478] Signal code: Address not mapped (1)
+[graphene-1:02478] Failing at address: 0x28
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-1:02458] *** Process received signal ***
+[graphene-1:02458] Signal: Aborted (6)
+[graphene-1:02458] Signal code:  (-6)
+[graphene-10:02481] *** Process received signal ***
+[graphene-100:02346] *** Process received signal ***
+[graphene-10:02481] Signal: Segmentation fault (11)
+[graphene-10:02481] Signal code: Address not mapped (1)
+[graphene-10:02481] Failing at address: 0x28
+[graphene-107:02359] *** Process received signal ***
+[graphene-102:02564] *** Process received signal ***
+[graphene-102:02564] Signal: Segmentation fault (11)
+[graphene-102:02564] Signal code: Address not mapped (1)
+[graphene-102:02564] Failing at address: 0x28
+[graphene-101:02537] *** Process received signal ***
+[graphene-106:02361] *** Process received signal ***
+[graphene-1:02466] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f939f5f9ff0]
+[graphene-1:02466] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f93a05c0c90]
+[graphene-1:02466] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f93a05c0f10]
+[graphene-1:02466] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f93a05c0e24]
+[graphene-1:02466] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f93a0527547]
+[graphene-1:02466] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f93a054eae0]
+[graphene-1:02466] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f93a057417d]
+[graphene-1:02466] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-1:02466] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f939f2a7c8d]
+[graphene-1:02466] [ 9] frssj() [0x401329]
+[graphene-1:02466] *** End of error message ***
+[graphene-100:02353] *** Process received signal ***
+[graphene-107:02360] *** Process received signal ***
+[graphene-107:02360] Signal: Segmentation fault (11)
+[graphene-107:02360] Signal code: Address not mapped (1)
+[graphene-107:02360] Failing at address: 0x28
+[graphene-101:02538] *** Process received signal ***
+[graphene-101:02538] Signal: Segmentation fault (11)
+[graphene-101:02538] Signal code: Address not mapped (1)
+[graphene-101:02538] Failing at address: 0x28
+[graphene-105:02554] *** Process received signal ***
+[graphene-102:02565] *** Process received signal ***
+[graphene-104:02418] *** Process received signal ***
+[graphene-103:02394] *** Process received signal ***
+[graphene-106:02362] *** Process received signal ***
+[graphene-106:02362] Signal: Segmentation fault (11)
+[graphene-106:02362] Signal code: Address not mapped (1)
+[graphene-106:02362] Failing at address: 0x28
+[graphene-1:02462] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f2865244ff0]
+[graphene-1:02462] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f286620bc90]
+[graphene-1:02462] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f286620bf10]
+[graphene-1:02462] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f286620be24]
+[graphene-1:02462] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f2866172547]
+[graphene-1:02462] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f2866199ae0]
+[graphene-1:02462] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f28661bf17d]
+[graphene-1:02462] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-1:02462] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f2864ef2c8d]
+[graphene-1:02462] [ 9] frssj() [0x401329]
+[graphene-1:02462] *** End of error message ***
+[graphene-1:02458] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f9e2b1e5ff0]
+[graphene-1:02458] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f9e2aea71b5]
+[graphene-1:02458] [ 2] /lib/libc.so.6(abort+0x180) [0x7f9e2aea9fc0]
+[graphene-1:02458] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f9e2aea0301]
+[graphene-1:02458] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7f9e2c113771]
+[graphene-1:02458] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f9e2c13aae0]
+[graphene-1:02458] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f9e2c16017d]
+[graphene-1:02458] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-1:02458] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f9e2ae93c8d]
+[graphene-1:02458] [ 9] frssj() [0x401329]
+[graphene-1:02458] *** End of error message ***
+[graphene-109:02325] *** Process received signal ***
+[graphene-107:02364] *** Process received signal ***
+[graphene-103:02395] *** Process received signal ***
+[graphene-103:02395] Signal: Segmentation fault (11)
+[graphene-103:02395] Signal code: Address not mapped (1)
+[graphene-103:02395] Failing at address: 0x28
+[graphene-11:02529] *** Process received signal ***
+[graphene-105:02557] *** Process received signal ***
+[graphene-105:02557] Signal: Segmentation fault (11)
+[graphene-105:02557] Signal code: Address not mapped (1)
+[graphene-105:02557] Failing at address: 0x28
+[graphene-102:02566] *** Process received signal ***
+[graphene-102:02566] Signal: Segmentation fault (11)
+[graphene-102:02566] Signal code: Address not mapped (1)
+[graphene-102:02566] Failing at address: 0x28
+[graphene-104:02420] *** Process received signal ***
+[graphene-101:02539] *** Process received signal ***
+[graphene-101:02539] Signal: Segmentation fault (11)
+[graphene-101:02539] Signal code: Address not mapped (1)
+[graphene-101:02539] Failing at address: 0x28
+[graphene-112:02334] *** Process received signal ***
+[graphene-108:02562] *** Process received signal ***
+[graphene-108:02562] Signal: Segmentation fault (11)
+[graphene-108:02562] Signal code: Address not mapped (1)
+[graphene-108:02562] Failing at address: 0x28
+[graphene-111:02452] *** Process received signal ***
+[graphene-106:02363] *** Process received signal ***
+[graphene-106:02363] Signal: Segmentation fault (11)
+[graphene-106:02363] Signal code: Address not mapped (1)
+[graphene-106:02363] Failing at address: 0x28
+[graphene-110:02547] *** Process received signal ***
+[graphene-109:02326] *** Process received signal ***
+[graphene-109:02326] Signal: Segmentation fault (11)
+[graphene-109:02326] Signal code: Address not mapped (1)
+[graphene-109:02326] Failing at address: 0x28
+[graphene-107:02365] *** Process received signal ***
+[graphene-103:02398] *** Process received signal ***
+[graphene-103:02398] Signal: Segmentation fault (11)
+[graphene-103:02398] Signal code: Address not mapped (1)
+[graphene-103:02398] Failing at address: 0x28
+[graphene-11:02531] *** Process received signal ***
+[graphene-11:02531] Signal: Segmentation fault (11)
+[graphene-11:02531] Signal code: Address not mapped (1)
+[graphene-11:02531] Failing at address: 0x28
+[graphene-105:02558] *** Process received signal ***
+[graphene-105:02558] Signal: Segmentation fault (11)
+[graphene-105:02558] Signal code: Address not mapped (1)
+[graphene-105:02558] Failing at address: 0x28
+[graphene-101:02542] *** Process received signal ***
+[graphene-101:02542] Signal: Segmentation fault (11)
+[graphene-101:02542] Signal code: Address not mapped (1)
+[graphene-101:02542] Failing at address: 0x28
+[graphene-112:02337] *** Process received signal ***
+[graphene-112:02337] Signal: Segmentation fault (11)
+[graphene-112:02337] Signal code: Address not mapped (1)
+[graphene-112:02337] Failing at address: 0x28
+[graphene-108:02561] *** Process received signal ***
+[graphene-111:02453] *** Process received signal ***
+[graphene-111:02453] Signal: Segmentation fault (11)
+[graphene-111:02453] Signal code: Address not mapped (1)
+[graphene-111:02453] Failing at address: 0x28
+[graphene-106:02368] *** Process received signal ***
+[graphene-106:02368] Signal: Segmentation fault (11)
+[graphene-106:02368] Signal code: Address not mapped (1)
+[graphene-106:02368] Failing at address: 0x28
+[graphene-110:02550] *** Process received signal ***
+[graphene-110:02550] Signal: Segmentation fault (11)
+[graphene-110:02550] Signal code: Address not mapped (1)
+[graphene-110:02550] Failing at address: 0x28
+[graphene-109:02330] *** Process received signal ***
+[graphene-109:02330] Signal: Segmentation fault (11)
+[graphene-109:02330] Signal code: Address not mapped (1)
+[graphene-109:02330] Failing at address: 0x28
+[graphene-103:02396] *** Process received signal ***
+[graphene-11:02532] *** Process received signal ***
+[graphene-11:02532] Signal: Segmentation fault (11)
+[graphene-11:02532] Signal code: Address not mapped (1)
+[graphene-11:02532] Failing at address: 0x28
+[graphene-110:02546] *** Process received signal ***
+[graphene-110:02546] Signal: Segmentation fault (11)
+[graphene-110:02546] Signal code: Address not mapped (1)
+[graphene-110:02546] Failing at address: 0x28
+[graphene-104:02422] *** Process received signal ***
+[graphene-112:02339] *** Process received signal ***
+[graphene-112:02339] Signal: Segmentation fault (11)
+[graphene-112:02339] Signal code: Address not mapped (1)
+[graphene-112:02339] Failing at address: 0x28
+[graphene-108:02565] *** Process received signal ***
+[graphene-108:02565] Signal: Segmentation fault (11)
+[graphene-108:02565] Signal code: Address not mapped (1)
+[graphene-108:02565] Failing at address: 0x28
+[graphene-105:02561] *** Process received signal ***
+[graphene-105:02561] Signal: Segmentation fault (11)
+[graphene-105:02561] Signal code: Address not mapped (1)
+[graphene-105:02561] Failing at address: 0x28
+[graphene-111:02455] *** Process received signal ***
+[graphene-111:02455] Signal: Segmentation fault (11)
+[graphene-111:02455] Signal code: Address not mapped (1)
+[graphene-111:02455] Failing at address: 0x28
+[graphene-11:02534] *** Process received signal ***
+[graphene-11:02534] Signal: Segmentation fault (11)
+[graphene-11:02534] Signal code: Address not mapped (1)
+[graphene-11:02534] Failing at address: 0x28
+[graphene-107:02365] Signal: Segmentation fault (11)
+[graphene-107:02365] Signal code: Address not mapped (1)
+[graphene-107:02365] Failing at address: 0x28
+[graphene-108:02568] *** Process received signal ***
+[graphene-111:02458] *** Process received signal ***
+[graphene-10:02481] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fcd41d9aff0]
+[graphene-112:02335] *** Process received signal ***
+[graphene-109:02328] *** Process received signal ***
+[graphene-109:02328] Signal: Segmentation fault (11)
+[graphene-109:02328] Signal code: Address not mapped (1)
+[graphene-109:02328] Failing at address: 0x28
+[graphene-10:02481] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fcd42d61c90]
+[graphene-106:02365] *** Process received signal ***
+[graphene-106:02365] Signal: Segmentation fault (11)
+[graphene-106:02365] Signal code: Address not mapped (1)
+[graphene-106:02365] Failing at address: 0x28
+[graphene-10:02481] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fcd42d61f10]
+[graphene-100:02350] *** Process received signal ***
+[graphene-102:02567] *** Process received signal ***
+[graphene-107:02361] *** Process received signal ***
+[graphene-100:02346] Signal: Segmentation fault (11)
+[graphene-100:02346] Signal code: Address not mapped (1)
+[graphene-100:02346] Failing at address: 0x28
+[graphene-107:02362] *** Process received signal ***
+[graphene-107:02362] Signal: Segmentation fault (11)
+[graphene-107:02362] Signal code: Address not mapped (1)
+[graphene-107:02362] Failing at address: 0x28
+[graphene-103:02399] *** Process received signal ***
+[graphene-10:02481] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fcd42d61e24]
+[graphene-102:02568] *** Process received signal ***
+[graphene-102:02568] Signal: Segmentation fault (11)
+[graphene-102:02568] Signal code: Address not mapped (1)
+[graphene-102:02568] Failing at address: 0x28
+[graphene-104:02416] *** Process received signal ***
+[graphene-106:02366] *** Process received signal ***
+[graphene-105:02556] *** Process received signal ***
+[graphene-101:02541] *** Process received signal ***
+[graphene-109:02327] *** Process received signal ***
+[graphene-107:02359] Signal: Segmentation fault (11)
+[graphene-107:02359] Signal code: Address not mapped (1)
+[graphene-107:02359] Failing at address: 0x28
+[graphene-103:02397] *** Process received signal ***
+[graphene-103:02397] Signal: Segmentation fault (11)
+[graphene-103:02397] Signal code: Address not mapped (1)
+[graphene-103:02397] Failing at address: 0x28
+[graphene-11:02535] *** Process received signal ***
+[graphene-105:02560] *** Process received signal ***
+[graphene-105:02560] Signal: Segmentation fault (11)
+[graphene-105:02560] Signal code: Address not mapped (1)
+[graphene-105:02560] Failing at address: 0x28
+[graphene-102:02569] *** Process received signal ***
+[graphene-102:02569] Signal: Segmentation fault (11)
+[graphene-102:02569] Signal code: Address not mapped (1)
+[graphene-102:02569] Failing at address: 0x28
+[graphene-104:02423] *** Process received signal ***
+[graphene-104:02423] Signal: Segmentation fault (11)
+[graphene-104:02423] Signal code: Address not mapped (1)
+[graphene-104:02423] Failing at address: 0x28
+[graphene-100:02351] *** Process received signal ***
+[graphene-100:02351] Signal: Segmentation fault (11)
+[graphene-100:02351] Signal code: Address not mapped (1)
+[graphene-100:02351] Failing at address: 0x28
+[graphene-108:02563] *** Process received signal ***
+[graphene-111:02459] *** Process received signal ***
+[graphene-101:02543] *** Process received signal ***
+[graphene-101:02543] Signal: Segmentation fault (11)
+[graphene-101:02543] Signal code: Address not mapped (1)
+[graphene-101:02543] Failing at address: 0x28
+[graphene-106:02367] *** Process received signal ***
+[graphene-106:02367] Signal: Segmentation fault (11)
+[graphene-106:02367] Signal code: Address not mapped (1)
+[graphene-106:02367] Failing at address: 0x28
+[graphene-10:02481] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fcd42cc8547]
+[graphene-109:02331] *** Process received signal ***
+[graphene-109:02331] Signal: Segmentation fault (11)
+[graphene-109:02331] Signal code: Address not mapped (1)
+[graphene-109:02331] Failing at address: 0x28
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-100:02347] *** Process received signal ***
+[graphene-100:02347] Signal: Aborted (6)
+[graphene-100:02347] Signal code:  (-6)
+[graphene-111:02456] *** Process received signal ***
+[graphene-111:02456] Signal: Segmentation fault (11)
+[graphene-111:02456] Signal code: Address not mapped (1)
+[graphene-111:02456] Failing at address: 0x28
+[graphene-103:02401] *** Process received signal ***
+[graphene-103:02401] Signal: Segmentation fault (11)
+[graphene-103:02401] Signal code: Address not mapped (1)
+[graphene-103:02401] Failing at address: 0x28
+[graphene-105:02555] *** Process received signal ***
+[graphene-102:02565] Signal: Segmentation fault (11)
+[graphene-102:02565] Signal code: Address not mapped (1)
+[graphene-102:02565] Failing at address: 0x28
+[graphene-104:02422] Signal: Segmentation fault (11)
+[graphene-104:02422] Signal code: Address not mapped (1)
+[graphene-104:02422] Failing at address: 0x28
+[graphene-106:02361] Signal: Segmentation fault (11)
+[graphene-106:02361] Signal code: Address not mapped (1)
+[graphene-106:02361] Failing at address: 0x28
+[graphene-112:02340] *** Process received signal ***
+[graphene-107:02361] Signal: Segmentation fault (11)
+[graphene-107:02361] Signal code: Address not mapped (1)
+[graphene-107:02361] Failing at address: 0x28
+[graphene-11:02536] *** Process received signal ***
+[graphene-11:02536] Signal: Segmentation fault (11)
+[graphene-11:02536] Signal code: Address not mapped (1)
+[graphene-11:02536] Failing at address: 0x28
+[graphene-110:02548] *** Process received signal ***
+[graphene-101:02540] *** Process received signal ***
+[graphene-108:02566] *** Process received signal ***
+[graphene-108:02566] Signal: Segmentation fault (11)
+[graphene-108:02566] Signal code: Address not mapped (1)
+[graphene-108:02566] Failing at address: 0x28
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-10:02480] *** Process received signal ***
+[graphene-109:02324] *** Process received signal ***
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-100:02348] *** Process received signal ***
+[graphene-100:02348] Signal: Aborted (6)
+[graphene-100:02348] Signal code:  (-6)
+[graphene-111:02452] Signal: Segmentation fault (11)
+[graphene-111:02452] Signal code: Address not mapped (1)
+[graphene-111:02452] Failing at address: 0x28
+[graphene-103:02396] Signal: Segmentation fault (11)
+[graphene-103:02396] Signal code: Address not mapped (1)
+[graphene-103:02396] Failing at address: 0x28
+[graphene-105:02555] Signal: Segmentation fault (11)
+[graphene-105:02555] Signal code: Address not mapped (1)
+[graphene-105:02555] Failing at address: 0x28
+[graphene-102:02567] Signal: Segmentation fault (11)
+[graphene-102:02567] Signal code: Address not mapped (1)
+[graphene-102:02567] Failing at address: 0x28
+[graphene-104:02418] Signal: Segmentation fault (11)
+[graphene-104:02418] Signal code: Address not mapped (1)
+[graphene-104:02418] Failing at address: 0x28
+[graphene-106:02364] *** Process received signal ***
+[graphene-106:02364] Signal: Segmentation fault (11)
+[graphene-106:02364] Signal code: Address not mapped (1)
+[graphene-106:02364] Failing at address: 0x28
+[graphene-112:02341] *** Process received signal ***
+[graphene-112:02341] Signal: Segmentation fault (11)
+[graphene-112:02341] Signal code: Address not mapped (1)
+[graphene-112:02341] Failing at address: 0x28
+[graphene-107:02358] *** Process received signal ***
+[graphene-107:02358] Signal: Segmentation fault (11)
+[graphene-107:02358] Signal code: Address not mapped (1)
+[graphene-107:02358] Failing at address: 0x28
+[graphene-11:02530] *** Process received signal ***
+[graphene-11:02530] Signal: Segmentation fault (11)
+[graphene-11:02530] Signal code: Address not mapped (1)
+[graphene-11:02530] Failing at address: 0x28
+[graphene-110:02545] *** Process received signal ***
+[graphene-110:02545] Signal: Segmentation fault (11)
+[graphene-110:02545] Signal code: Address not mapped (1)
+[graphene-110:02545] Failing at address: 0x28
+[graphene-101:02544] *** Process received signal ***
+[graphene-101:02544] Signal: Segmentation fault (11)
+[graphene-101:02544] Signal code: Address not mapped (1)
+[graphene-101:02544] Failing at address: 0x28
+[graphene-108:02564] *** Process received signal ***
+[graphene-108:02564] Signal: Segmentation fault (11)
+[graphene-108:02564] Signal code: Address not mapped (1)
+[graphene-108:02564] Failing at address: 0x28
+[graphene-10:02480] Signal: Aborted (6)
+[graphene-10:02480] Signal code:  (-6)
+[graphene-109:02324] Signal: Segmentation fault (11)
+[graphene-109:02324] Signal code: Address not mapped (1)
+[graphene-109:02324] Failing at address: 0x28
+[graphene-107:02363] *** Process received signal ***
+[graphene-107:02363] Signal: Segmentation fault (11)
+[graphene-107:02363] Signal code: Address not mapped (1)
+[graphene-107:02363] Failing at address: 0x28
+[graphene-103:02394] Signal: Segmentation fault (11)
+[graphene-103:02394] Signal code: Address not mapped (1)
+[graphene-103:02394] Failing at address: 0x28
+[graphene-11:02533] *** Process received signal ***
+[graphene-11:02533] Signal: Segmentation fault (11)
+[graphene-11:02533] Signal code: Address not mapped (1)
+[graphene-11:02533] Failing at address: 0x28
+[graphene-105:02559] *** Process received signal ***
+[graphene-105:02559] Signal: Segmentation fault (11)
+[graphene-105:02559] Signal code: Address not mapped (1)
+[graphene-105:02559] Failing at address: 0x28
+[graphene-106:02366] Signal: Segmentation fault (11)
+[graphene-106:02366] Signal code: Address not mapped (1)
+[graphene-106:02366] Failing at address: 0x28
+[graphene-112:02338] *** Process received signal ***
+[graphene-112:02338] Signal: Segmentation fault (11)
+[graphene-112:02338] Signal code: Address not mapped (1)
+[graphene-112:02338] Failing at address: 0x28
+[graphene-100:02353] Signal: Segmentation fault (11)
+[graphene-100:02353] Signal code: Address not mapped (1)
+[graphene-100:02353] Failing at address: 0x28
+[graphene-111:02459] Signal: Segmentation fault (11)
+[graphene-111:02459] Signal code: Address not mapped (1)
+[graphene-111:02459] Failing at address: 0x28
+[graphene-110:02548] Signal: Segmentation fault (11)
+[graphene-110:02548] Signal code: Address not mapped (1)
+[graphene-110:02548] Failing at address: 0x28
+[graphene-101:02540] Signal: Segmentation fault (11)
+[graphene-101:02540] Signal code: Address not mapped (1)
+[graphene-101:02540] Failing at address: 0x28
+[graphene-108:02561] Signal: Segmentation fault (11)
+[graphene-108:02561] Signal code: Address not mapped (1)
+[graphene-108:02561] Failing at address: 0x28
+[graphene-10:02481] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fcd42cefae0]
+[graphene-104:02421] *** Process received signal ***
+[graphene-104:02421] Signal: Segmentation fault (11)
+[graphene-104:02421] Signal code: Address not mapped (1)
+[graphene-104:02421] Failing at address: 0x28
+[graphene-106:02366] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fe6ccef2ff0]
+[graphene-112:02334] Signal: Segmentation fault (11)
+[graphene-112:02334] Signal code: Address not mapped (1)
+[graphene-112:02334] Failing at address: 0x28
+[graphene-108:02567] *** Process received signal ***
+[graphene-108:02567] Signal: Segmentation fault (11)
+[graphene-108:02567] Signal code: Address not mapped (1)
+[graphene-108:02567] Failing at address: 0x28
+[graphene-111:02457] *** Process received signal ***
+[graphene-111:02457] Signal: Segmentation fault (11)
+[graphene-111:02457] Signal code: Address not mapped (1)
+[graphene-111:02457] Failing at address: 0x28
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-110:02551] *** Process received signal ***
+[graphene-110:02551] Signal: Aborted (6)
+[graphene-110:02551] Signal code:  (-6)
+[graphene-101:02537] Signal: Segmentation fault (11)
+[graphene-101:02537] Signal code: Address not mapped (1)
+[graphene-101:02537] Failing at address: 0x28
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-102:02570] *** Process received signal ***
+[graphene-100:02350] Signal: Segmentation fault (11)
+[graphene-100:02350] Signal code: Address not mapped (1)
+[graphene-100:02350] Failing at address: 0x28
+[graphene-109:02329] *** Process received signal ***
+[graphene-109:02329] Signal: Segmentation fault (11)
+[graphene-109:02329] Signal code: Address not mapped (1)
+[graphene-109:02329] Failing at address: 0x28
+[graphene-107:02364] Signal: Segmentation fault (11)
+[graphene-107:02364] Signal code: Address not mapped (1)
+[graphene-107:02364] Failing at address: 0x28
+[graphene-10:02481] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fcd42d1517d]
+[graphene-11:02529] Signal: Segmentation fault (11)
+[graphene-11:02529] Signal code: Address not mapped (1)
+[graphene-11:02529] Failing at address: 0x28
+[graphene-109:02325] Signal: Segmentation fault (11)
+[graphene-109:02325] Signal code: Address not mapped (1)
+[graphene-109:02325] Failing at address: 0x28
+[graphene-107:02361] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fc0d955eff0]
+[graphene-107:02361] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fc0da525c90]
+[graphene-107:02361] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fc0da525f10]
+[graphene-107:02361] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fc0da525e24]
+[graphene-107:02361] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fc0da48c547]
+[graphene-107:02361] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fc0da4b3ae0]
+[graphene-107:02361] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fc0da4d917d]
+[graphene-107:02361] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-107:02361] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fc0d920cc8d]
+[graphene-107:02361] [ 9] frssj() [0x401329]
+[graphene-107:02361] *** End of error message ***
+[graphene-103:02400] *** Process received signal ***
+[graphene-103:02400] Signal: Segmentation fault (11)
+[graphene-103:02400] Signal code: Address not mapped (1)
+[graphene-103:02400] Failing at address: 0x28
+[graphene-11:02535] Signal: Segmentation fault (11)
+[graphene-11:02535] Signal code: Address not mapped (1)
+[graphene-11:02535] Failing at address: 0x28
+[graphene-105:02554] Signal: Segmentation fault (11)
+[graphene-105:02554] Signal code: Address not mapped (1)
+[graphene-105:02554] Failing at address: 0x28
+[graphene-102:02570] Signal: Aborted (6)
+[graphene-102:02570] Signal code:  (-6)
+[graphene-104:02420] Signal: Segmentation fault (11)
+[graphene-104:02420] Signal code: Address not mapped (1)
+[graphene-104:02420] Failing at address: 0x28
+[graphene-100:02349] *** Process received signal ***
+[graphene-100:02349] Signal: Segmentation fault (11)
+[graphene-100:02349] Signal code: Address not mapped (1)
+[graphene-100:02349] Failing at address: 0x28
+[graphene-112:02336] *** Process received signal ***
+[graphene-112:02336] Signal: Segmentation fault (11)
+[graphene-112:02336] Signal code: Address not mapped (1)
+[graphene-112:02336] Failing at address: 0x28
+[graphene-110:02547] Signal: Segmentation fault (11)
+[graphene-110:02547] Signal code: Address not mapped (1)
+[graphene-110:02547] Failing at address: 0x28
+[graphene-101:02541] Signal: Segmentation fault (11)
+[graphene-101:02541] Signal code: Address not mapped (1)
+[graphene-101:02541] Failing at address: 0x28
+[graphene-106:02363] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fdabe3aaff0]
+[graphene-106:02363] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fdabf371c90]
+[graphene-106:02363] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fdabf371f10]
+[graphene-106:02363] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fdabf371e24]
+[graphene-106:02363] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fdabf2d8547]
+[graphene-106:02363] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fdabf2ffae0]
+[graphene-106:02363] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fdabf32517d]
+[graphene-106:02363] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-106:02363] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fdabe058c8d]
+[graphene-106:02363] [ 9] frssj() [0x401329]
+[graphene-106:02363] *** End of error message ***
+[graphene-10:02481] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02327] Signal: Segmentation fault (11)
+[graphene-109:02327] Signal code: Address not mapped (1)
+[graphene-109:02327] Failing at address: 0x28
+[graphene-107:02365] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f538b35fff0]
+[graphene-107:02365] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f538c326c90]
+[graphene-107:02365] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f538c326f10]
+[graphene-107:02365] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f538c326e24]
+[graphene-107:02365] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f538c28d547]
+[graphene-107:02365] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f538c2b4ae0]
+[graphene-107:02365] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f538c2da17d]
+[graphene-107:02365] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-107:02365] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f538b00dc8d]
+[graphene-107:02365] [ 9] frssj() [0x401329]
+[graphene-107:02365] *** End of error message ***
+[graphene-103:02399] Signal: Segmentation fault (11)
+[graphene-103:02399] Signal code: Address not mapped (1)
+[graphene-103:02399] Failing at address: 0x28
+[graphene-11:02530] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f95dc195ff0]
+[graphene-105:02556] Signal: Segmentation fault (11)
+[graphene-105:02556] Signal code: Address not mapped (1)
+[graphene-105:02556] Failing at address: 0x28
+[graphene-102:02570] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f36caf66ff0]
+[graphene-104:02416] Signal: Segmentation fault (11)
+[graphene-104:02416] Signal code: Address not mapped (1)
+[graphene-104:02416] Failing at address: 0x28
+[graphene-106:02367] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f642a322ff0]
+[graphene-106:02367] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f642b2e9c90]
+[graphene-106:02367] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f642b2e9f10]
+[graphene-106:02367] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f642b2e9e24]
+[graphene-106:02367] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f642b250547]
+[graphene-106:02367] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f642b277ae0]
+[graphene-106:02367] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f642b29d17d]
+[graphene-106:02367] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-106:02367] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f6429fd0c8d]
+[graphene-100:02352] *** Process received signal ***
+[graphene-111:02458] Signal: Segmentation fault (11)
+[graphene-111:02458] Signal code: Address not mapped (1)
+[graphene-111:02458] Failing at address: 0x28
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-110:02549] *** Process received signal ***
+[graphene-101:02538] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f66c8c12ff0]
+[graphene-108:02563] Signal: Segmentation fault (11)
+[graphene-108:02563] Signal code: Address not mapped (1)
+[graphene-108:02563] Failing at address: 0x28
+[graphene-10:02481] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fcd41a48c8d]
+[graphene-109:02331] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f124b9c8ff0]
+[graphene-100:02352] Signal: Segmentation fault (11)
+[graphene-100:02352] Signal code: Address not mapped (1)
+[graphene-100:02352] Failing at address: 0x28
+[graphene-111:02455] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5dfa8faff0]
+[graphene-103:02398] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f4cc46ccff0]
+[graphene-103:02398] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4cc5693c90]
+[graphene-103:02398] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4cc5693f10]
+[graphene-103:02398] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4cc5693e24]
+[graphene-103:02398] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f4cc55fa547]
+[graphene-103:02398] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f4cc5621ae0]
+[graphene-103:02398] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f4cc564717d]
+[graphene-103:02398] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02398] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4cc437ac8d]
+[graphene-103:02398] [ 9] frssj() [0x401329]
+[graphene-103:02398] *** End of error message ***
+[graphene-105:02560] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fb42d8bdff0]
+[graphene-102:02570] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f36cac281b5]
+[graphene-104:02419] *** Process received signal ***
+[graphene-106:02367] [ 9] frssj() [0x401329]
+[graphene-106:02367] *** End of error message ***
+[graphene-112:02335] Signal: Segmentation fault (11)
+[graphene-112:02335] Signal code: Address not mapped (1)
+[graphene-112:02335] Failing at address: 0x28
+[graphene-107:02359] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fb6232fdff0]
+[graphene-11:02535] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fbbd1cb6ff0]
+[graphene-11:02535] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fbbd2c7dc90]
+[graphene-11:02535] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fbbd2c7df10]
+[graphene-11:02535] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fbbd2c7de24]
+[graphene-11:02535] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fbbd2be4547]
+[graphene-11:02535] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fbbd2c0bae0]
+[graphene-11:02535] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fbbd2c3117d]
+[graphene-11:02535] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-11:02535] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fbbd1964c8d]
+[graphene-11:02535] [ 9] frssj() [0x401329]
+[graphene-11:02535] *** End of error message ***
+[graphene-110:02549] Signal: Aborted (6)
+[graphene-110:02549] Signal code:  (-6)
+[graphene-101:02544] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fec26644ff0]
+[graphene-101:02544] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fec2760bc90]
+[graphene-101:02544] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fec2760bf10]
+[graphene-101:02544] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fec2760be24]
+[graphene-101:02544] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fec27572547]
+[graphene-101:02544] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fec27599ae0]
+[graphene-101:02544] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fec275bf17d]
+[graphene-101:02544] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-101:02544] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fec262f2c8d]
+[graphene-101:02544] [ 9] frssj() [0x401329]
+[graphene-101:02544] *** End of error message ***
+[graphene-108:02568] Signal: Segmentation fault (11)
+[graphene-108:02568] Signal code: Address not mapped (1)
+[graphene-108:02568] Failing at address: 0x28
+[graphene-10:02481] [ 9] frssj() [0x401329]
+[graphene-104:02419] Signal: Segmentation fault (11)
+[graphene-104:02419] Signal code: Address not mapped (1)
+[graphene-104:02419] Failing at address: 0x28
+[graphene-102:02570] [ 2] /lib/libc.so.6(abort+0x180) [0x7f36cac2afc0]
+[graphene-107:02359] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fb6242c4c90]
+[graphene-112:02340] Signal: Segmentation fault (11)
+[graphene-112:02340] Signal code: Address not mapped (1)
+[graphene-112:02340] Failing at address: 0x28
+[graphene-111:02458] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f4f04777ff0]
+[graphene-111:02458] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4f0573ec90]
+[graphene-111:02458] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4f0573ef10]
+[graphene-111:02458] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4f0573ee24]
+[graphene-110:02552] *** Process received signal ***
+[graphene-110:02552] Signal: Segmentation fault (11)
+[graphene-110:02552] Signal code: Address not mapped (1)
+[graphene-110:02552] Failing at address: 0x28
+[graphene-101:02541] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f4f53ae9ff0]
+[graphene-101:02541] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4f54ab0c90]
+[graphene-101:02541] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4f54ab0f10]
+[graphene-101:02541] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4f54ab0e24]
+[graphene-101:02541] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f4f54a17547]
+[graphene-101:02541] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f4f54a3eae0]
+[graphene-101:02541] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f4f54a6417d]
+[graphene-101:02541] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-101:02541] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4f53797c8d]
+[graphene-101:02541] [ 9] frssj() [0x401329]
+[graphene-101:02541] *** End of error message ***
+[graphene-10:02481] *** End of error message ***
+[graphene-100:02347] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fec27f83ff0]
+[graphene-100:02347] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7fec27c451b5]
+[graphene-100:02347] [ 2] /lib/libc.so.6(abort+0x180) [0x7fec27c47fc0]
+[graphene-100:02347] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7fec27c3e301]
+[graphene-100:02347] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7fec28eb1771]
+[graphene-100:02347] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fec28ed8ae0]
+[graphene-100:02347] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fec28efe17d]
+[graphene-100:02347] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-100:02347] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fec27c31c8d]
+[graphene-100:02347] [ 9] frssj() [0x401329]
+[graphene-100:02347] *** End of error message ***
+[graphene-106:02364] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f17fe84dff0]
+[graphene-106:02364] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f17ff814c90]
+[graphene-106:02364] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f17ff814f10]
+[graphene-106:02364] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f17ff814e24]
+[graphene-106:02364] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f17ff77b547]
+[graphene-106:02364] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f17ff7a2ae0]
+[graphene-106:02364] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f17ff7c817d]
+[graphene-106:02364] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-106:02364] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f17fe4fbc8d]
+[graphene-106:02364] [ 9] frssj() [0x401329]
+[graphene-106:02364] *** End of error message ***
+[graphene-108:02568] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f58c97b0ff0]
+[graphene-103:02400] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f67dddb0ff0]
+[graphene-11:02531] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f25dc856ff0]
+[graphene-11:02531] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f25dd81dc90]
+[graphene-11:02531] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f25dd81df10]
+[graphene-11:02531] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f25dd81de24]
+[graphene-11:02531] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f25dd784547]
+[graphene-11:02531] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f25dd7abae0]
+[graphene-11:02531] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f25dd7d117d]
+[graphene-11:02531] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-11:02531] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f25dc504c8d]
+[graphene-11:02531] [ 9] frssj() [0x401329]
+[graphene-11:02531] *** End of error message ***
+[graphene-109:02329] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f445725dff0]
+[graphene-109:02329] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4458224c90]
+[graphene-109:02329] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4458224f10]
+[graphene-109:02329] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4458224e24]
+[graphene-109:02329] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f445818b547]
+[graphene-109:02329] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f44581b2ae0]
+[graphene-109:02329] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f44581d817d]
+[graphene-109:02329] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02329] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4456f0bc8d]
+[graphene-109:02329] [ 9] frssj() [0x401329]
+[graphene-109:02329] *** End of error message ***
+[graphene-105:02555] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f87abc57ff0]
+[graphene-105:02555] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f87acc1ec90]
+[graphene-105:02555] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f87acc1ef10]
+[graphene-105:02555] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f87acc1ee24]
+[graphene-105:02555] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f87acb85547]
+[graphene-105:02555] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f87acbacae0]
+[graphene-105:02555] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f87acbd217d]
+[graphene-105:02555] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-105:02555] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f87ab905c8d]
+[graphene-105:02555] [ 9] frssj() [0x401329]
+[graphene-105:02555] *** End of error message ***
+[graphene-108:02564] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f34ea322ff0]
+[graphene-108:02564] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f34eb2e9c90]
+[graphene-108:02564] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f34eb2e9f10]
+[graphene-108:02564] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f34eb2e9e24]
+[graphene-108:02564] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f34eb250547]
+[graphene-108:02564] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f34eb277ae0]
+[graphene-108:02564] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f34eb29d17d]
+[graphene-108:02564] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02564] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f34e9fd0c8d]
+[graphene-108:02564] [ 9] frssj() [0x401329]
+[graphene-108:02564] *** End of error message ***
+[graphene-112:02339] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f050bc7aff0]
+[graphene-11:02533] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5bdca98ff0]
+[graphene-11:02533] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5bdda5fc90]
+[graphene-11:02533] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5bdda5ff10]
+[graphene-11:02533] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5bdda5fe24]
+[graphene-11:02533] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5bdd9c6547]
+[graphene-11:02533] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5bdd9edae0]
+[graphene-11:02533] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5bdda1317d]
+[graphene-11:02533] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-11:02533] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5bdc746c8d]
+[graphene-11:02533] [ 9] frssj() [0x401329]
+[graphene-11:02533] *** End of error message ***
+[graphene-110:02552] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f74ae8d0ff0]
+[graphene-10:02480] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f89eeb0cff0]
+[graphene-10:02480] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f89ee7ce1b5]
+[graphene-10:02480] [ 2] /lib/libc.so.6(abort+0x180) [0x7f89ee7d0fc0]
+[graphene-10:02480] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f89ee7c7301]
+[graphene-10:02480] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7f89efa3a771]
+[graphene-10:02480] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f89efa61ae0]
+[graphene-10:02480] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f89efa8717d]
+[graphene-10:02480] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-10:02480] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f89ee7bac8d]
+[graphene-10:02480] [ 9] frssj() [0x401329]
+[graphene-10:02480] *** End of error message ***
+[graphene-100:02348] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f1276f92ff0]
+[graphene-100:02348] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f1276c541b5]
+[graphene-100:02348] [ 2] /lib/libc.so.6(abort+0x180) [0x7f1276c56fc0]
+[graphene-100:02348] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f1276c4d301]
+[graphene-100:02348] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7f1277ec0771]
+[graphene-100:02348] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f1277ee7ae0]
+[graphene-100:02348] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f1277f0d17d]
+[graphene-100:02348] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-100:02348] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f1276c40c8d]
+[graphene-100:02348] [ 9] frssj() [0x401329]
+[graphene-109:02324] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f4fbd7b7ff0]
+[graphene-109:02324] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4fbe77ec90]
+[graphene-109:02324] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4fbe77ef10]
+[graphene-109:02324] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4fbe77ee24]
+[graphene-109:02324] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f4fbe6e5547]
+[graphene-109:02324] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f4fbe70cae0]
+[graphene-109:02324] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f4fbe73217d]
+[graphene-109:02324] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02324] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4fbd465c8d]
+[graphene-109:02324] [ 9] frssj() [0x401329]
+[graphene-109:02324] *** End of error message ***
+[graphene-101:02543] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fde60eccff0]
+[graphene-101:02543] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fde61e93c90]
+[graphene-101:02543] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fde61e93f10]
+[graphene-101:02543] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fde61e93e24]
+[graphene-101:02543] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fde61dfa547]
+[graphene-101:02543] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fde61e21ae0]
+[graphene-101:02543] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fde61e4717d]
+[graphene-101:02543] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-101:02543] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fde60b7ac8d]
+[graphene-101:02543] [ 9] frssj() [0x401329]
+[graphene-101:02543] *** End of error message ***
+[graphene-107:02359] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fb6242c4f10]
+[graphene-111:02458] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f4f056a5547]
+[graphene-111:02458] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f4f056ccae0]
+[graphene-111:02458] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f4f056f217d]
+[graphene-111:02458] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-111:02458] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4f04425c8d]
+[graphene-111:02458] [ 9] frssj() [0x401329]
+[graphene-111:02458] *** End of error message ***
+[graphene-105:02554] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fb050f52ff0]
+[graphene-105:02554] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fb051f19c90]
+[graphene-105:02554] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fb051f19f10]
+[graphene-105:02554] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fb051f19e24]
+[graphene-105:02554] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fb051e80547]
+[graphene-105:02554] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fb051ea7ae0]
+[graphene-105:02554] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fb051ecd17d]
+[graphene-105:02554] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-105:02554] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fb050c00c8d]
+[graphene-105:02554] [ 9] frssj() [0x401329]
+[graphene-105:02554] *** End of error message ***
+[graphene-104:02422] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fc21e955ff0]
+[graphene-102:02564] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f7f66283ff0]
+[graphene-102:02564] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f7f6724ac90]
+[graphene-102:02564] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f7f6724af10]
+[graphene-102:02564] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f7f6724ae24]
+[graphene-103:02399] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fd01bba7ff0]
+[graphene-103:02399] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fd01cb6ec90]
+[graphene-103:02399] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fd01cb6ef10]
+[graphene-103:02399] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fd01cb6ee24]
+[graphene-103:02399] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fd01cad5547]
+[graphene-103:02399] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fd01cafcae0]
+[graphene-103:02399] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fd01cb2217d]
+[graphene-103:02399] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02399] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fd01b855c8d]
+[graphene-103:02399] [ 9] frssj() [0x401329]
+[graphene-103:02399] *** End of error message ***
+[graphene-109:02325] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fea17ff2ff0]
+[graphene-109:02325] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fea18fb9c90]
+[graphene-109:02325] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fea18fb9f10]
+[graphene-109:02325] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fea18fb9e24]
+[graphene-109:02325] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fea18f20547]
+[graphene-109:02325] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fea18f47ae0]
+[graphene-109:02325] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fea18f6d17d]
+[graphene-109:02325] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02325] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fea17ca0c8d]
+[graphene-109:02325] [ 9] frssj() [0x401329]
+[graphene-109:02325] *** End of error message ***
+[graphene-101:02538] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f66c9bd9c90]
+[graphene-101:02538] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f66c9bd9f10]
+[graphene-101:02538] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f66c9bd9e24]
+[graphene-101:02538] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f66c9b40547]
+[graphene-101:02538] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f66c9b67ae0]
+[graphene-101:02538] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f66c9b8d17d]
+[graphene-101:02538] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-101:02538] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f66c88c0c8d]
+[graphene-101:02538] [ 9] frssj() [0x401329]
+[graphene-101:02538] *** End of error message ***
+[graphene-110:02550] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f62b69c5ff0]
+[graphene-110:02550] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f62b798cc90]
+[graphene-110:02550] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f62b798cf10]
+[graphene-110:02550] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f62b798ce24]
+[graphene-110:02550] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f62b78f3547]
+[graphene-110:02550] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f62b791aae0]
+[graphene-110:02550] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f62b794017d]
+[graphene-110:02550] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-110:02550] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f62b6673c8d]
+[graphene-110:02550] [ 9] frssj() [0x401329]
+[graphene-110:02550] *** End of error message ***
+[graphene-103:02397] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f9d08bcfff0]
+[graphene-103:02397] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f9d09b96c90]
+[graphene-103:02397] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f9d09b96f10]
+[graphene-103:02397] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f9d09b96e24]
+[graphene-103:02397] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f9d09afd547]
+[graphene-103:02397] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f9d09b24ae0]
+[graphene-103:02397] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f9d09b4a17d]
+[graphene-103:02397] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02397] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f9d0887dc8d]
+[graphene-103:02397] [ 9] frssj() [0x401329]
+[graphene-103:02397] *** End of error message ***
+[graphene-105:02559] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fce89646ff0]
+[graphene-105:02559] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fce8a60dc90]
+[graphene-105:02559] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fce8a60df10]
+[graphene-105:02559] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fce8a60de24]
+[graphene-105:02559] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fce8a574547]
+[graphene-105:02559] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fce8a59bae0]
+[graphene-105:02559] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fce8a5c117d]
+[graphene-105:02559] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-105:02559] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fce892f4c8d]
+[graphene-105:02559] [ 9] frssj() [0x401329]
+[graphene-105:02559] *** End of error message ***
+[graphene-11:02530] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f95dd15cc90]
+[graphene-104:02423] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f89dad94ff0]
+[graphene-104:02423] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f89dbd5bc90]
+[graphene-104:02423] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f89dbd5bf10]
+[graphene-104:02423] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f89dbd5be24]
+[graphene-104:02423] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f89dbcc2547]
+[graphene-104:02423] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f89dbce9ae0]
+[graphene-104:02423] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f89dbd0f17d]
+[graphene-104:02423] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-104:02423] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f89daa42c8d]
+[graphene-104:02423] [ 9] frssj() [0x401329]
+[graphene-104:02423] *** End of error message ***
+[graphene-112:02338] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f1acab00ff0]
+[graphene-112:02338] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f1acbac7c90]
+[graphene-112:02338] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f1acbac7f10]
+[graphene-112:02338] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f1acbac7e24]
+[graphene-112:02338] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f1acba2e547]
+[graphene-112:02338] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f1acba55ae0]
+[graphene-112:02338] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f1acba7b17d]
+[graphene-112:02338] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02338] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f1aca7aec8d]
+[graphene-112:02338] [ 9] frssj() [0x401329]
+[graphene-112:02338] *** End of error message ***
+[graphene-108:02568] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f58ca777c90]
+[graphene-107:02359] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fb6242c4e24]
+[graphene-102:02564] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f7f671b1547]
+[graphene-102:02564] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f7f671d8ae0]
+[graphene-102:02564] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f7f671fe17d]
+[graphene-102:02564] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-102:02564] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f7f65f31c8d]
+[graphene-102:02564] [ 9] frssj() [0x401329]
+[graphene-102:02564] *** End of error message ***
+[graphene-100:02348] *** End of error message ***
+[graphene-10:02482] *** Process received signal ***
+[graphene-10:02482] Signal: Segmentation fault (11)
+[graphene-10:02482] Signal code: Address not mapped (1)
+[graphene-10:02482] Failing at address: 0x28
+[graphene-111:02456] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f85d1ad9ff0]
+[graphene-111:02456] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f85d2aa0c90]
+[graphene-111:02456] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f85d2aa0f10]
+[graphene-111:02456] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f85d2aa0e24]
+[graphene-111:02456] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f85d2a07547]
+[graphene-111:02456] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f85d2a2eae0]
+[graphene-111:02456] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f85d2a5417d]
+[graphene-111:02456] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-111:02456] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f85d1787c8d]
+[graphene-111:02456] [ 9] frssj() [0x401329]
+[graphene-111:02456] *** End of error message ***
+[graphene-109:02331] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f124c98fc90]
+[graphene-101:02540] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fb32280fff0]
+[graphene-101:02540] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fb3237d6c90]
+[graphene-101:02540] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fb3237d6f10]
+[graphene-101:02540] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fb3237d6e24]
+[graphene-101:02540] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fb32373d547]
+[graphene-101:02540] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fb323764ae0]
+[graphene-101:02540] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fb32378a17d]
+[graphene-101:02540] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-101:02540] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fb3224bdc8d]
+[graphene-101:02540] [ 9] frssj() [0x401329]
+[graphene-110:02546] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fe33e056ff0]
+[graphene-110:02546] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fe33f01dc90]
+[graphene-110:02546] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fe33f01df10]
+[graphene-110:02546] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fe33f01de24]
+[graphene-110:02546] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fe33ef84547]
+[graphene-110:02546] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fe33efabae0]
+[graphene-110:02546] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fe33efd117d]
+[graphene-110:02546] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-110:02546] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fe33dd04c8d]
+[graphene-110:02546] [ 9] frssj() [0x401329]
+[graphene-110:02546] *** End of error message ***
+[graphene-103:02400] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f67ded77c90]
+[graphene-105:02558] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f925b023ff0]
+[graphene-11:02530] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f95dd15cf10]
+[graphene-104:02418] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fa3e5e37ff0]
+[graphene-104:02418] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fa3e6dfec90]
+[graphene-104:02418] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fa3e6dfef10]
+[graphene-104:02418] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fa3e6dfee24]
+[graphene-104:02418] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fa3e6d65547]
+[graphene-104:02418] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fa3e6d8cae0]
+[graphene-104:02418] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fa3e6db217d]
+[graphene-104:02418] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-104:02418] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fa3e5ae5c8d]
+[graphene-104:02418] [ 9] frssj() [0x401329]
+[graphene-104:02418] *** End of error message ***
+[graphene-112:02339] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f050cc41c90]
+[graphene-108:02562] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f7227d75ff0]
+[graphene-108:02562] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f7228d3cc90]
+[graphene-108:02562] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f7228d3cf10]
+[graphene-108:02562] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f7228d3ce24]
+[graphene-108:02562] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f7228ca3547]
+[graphene-108:02562] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f7228ccaae0]
+[graphene-108:02562] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f7228cf017d]
+[graphene-108:02562] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02562] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f7227a23c8d]
+[graphene-108:02562] [ 9] frssj() [0x401329]
+[graphene-108:02562] *** End of error message ***
+[graphene-107:02359] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fb62422b547]
+[graphene-102:02570] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f36cac21301]
+[graphene-100:02349] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5bdd153ff0]
+[graphene-10:02483] *** Process received signal ***
+[graphene-10:02483] Signal: Segmentation fault (11)
+[graphene-10:02483] Signal code: Address not mapped (1)
+[graphene-10:02483] Failing at address: 0x28
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-109:02331] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f124c98ff10]
+[graphene-101:02540] *** End of error message ***
+[graphene-110:02548] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5d9f2bfff0]
+[graphene-110:02548] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5da0286c90]
+[graphene-110:02548] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5da0286f10]
+[graphene-110:02548] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5da0286e24]
+[graphene-110:02548] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5da01ed547]
+[graphene-110:02548] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5da0214ae0]
+[graphene-110:02548] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5da023a17d]
+[graphene-110:02548] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-110:02548] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5d9ef6dc8d]
+[graphene-110:02548] [ 9] frssj() [0x401329]
+[graphene-110:02548] *** End of error message ***
+[graphene-103:02400] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f67ded77f10]
+[graphene-105:02557] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f68c4e48ff0]
+[graphene-105:02557] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f68c5e0fc90]
+[graphene-105:02557] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f68c5e0ff10]
+[graphene-105:02557] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f68c5e0fe24]
+[graphene-105:02557] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f68c5d76547]
+[graphene-105:02557] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f68c5d9dae0]
+[graphene-105:02557] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f68c5dc317d]
+[graphene-105:02557] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-105:02557] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f68c4af6c8d]
+[graphene-105:02557] [ 9] frssj() [0x401329]
+[graphene-105:02557] *** End of error message ***
+[graphene-11:02530] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f95dd15ce24]
+[graphene-104:02422] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fc21f91cc90]
+[graphene-112:02334] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f24f1c58ff0]
+[graphene-112:02334] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f24f2c1fc90]
+[graphene-112:02334] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f24f2c1ff10]
+[graphene-112:02334] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f24f2c1fe24]
+[graphene-112:02334] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f24f2b86547]
+[graphene-112:02334] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f24f2badae0]
+[graphene-112:02334] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f24f2bd317d]
+[graphene-112:02334] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02334] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f24f1906c8d]
+[graphene-112:02334] [ 9] frssj() [0x401329]
+[graphene-112:02334] *** End of error message ***
+[graphene-108:02566] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f184fb48ff0]
+[graphene-108:02566] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f1850b0fc90]
+[graphene-108:02566] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f1850b0ff10]
+[graphene-108:02566] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f1850b0fe24]
+[graphene-108:02566] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f1850a76547]
+[graphene-108:02566] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f1850a9dae0]
+[graphene-108:02566] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f1850ac317d]
+[graphene-108:02566] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02566] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f184f7f6c8d]
+[graphene-108:02566] [ 9] frssj() [0x401329]
+[graphene-108:02566] *** End of error message ***
+[graphene-107:02359] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fb624252ae0]
+[graphene-102:02568] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fabaa85dff0]
+[graphene-102:02568] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fabab824c90]
+[graphene-102:02568] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fabab824f10]
+[graphene-102:02568] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fabab824e24]
+[graphene-102:02568] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fabab78b547]
+[graphene-102:02568] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fabab7b2ae0]
+[graphene-102:02568] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fabab7d817d]
+[graphene-102:02568] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-102:02568] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fabaa50bc8d]
+[graphene-102:02568] [ 9] frssj() [0x401329]
+[graphene-102:02568] *** End of error message ***
+[graphene-100:02349] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5bde11ac90]
+[graphene-10:02482] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f23a6e67ff0]
+[graphene-10:02482] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f23a7e2ec90]
+[graphene-10:02482] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f23a7e2ef10]
+[graphene-10:02482] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f23a7e2ee24]
+[graphene-10:02482] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f23a7d95547]
+[graphene-10:02482] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f23a7dbcae0]
+[graphene-10:02482] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f23a7de217d]
+[graphene-10:02482] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-10:02482] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f23a6b15c8d]
+[graphene-10:02482] [ 9] frssj() [0x401329]
+[graphene-111:02454] *** Process received signal ***
+[graphene-109:02331] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f124c98fe24]
+[graphene-107:02359] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fb62427817d]
+[graphene-103:02400] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f67ded77e24]
+[graphene-11:02530] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f95dd0c3547]
+[graphene-101:02537] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f7c4f0d3ff0]
+[graphene-101:02537] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f7c5009ac90]
+[graphene-101:02537] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f7c5009af10]
+[graphene-101:02537] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f7c5009ae24]
+[graphene-101:02537] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f7c50001547]
+[graphene-101:02537] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f7c50028ae0]
+[graphene-101:02537] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f7c5004e17d]
+[graphene-101:02537] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-101:02537] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f7c4ed81c8d]
+[graphene-101:02537] [ 9] frssj() [0x401329]
+[graphene-102:02570] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7f36cbe94771]
+[graphene-112:02336] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fc9611eeff0]
+[graphene-112:02336] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fc9621b5c90]
+[graphene-112:02336] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fc9621b5f10]
+[graphene-112:02336] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fc9621b5e24]
+[graphene-112:02336] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fc96211c547]
+[graphene-112:02336] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fc962143ae0]
+[graphene-112:02336] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fc96216917d]
+[graphene-112:02336] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02336] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fc960e9cc8d]
+[graphene-112:02336] [ 9] frssj() [0x401329]
+[graphene-112:02336] *** End of error message ***
+[graphene-108:02568] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f58ca777f10]
+[graphene-110:02552] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f74af897c90]
+[graphene-110:02552] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f74af897f10]
+[graphene-110:02552] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f74af897e24]
+[graphene-110:02552] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f74af7fe547]
+[graphene-110:02552] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f74af825ae0]
+[graphene-110:02552] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f74af84b17d]
+[graphene-110:02552] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-110:02552] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f74ae57ec8d]
+[graphene-110:02552] [ 9] frssj() [0x401329]
+[graphene-110:02552] *** End of error message ***
+[graphene-105:02556] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5af9446ff0]
+[graphene-100:02349] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5bde11af10]
+[graphene-10:02482] *** End of error message ***
+[graphene-111:02454] Signal: Aborted (6)
+[graphene-111:02454] Signal code:  (-6)
+[graphene-109:02331] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f124c8f6547]
+[graphene-107:02359] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02400] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f67decde547]
+[graphene-101:02537] *** End of error message ***
+[graphene-105:02556] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5afa40dc90]
+[graphene-102:02570] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f36cbebbae0]
+[graphene-112:02339] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f050cc41f10]
+[graphene-111:02453] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f6939b8bff0]
+[graphene-111:02453] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f693ab52c90]
+[graphene-111:02453] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f693ab52f10]
+[graphene-111:02453] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f693ab52e24]
+[graphene-111:02453] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f693aab9547]
+[graphene-111:02453] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f693aae0ae0]
+[graphene-111:02453] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f693ab0617d]
+[graphene-111:02453] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-111:02453] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f6939839c8d]
+[graphene-111:02453] [ 9] frssj() [0x401329]
+[graphene-111:02453] *** End of error message ***
+[graphene-11:02530] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f95dd0eaae0]
+[graphene-100:02349] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5bde11ae24]
+[graphene-10:02483] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fe4dcc44ff0]
+[graphene-10:02483] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fe4ddc0bc90]
+[graphene-10:02483] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fe4ddc0bf10]
+[graphene-10:02483] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fe4ddc0be24]
+[graphene-10:02483] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fe4ddb72547]
+[graphene-10:02483] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fe4ddb99ae0]
+[graphene-10:02483] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fe4ddbbf17d]
+[graphene-10:02483] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-10:02483] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fe4dc8f2c8d]
+[graphene-10:02483] [ 9] frssj() [0x401329]
+[graphene-10:02483] *** End of error message ***
+[graphene-108:02568] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f58ca777e24]
+[graphene-109:02331] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f124c91dae0]
+[graphene-107:02359] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fb622fabc8d]
+[graphene-111:02455] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5dfb8c1c90]
+[graphene-111:02455] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5dfb8c1f10]
+[graphene-111:02455] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5dfb8c1e24]
+[graphene-11:02530] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f95dd11017d]
+[graphene-105:02556] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5afa40df10]
+[graphene-102:02570] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f36cbee117d]
+[graphene-108:02568] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f58ca6de547]
+[graphene-103:02400] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f67ded05ae0]
+[graphene-100:02349] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5bde081547]
+[graphene-101:02542] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f4d4adbcff0]
+[graphene-101:02542] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4d4bd83c90]
+[graphene-101:02542] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4d4bd83f10]
+[graphene-101:02542] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4d4bd83e24]
+[graphene-101:02542] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f4d4bcea547]
+[graphene-101:02542] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f4d4bd11ae0]
+[graphene-101:02542] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f4d4bd3717d]
+[graphene-101:02542] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02339] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f050cc41e24]
+[graphene-101:02542] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4d4aa6ac8d]
+[graphene-101:02542] [ 9] frssj() [0x401329]
+[graphene-101:02542] *** End of error message ***
+[graphene-100:02349] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5bde0a8ae0]
+[graphene-112:02339] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f050cba8547]
+[graphene-107:02359] [ 9] frssj() [0x401329]
+[graphene-103:02400] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f67ded2b17d]
+[graphene-11:02530] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-102:02570] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02331] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f124c94317d]
+[graphene-111:02455] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5dfb828547]
+[graphene-111:02455] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5dfb84fae0]
+[graphene-111:02455] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5dfb87517d]
+[graphene-111:02455] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-111:02455] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5dfa5a8c8d]
+[graphene-111:02455] [ 9] frssj() [0x401329]
+[graphene-111:02455] *** End of error message ***
+[graphene-108:02568] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f58ca705ae0]
+[graphene-105:02556] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5afa40de24]
+[graphene-109:02331] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02568] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f58ca72b17d]
+[graphene-103:02400] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-11:02530] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f95dbe43c8d]
+[graphene-105:02556] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5afa374547]
+[graphene-112:02339] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f050cbcfae0]
+[graphene-107:02359] *** End of error message ***
+[graphene-100:02352] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f3d38ad6ff0]
+[graphene-100:02352] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f3d39a9dc90]
+[graphene-100:02352] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f3d39a9df10]
+[graphene-100:02352] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f3d39a9de24]
+[graphene-100:02352] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f3d39a04547]
+[graphene-100:02352] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f3d39a2bae0]
+[graphene-100:02352] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f3d39a5117d]
+[graphene-100:02352] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-100:02352] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f3d38784c8d]
+[graphene-100:02352] [ 9] frssj() [0x401329]
+[graphene-100:02352] *** End of error message ***
+[graphene-111:02452] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7ffc692faff0]
+[graphene-102:02570] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f36cac14c8d]
+[graphene-109:02331] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f124b676c8d]
+[graphene-108:02568] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02400] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f67dda5ec8d]
+[graphene-11:02530] [ 9] frssj() [0x401329]
+[graphene-105:02556] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5afa39bae0]
+[graphene-112:02339] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f050cbf517d]
+[graphene-107:02363] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7ffd93da5ff0]
+[graphene-107:02363] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7ffd94d6cc90]
+[graphene-107:02363] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7ffd94d6cf10]
+[graphene-107:02363] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7ffd94d6ce24]
+[graphene-107:02363] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7ffd94cd3547]
+[graphene-107:02363] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7ffd94cfaae0]
+[graphene-107:02363] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7ffd94d2017d]
+[graphene-107:02363] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-107:02363] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7ffd93a53c8d]
+[graphene-107:02363] [ 9] frssj() [0x401329]
+[graphene-107:02363] *** End of error message ***
+[graphene-100:02349] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5bde0ce17d]
+[graphene-111:02454] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fb260cd6ff0]
+[graphene-102:02571] *** Process received signal ***
+[graphene-102:02571] Signal: Segmentation fault (11)
+[graphene-102:02571] Signal code: Address not mapped (1)
+[graphene-102:02571] Failing at address: 0x28
+[graphene-109:02331] [ 9] frssj() [0x401329]
+[graphene-108:02568] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f58c945ec8d]
+[graphene-103:02400] [ 9] frssj() [0x401329]
+[graphene-11:02530] *** End of error message ***
+[graphene-105:02556] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5afa3c117d]
+[graphene-112:02339] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-107:02364] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f306b07fff0]
+[graphene-107:02364] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f306c046c90]
+[graphene-107:02364] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f306c046f10]
+[graphene-107:02364] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f306c046e24]
+[graphene-107:02364] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f306bfad547]
+[graphene-107:02364] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f306bfd4ae0]
+[graphene-107:02364] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f306bffa17d]
+[graphene-107:02364] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-107:02364] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f306ad2dc8d]
+[graphene-107:02364] [ 9] frssj() [0x401329]
+[graphene-107:02364] *** End of error message ***
+[graphene-100:02351] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f3242f6cff0]
+[graphene-100:02351] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f3243f33c90]
+[graphene-100:02351] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f3243f33f10]
+[graphene-100:02351] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f3243f33e24]
+[graphene-100:02351] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f3243e9a547]
+[graphene-100:02351] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f3243ec1ae0]
+[graphene-100:02351] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f3243ee717d]
+[graphene-100:02351] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-111:02452] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7ffc6a2c1c90]
+[graphene-111:02452] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7ffc6a2c1f10]
+[graphene-111:02452] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7ffc6a2c1e24]
+[graphene-111:02452] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7ffc6a228547]
+[graphene-111:02452] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7ffc6a24fae0]
+[graphene-111:02452] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7ffc6a27517d]
+[graphene-111:02452] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-111:02452] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7ffc68fa8c8d]
+[graphene-111:02452] [ 9] frssj() [0x401329]
+[graphene-111:02452] *** End of error message ***
+[graphene-102:02570] [ 9] frssj() [0x401329]
+[graphene-109:02331] *** End of error message ***
+[graphene-108:02568] [ 9] frssj() [0x401329]
+[graphene-103:02400] *** End of error message ***
+[graphene-11:02532] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fa554587ff0]
+[graphene-11:02532] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fa55554ec90]
+[graphene-11:02532] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fa55554ef10]
+[graphene-11:02532] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fa55554ee24]
+[graphene-11:02532] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fa5554b5547]
+[graphene-11:02532] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fa5554dcae0]
+[graphene-11:02532] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fa55550217d]
+[graphene-11:02532] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-11:02532] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fa554235c8d]
+[graphene-11:02532] [ 9] frssj() [0x401329]
+[graphene-11:02532] *** End of error message ***
+[graphene-105:02556] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02339] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f050b928c8d]
+[graphene-107:02358] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f1744645ff0]
+[graphene-107:02358] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f174560cc90]
+[graphene-107:02358] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f174560cf10]
+[graphene-107:02358] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f174560ce24]
+[graphene-107:02358] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f1745573547]
+[graphene-107:02358] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f174559aae0]
+[graphene-107:02358] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f17455c017d]
+[graphene-107:02358] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-107:02358] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f17442f3c8d]
+[graphene-107:02358] [ 9] frssj() [0x401329]
+[graphene-107:02358] *** End of error message ***
+[graphene-100:02353] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f58806d0ff0]
+[graphene-100:02353] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5881697c90]
+[graphene-100:02353] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5881697f10]
+[graphene-100:02353] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5881697e24]
+[graphene-100:02353] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f58815fe547]
+[graphene-100:02353] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5881625ae0]
+[graphene-100:02353] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f588164b17d]
+[graphene-100:02353] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-100:02353] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f588037ec8d]
+[graphene-100:02353] [ 9] frssj() [0x401329]
+[graphene-100:02353] *** End of error message ***
+[graphene-111:02454] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7fb2609981b5]
+[graphene-102:02570] *** End of error message ***
+[graphene-109:02330] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f826c2a5ff0]
+[graphene-109:02330] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f826d26cc90]
+[graphene-109:02330] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f826d26cf10]
+[graphene-109:02330] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f826d26ce24]
+[graphene-109:02330] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f826d1d3547]
+[graphene-109:02330] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f826d1faae0]
+[graphene-109:02330] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f826d22017d]
+[graphene-109:02330] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02330] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f826bf53c8d]
+[graphene-109:02330] [ 9] frssj() [0x401329]
+[graphene-109:02330] *** End of error message ***
+[graphene-108:02568] *** End of error message ***
+[graphene-103:02395] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fdca421cff0]
+[graphene-103:02395] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fdca51e3c90]
+[graphene-103:02395] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fdca51e3f10]
+[graphene-103:02395] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fdca51e3e24]
+[graphene-103:02395] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fdca514a547]
+[graphene-103:02395] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fdca5171ae0]
+[graphene-103:02395] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fdca519717d]
+[graphene-103:02395] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02395] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fdca3ecac8d]
+[graphene-103:02395] [ 9] frssj() [0x401329]
+[graphene-103:02395] *** End of error message ***
+[graphene-11:02534] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5c77cfbff0]
+[graphene-11:02534] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5c78cc2c90]
+[graphene-11:02534] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5c78cc2f10]
+[graphene-11:02534] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5c78cc2e24]
+[graphene-11:02534] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5c78c29547]
+[graphene-11:02534] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5c78c50ae0]
+[graphene-11:02534] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5c78c7617d]
+[graphene-11:02534] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-105:02556] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5af90f4c8d]
+[graphene-112:02339] [ 9] frssj() [0x401329]
+[graphene-107:02362] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f15b2b0bff0]
+[graphene-107:02362] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f15b3ad2c90]
+[graphene-107:02362] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f15b3ad2f10]
+[graphene-107:02362] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f15b3ad2e24]
+[graphene-107:02362] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f15b3a39547]
+[graphene-107:02362] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f15b3a60ae0]
+[graphene-107:02362] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f15b3a8617d]
+[graphene-100:02351] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f3242c1ac8d]
+[graphene-100:02351] [ 9] frssj() [0x401329]
+[graphene-100:02351] *** End of error message ***
+[graphene-111:02454] [ 2] /lib/libc.so.6(abort+0x180) [0x7fb26099afc0]
+[graphene-102:02566] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f8932880ff0]
+[graphene-102:02566] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f8933847c90]
+[graphene-102:02566] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f8933847f10]
+[graphene-102:02566] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f8933847e24]
+[graphene-102:02566] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f89337ae547]
+[graphene-102:02566] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f89337d5ae0]
+[graphene-102:02566] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f89337fb17d]
+[graphene-102:02566] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-102:02566] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f893252ec8d]
+[graphene-102:02566] [ 9] frssj() [0x401329]
+[graphene-102:02566] *** End of error message ***
+[graphene-109:02328] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f25bb07eff0]
+[graphene-109:02328] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f25bc045c90]
+[graphene-109:02328] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f25bc045f10]
+[graphene-109:02328] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f25bc045e24]
+[graphene-109:02328] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f25bbfac547]
+[graphene-109:02328] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f25bbfd3ae0]
+[graphene-109:02328] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f25bbff917d]
+[graphene-109:02328] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02328] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f25bad2cc8d]
+[graphene-109:02328] [ 9] frssj() [0x401329]
+[graphene-109:02328] *** End of error message ***
+[graphene-107:02362] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-107:02362] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f15b27b9c8d]
+[graphene-107:02362] [ 9] frssj() [0x401329]
+[graphene-107:02362] *** End of error message ***
+[graphene-11:02534] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5c779a9c8d]
+[graphene-11:02534] [ 9] frssj() [0x401329]
+[graphene-11:02534] *** End of error message ***
+[graphene-105:02556] [ 9] frssj() [0x401329]
+[graphene-108:02565] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fc18e5caff0]
+[graphene-108:02565] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fc18f591c90]
+[graphene-108:02565] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fc18f591f10]
+[graphene-108:02565] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fc18f591e24]
+[graphene-108:02565] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fc18f4f8547]
+[graphene-108:02565] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fc18f51fae0]
+[graphene-108:02565] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fc18f54517d]
+[graphene-108:02565] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02565] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fc18e278c8d]
+[graphene-108:02565] [ 9] frssj() [0x401329]
+[graphene-108:02565] *** End of error message ***
+[graphene-112:02339] *** End of error message ***
+[graphene-100:02349] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-111:02454] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7fb260991301]
+[graphene-102:02571] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f50b3614ff0]
+[graphene-102:02571] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f50b45dbc90]
+[graphene-102:02571] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f50b45dbf10]
+[graphene-102:02571] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f50b45dbe24]
+[graphene-102:02571] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f50b4542547]
+[graphene-102:02571] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f50b4569ae0]
+[graphene-102:02571] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f50b458f17d]
+[graphene-102:02571] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-102:02571] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f50b32c2c8d]
+[graphene-102:02571] [ 9] frssj() [0x401329]
+[graphene-109:02327] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fcdca249ff0]
+[graphene-109:02327] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fcdcb210c90]
+[graphene-109:02327] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fcdcb210f10]
+[graphene-109:02327] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fcdcb210e24]
+[graphene-109:02327] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fcdcb177547]
+[graphene-109:02327] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fcdcb19eae0]
+[graphene-109:02327] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fcdcb1c417d]
+[graphene-109:02327] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02327] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fcdc9ef7c8d]
+[graphene-109:02327] [ 9] frssj() [0x401329]
+[graphene-109:02327] *** End of error message ***
+[graphene-107:02360] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f090b98fff0]
+[graphene-107:02360] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f090c956c90]
+[graphene-107:02360] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f090c956f10]
+[graphene-107:02360] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f090c956e24]
+[graphene-107:02360] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f090c8bd547]
+[graphene-107:02360] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f090c8e4ae0]
+[graphene-107:02360] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f090c90a17d]
+[graphene-11:02536] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5f7ddf9ff0]
+[graphene-105:02556] *** End of error message ***
+[graphene-108:02567] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5be16ddff0]
+[graphene-108:02567] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5be26a4c90]
+[graphene-108:02567] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5be26a4f10]
+[graphene-108:02567] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5be26a4e24]
+[graphene-108:02567] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5be260b547]
+[graphene-108:02567] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5be2632ae0]
+[graphene-108:02567] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5be265817d]
+[graphene-108:02567] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02567] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5be138bc8d]
+[graphene-108:02567] [ 9] frssj() [0x401329]
+[graphene-112:02341] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f4382fffff0]
+[graphene-112:02341] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4383fc6c90]
+[graphene-112:02341] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4383fc6f10]
+[graphene-112:02341] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4383fc6e24]
+[graphene-112:02341] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f4383f2d547]
+[graphene-112:02341] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f4383f54ae0]
+[graphene-112:02341] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f4383f7a17d]
+[graphene-112:02341] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02341] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4382cadc8d]
+[graphene-112:02341] [ 9] frssj() [0x401329]
+[graphene-112:02341] *** End of error message ***
+[graphene-100:02349] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5bdce01c8d]
+[graphene-111:02454] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7fb261c04771]
+[graphene-102:02571] *** End of error message ***
+[graphene-100:02349] [ 9] frssj() [0x401329]
+[graphene-107:02360] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-107:02360] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f090b63dc8d]
+[graphene-107:02360] [ 9] frssj() [0x401329]
+[graphene-107:02360] *** End of error message ***
+[graphene-112:02337] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5b8eb4fff0]
+[graphene-112:02337] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5b8fb16c90]
+[graphene-112:02337] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5b8fb16f10]
+[graphene-112:02337] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5b8fb16e24]
+[graphene-112:02337] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5b8fa7d547]
+[graphene-112:02337] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5b8faa4ae0]
+[graphene-112:02337] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5b8faca17d]
+[graphene-112:02337] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02337] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5b8e7fdc8d]
+[graphene-112:02337] [ 9] frssj() [0x401329]
+[graphene-112:02337] *** End of error message ***
+[graphene-105:02560] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fb42e884c90]
+[graphene-111:02454] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fb261c2bae0]
+[graphene-108:02567] *** End of error message ***
+[graphene-11:02536] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5f7edc0c90]
+[graphene-100:02349] *** End of error message ***
+[graphene-112:02340] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f83fe9c7ff0]
+[graphene-112:02340] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f83ff98ec90]
+[graphene-112:02340] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f83ff98ef10]
+[graphene-112:02340] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f83ff98ee24]
+[graphene-112:02340] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f83ff8f5547]
+[graphene-112:02340] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f83ff91cae0]
+[graphene-112:02340] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f83ff94217d]
+[graphene-112:02340] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02340] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f83fe675c8d]
+[graphene-112:02340] [ 9] frssj() [0x401329]
+[graphene-112:02340] *** End of error message ***
+[graphene-105:02558] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f925bfeac90]
+[graphene-105:02558] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f925bfeaf10]
+[graphene-105:02558] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f925bfeae24]
+[graphene-105:02558] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f925bf51547]
+[graphene-105:02558] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f925bf78ae0]
+[graphene-105:02558] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f925bf9e17d]
+[graphene-105:02558] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-105:02558] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f925acd1c8d]
+[graphene-105:02558] [ 9] frssj() [0x401329]
+[graphene-105:02558] *** End of error message ***
+[graphene-111:02454] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fb261c5117d]
+[graphene-108:02563] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fd3c3c46ff0]
+[graphene-108:02563] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fd3c4c0dc90]
+[graphene-108:02563] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fd3c4c0df10]
+[graphene-108:02563] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fd3c4c0de24]
+[graphene-108:02563] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fd3c4b74547]
+[graphene-108:02563] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fd3c4b9bae0]
+[graphene-108:02563] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fd3c4bc117d]
+[graphene-108:02563] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02563] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fd3c38f4c8d]
+[graphene-108:02563] [ 9] frssj() [0x401329]
+[graphene-11:02536] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5f7edc0f10]
+[graphene-105:02561] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f78b3c93ff0]
+[graphene-105:02561] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f78b4c5ac90]
+[graphene-105:02561] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f78b4c5af10]
+[graphene-105:02561] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f78b4c5ae24]
+[graphene-105:02561] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f78b4bc1547]
+[graphene-105:02561] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f78b4be8ae0]
+[graphene-105:02561] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f78b4c0e17d]
+[graphene-111:02454] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02563] *** End of error message ***
+[graphene-11:02529] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f431878cff0]
+[graphene-11:02529] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4319753c90]
+[graphene-11:02529] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4319753f10]
+[graphene-11:02529] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4319753e24]
+[graphene-11:02529] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f43196ba547]
+[graphene-11:02529] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f43196e1ae0]
+[graphene-11:02529] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f431970717d]
+[graphene-11:02529] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-11:02529] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f431843ac8d]
+[graphene-11:02529] [ 9] frssj() [0x401329]
+[graphene-11:02529] *** End of error message ***
+[graphene-100:02350] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7ffa35e2cff0]
+[graphene-100:02350] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7ffa36df3c90]
+[graphene-100:02350] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7ffa36df3f10]
+[graphene-100:02350] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7ffa36df3e24]
+[graphene-100:02350] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7ffa36d5a547]
+[graphene-100:02350] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7ffa36d81ae0]
+[graphene-100:02350] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7ffa36da717d]
+[graphene-100:02350] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-100:02350] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7ffa35adac8d]
+[graphene-100:02350] [ 9] frssj() [0x401329]
+[graphene-100:02350] *** End of error message ***
+[graphene-112:02335] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f5c94d31ff0]
+[graphene-112:02335] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5c95cf8c90]
+[graphene-112:02335] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5c95cf8f10]
+[graphene-112:02335] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5c95cf8e24]
+[graphene-112:02335] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5c95c5f547]
+[graphene-112:02335] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5c95c86ae0]
+[graphene-112:02335] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5c95cac17d]
+[graphene-112:02335] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-112:02335] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5c949dfc8d]
+[graphene-112:02335] [ 9] frssj() [0x401329]
+[graphene-112:02335] *** End of error message ***
+[graphene-105:02561] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-105:02561] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f78b3941c8d]
+[graphene-105:02561] [ 9] frssj() [0x401329]
+[graphene-105:02561] *** End of error message ***
+[graphene-108:02561] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f1d6fd70ff0]
+[graphene-108:02561] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f1d70d37c90]
+[graphene-108:02561] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f1d70d37f10]
+[graphene-108:02561] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f1d70d37e24]
+[graphene-108:02561] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f1d70c9e547]
+[graphene-108:02561] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f1d70cc5ae0]
+[graphene-108:02561] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f1d70ceb17d]
+[graphene-108:02561] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-108:02561] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f1d6fa1ec8d]
+[graphene-108:02561] [ 9] frssj() [0x401329]
+[graphene-108:02561] *** End of error message ***
+[graphene-111:02454] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fb260984c8d]
+[graphene-100:02346] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f51e68c6ff0]
+[graphene-100:02346] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f51e788dc90]
+[graphene-100:02346] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f51e788df10]
+[graphene-100:02346] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f51e788de24]
+[graphene-100:02346] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f51e77f4547]
+[graphene-100:02346] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f51e781bae0]
+[graphene-100:02346] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f51e784117d]
+[graphene-100:02346] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-100:02346] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f51e6574c8d]
+[graphene-100:02346] [ 9] frssj() [0x401329]
+[graphene-100:02346] *** End of error message ***
+[graphene-11:02536] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5f7edc0e24]
+[graphene-111:02454] [ 9] frssj() [0x401329]
+[graphene-11:02536] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f5f7ed27547]
+[graphene-105:02560] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fb42e884f10]
+[graphene-111:02454] *** End of error message ***
+[graphene-11:02536] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5f7ed4eae0]
+[graphene-105:02560] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fb42e884e24]
+[graphene-111:02459] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f61e521bff0]
+[graphene-111:02459] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f61e61e2c90]
+[graphene-111:02459] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f61e61e2f10]
+[graphene-111:02459] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f61e61e2e24]
+[graphene-111:02459] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f61e6149547]
+[graphene-111:02459] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f61e6170ae0]
+[graphene-111:02459] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f61e619617d]
+[graphene-111:02459] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-11:02536] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f5f7ed7417d]
+[graphene-105:02560] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fb42e7eb547]
+[graphene-111:02459] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f61e4ec9c8d]
+[graphene-111:02459] [ 9] frssj() [0x401329]
+[graphene-111:02459] *** End of error message ***
+[graphene-11:02536] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-105:02560] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fb42e812ae0]
+[graphene-105:02560] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fb42e83817d]
+[graphene-11:02536] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5f7daa7c8d]
+[graphene-105:02560] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-11:02536] [ 9] frssj() [0x401329]
+[graphene-105:02560] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fb42d56bc8d]
+[graphene-11:02536] *** End of error message ***
+[graphene-105:02560] [ 9] frssj() [0x401329]
+[graphene-105:02560] *** End of error message ***
+[graphene-101:02539] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f9d9a81cff0]
+[graphene-101:02539] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f9d9b7e3c90]
+[graphene-101:02539] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f9d9b7e3f10]
+[graphene-101:02539] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f9d9b7e3e24]
+[graphene-101:02539] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f9d9b74a547]
+[graphene-101:02539] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f9d9b771ae0]
+[graphene-101:02539] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f9d9b79717d]
+[graphene-101:02539] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-101:02539] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f9d9a4cac8d]
+[graphene-101:02539] [ 9] frssj() [0x401329]
+[graphene-101:02539] *** End of error message ***
+[graphene-1:02482] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f7731f20ff0]
+[graphene-1:02482] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f7732ee7c90]
+[graphene-1:02482] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f7732ee7f10]
+[graphene-1:02482] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f7732ee7e24]
+[graphene-1:02482] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f7732e4e547]
+[graphene-1:02482] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f7732e75ae0]
+[graphene-1:02482] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f7732e9b17d]
+[graphene-1:02482] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-1:02482] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f7731bcec8d]
+[graphene-1:02482] [ 9] frssj() [0x401329]
+[graphene-1:02482] *** End of error message ***
+[graphene-1:02470] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f63e3eb3ff0]
+[graphene-1:02470] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f63e4e7ac90]
+[graphene-1:02470] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f63e4e7af10]
+[graphene-1:02470] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f63e4e7ae24]
+[graphene-1:02470] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f63e4de1547]
+[graphene-1:02470] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f63e4e08ae0]
+[graphene-1:02470] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f63e4e2e17d]
+[graphene-1:02470] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-1:02470] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f63e3b61c8d]
+[graphene-1:02470] [ 9] frssj() [0x401329]
+[graphene-1:02470] *** End of error message ***
+[graphene-103:02396] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f0c5a81eff0]
+[graphene-103:02401] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f14fb555ff0]
+[graphene-103:02401] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f14fc51cc90]
+[graphene-103:02401] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f14fc51cf10]
+[graphene-103:02401] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f14fc51ce24]
+[graphene-103:02401] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f14fc483547]
+[graphene-103:02401] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f14fc4aaae0]
+[graphene-103:02401] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f14fc4d017d]
+[graphene-103:02401] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02401] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f14fb203c8d]
+[graphene-103:02401] [ 9] frssj() [0x401329]
+[graphene-103:02401] *** End of error message ***
+[graphene-103:02394] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f8045676ff0]
+[graphene-103:02394] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f804663dc90]
+[graphene-103:02394] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f804663df10]
+[graphene-103:02394] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f804663de24]
+[graphene-103:02394] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f80465a4547]
+[graphene-103:02394] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f80465cbae0]
+[graphene-103:02394] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f80465f117d]
+[graphene-103:02394] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02394] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f8045324c8d]
+[graphene-103:02394] [ 9] frssj() [0x401329]
+[graphene-103:02394] *** End of error message ***
+[graphene-103:02396] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f0c5b7e5c90]
+[graphene-103:02396] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f0c5b7e5f10]
+[graphene-103:02396] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f0c5b7e5e24]
+[graphene-103:02396] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f0c5b74c547]
+[graphene-103:02396] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f0c5b773ae0]
+[graphene-103:02396] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f0c5b79917d]
+[graphene-103:02396] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-103:02396] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f0c5a4ccc8d]
+[graphene-103:02396] [ 9] frssj() [0x401329]
+[graphene-103:02396] *** End of error message ***
+[graphene-111:02457] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f9f14a02ff0]
+[graphene-111:02457] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f9f159c9c90]
+[graphene-111:02457] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f9f159c9f10]
+[graphene-111:02457] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f9f159c9e24]
+[graphene-111:02457] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f9f15930547]
+[graphene-111:02457] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f9f15957ae0]
+[graphene-111:02457] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f9f1597d17d]
+[graphene-111:02457] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-111:02457] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f9f146b0c8d]
+[graphene-111:02457] [ 9] frssj() [0x401329]
+[graphene-111:02457] *** End of error message ***
+[graphene-1:02486] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f7082411ff0]
+[graphene-1:02486] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f70833d8c90]
+[graphene-1:02486] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f70833d8f10]
+[graphene-1:02486] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f70833d8e24]
+[graphene-1:02486] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f708333f547]
+[graphene-1:02486] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f7083366ae0]
+[graphene-1:02486] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f708338c17d]
+[graphene-1:02486] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-1:02486] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f70820bfc8d]
+[graphene-1:02486] [ 9] frssj() [0x401329]
+[graphene-1:02486] *** End of error message ***
+[graphene-1:02478] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f4a91e08ff0]
+[graphene-1:02478] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f4a92dcfc90]
+[graphene-1:02478] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f4a92dcff10]
+[graphene-1:02478] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f4a92dcfe24]
+[graphene-1:02478] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f4a92d36547]
+[graphene-1:02478] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f4a92d5dae0]
+[graphene-1:02478] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f4a92d8317d]
+[graphene-1:02478] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-1:02478] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f4a91ab6c8d]
+[graphene-1:02478] [ 9] frssj() [0x401329]
+[graphene-1:02478] *** End of error message ***
+[graphene-10:02479] *** Process received signal ***
+[graphene-10:02479] Signal: Segmentation fault (11)
+[graphene-10:02479] Signal code: Address not mapped (1)
+[graphene-10:02479] Failing at address: 0x28
+[graphene-10:02479] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f035a410ff0]
+[graphene-10:02479] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f035b3d7c90]
+[graphene-10:02479] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f035b3d7f10]
+[graphene-10:02479] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f035b3d7e24]
+[graphene-10:02479] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f035b33e547]
+[graphene-10:02479] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f035b365ae0]
+[graphene-10:02479] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f035b38b17d]
+[graphene-10:02479] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-10:02479] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f035a0bec8d]
+[graphene-10:02479] [ 9] frssj() [0x401329]
+[graphene-10:02479] *** End of error message ***
+[graphene-102:02569] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f59813c1ff0]
+[graphene-102:02569] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f5982388c90]
+[graphene-102:02569] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f5982388f10]
+[graphene-102:02569] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f5982388e24]
+[graphene-102:02569] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f59822ef547]
+[graphene-102:02569] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f5982316ae0]
+[graphene-102:02569] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f598233c17d]
+[graphene-102:02569] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-102:02569] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f598106fc8d]
+[graphene-102:02569] [ 9] frssj() [0x401329]
+[graphene-102:02569] *** End of error message ***
+[graphene-102:02567] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f60e19c1ff0]
+[graphene-102:02567] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f60e2988c90]
+[graphene-102:02567] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f60e2988f10]
+[graphene-102:02567] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f60e2988e24]
+[graphene-102:02567] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f60e28ef547]
+[graphene-102:02567] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f60e2916ae0]
+[graphene-102:02567] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f60e293c17d]
+[graphene-102:02567] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-102:02567] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f60e166fc8d]
+[graphene-102:02567] [ 9] frssj() [0x401329]
+[graphene-102:02567] *** End of error message ***
+[graphene-102:02565] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f7f01b28ff0]
+[graphene-102:02565] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f7f02aefc90]
+[graphene-102:02565] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f7f02aeff10]
+[graphene-102:02565] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f7f02aefe24]
+[graphene-102:02565] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f7f02a56547]
+[graphene-102:02565] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f7f02a7dae0]
+[graphene-102:02565] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f7f02aa317d]
+[graphene-102:02565] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-102:02565] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f7f017d6c8d]
+[graphene-102:02565] [ 9] frssj() [0x401329]
+[graphene-102:02565] *** End of error message ***
+[graphene-109:02326] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f340f9f2ff0]
+[graphene-109:02326] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f34109b9c90]
+[graphene-109:02326] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f34109b9f10]
+[graphene-109:02326] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f34109b9e24]
+[graphene-109:02326] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f3410920547]
+[graphene-109:02326] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f3410947ae0]
+[graphene-109:02326] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f341096d17d]
+[graphene-109:02326] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-109:02326] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f340f6a0c8d]
+[graphene-109:02326] [ 9] frssj() [0x401329]
+[graphene-109:02326] *** End of error message ***
+[graphene-110:02551] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f44aa351ff0]
+[graphene-110:02551] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f44aa0131b5]
+[graphene-110:02551] [ 2] /lib/libc.so.6(abort+0x180) [0x7f44aa015fc0]
+[graphene-110:02551] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f44aa00c301]
+[graphene-110:02551] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7f44ab27f771]
+[graphene-110:02551] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f44ab2a6ae0]
+[graphene-110:02551] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f44ab2cc17d]
+[graphene-110:02551] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-110:02551] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f44a9fffc8d]
+[graphene-110:02551] [ 9] frssj() [0x401329]
+[graphene-110:02551] *** End of error message ***
+[graphene-110:02545] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fe8e62f7ff0]
+[graphene-110:02545] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fe8e72bec90]
+[graphene-110:02545] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fe8e72bef10]
+[graphene-110:02545] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fe8e72bee24]
+[graphene-110:02545] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fe8e7225547]
+[graphene-110:02545] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fe8e724cae0]
+[graphene-110:02545] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fe8e727217d]
+[graphene-110:02545] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-110:02545] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fe8e5fa5c8d]
+[graphene-110:02545] [ 9] frssj() [0x401329]
+[graphene-110:02545] *** End of error message ***
+[graphene-110:02547] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fa5e055fff0]
+[graphene-110:02547] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fa5e1526c90]
+[graphene-110:02547] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fa5e1526f10]
+[graphene-110:02547] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fa5e1526e24]
+[graphene-110:02547] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fa5e148d547]
+[graphene-110:02547] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fa5e14b4ae0]
+[graphene-110:02547] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fa5e14da17d]
+[graphene-110:02547] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-110:02547] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fa5e020dc8d]
+[graphene-110:02547] [ 9] frssj() [0x401329]
+[graphene-110:02547] *** End of error message ***
+[graphene-110:02549] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f3cdf35eff0]
+[graphene-110:02549] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7f3cdf0201b5]
+[graphene-110:02549] [ 2] /lib/libc.so.6(abort+0x180) [0x7f3cdf022fc0]
+[graphene-110:02549] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7f3cdf019301]
+[graphene-110:02549] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7f3ce028c771]
+[graphene-110:02549] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f3ce02b3ae0]
+[graphene-110:02549] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f3ce02d917d]
+[graphene-110:02549] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-110:02549] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f3cdf00cc8d]
+[graphene-110:02549] [ 9] frssj() [0x401329]
+[graphene-110:02549] *** End of error message ***
+[graphene-104:02422] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fc21f91cf10]
+[graphene-104:02422] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fc21f91ce24]
+[graphene-104:02422] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fc21f883547]
+[graphene-104:02422] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fc21f8aaae0]
+[graphene-104:02422] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fc21f8d017d]
+[graphene-104:02422] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-104:02422] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fc21e603c8d]
+[graphene-104:02422] [ 9] frssj() [0x401329]
+[graphene-104:02419] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f76392c6ff0]
+[graphene-104:02419] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f763a28dc90]
+[graphene-104:02419] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f763a28df10]
+[graphene-104:02419] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f763a28de24]
+[graphene-104:02419] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f763a1f4547]
+[graphene-104:02419] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f763a21bae0]
+[graphene-104:02419] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f763a24117d]
+[graphene-104:02419] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-104:02419] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f7638f74c8d]
+[graphene-104:02419] [ 9] frssj() [0x401329]
+[graphene-104:02419] *** End of error message ***
+[graphene-104:02422] *** End of error message ***
+[graphene-104:02420] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fdae199cff0]
+[graphene-104:02420] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fdae2963c90]
+[graphene-104:02420] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fdae2963f10]
+[graphene-104:02420] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fdae2963e24]
+[graphene-104:02420] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fdae28ca547]
+[graphene-104:02420] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fdae28f1ae0]
+[graphene-104:02420] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fdae291717d]
+[graphene-104:02420] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-104:02420] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fdae164ac8d]
+[graphene-104:02420] [ 9] frssj() [0x401329]
+[graphene-104:02420] *** End of error message ***
+frssj: communicator/comm_init.c:290: ompi_comm_finalize: Assertion `((0xdeafbeedULL << 32) + 0xdeafbeedULL) == ((opal_object_t *) (comm))->obj_magic_id' failed.
+[graphene-104:02417] *** Process received signal ***
+[graphene-104:02417] Signal: Aborted (6)
+[graphene-104:02417] Signal code:  (-6)
+[graphene-104:02417] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fe6aa385ff0]
+[graphene-104:02417] [ 1] /lib/libc.so.6(gsignal+0x35) [0x7fe6aa0471b5]
+[graphene-104:02417] [ 2] /lib/libc.so.6(abort+0x180) [0x7fe6aa049fc0]
+[graphene-104:02417] [ 3] /lib/libc.so.6(__assert_fail+0xf1) [0x7fe6aa040301]
+[graphene-104:02417] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x2b4) [0x7fe6ab2b3771]
+[graphene-104:02417] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fe6ab2daae0]
+[graphene-104:02417] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fe6ab30017d]
+[graphene-104:02417] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-104:02417] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fe6aa033c8d]
+[graphene-104:02417] [ 9] frssj() [0x401329]
+[graphene-104:02417] *** End of error message ***
+[graphene-104:02421] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f70ddd73ff0]
+[graphene-104:02421] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f70ded3ac90]
+[graphene-104:02421] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f70ded3af10]
+[graphene-104:02421] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f70ded3ae24]
+[graphene-104:02421] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f70deca1547]
+[graphene-104:02421] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f70decc8ae0]
+[graphene-104:02421] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f70decee17d]
+[graphene-104:02421] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-104:02421] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f70dda21c8d]
+[graphene-104:02421] [ 9] frssj() [0x401329]
+[graphene-104:02421] *** End of error message ***
+[graphene-104:02416] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fbcc6a1dff0]
+[graphene-104:02416] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fbcc79e4c90]
+[graphene-104:02416] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fbcc79e4f10]
+[graphene-104:02416] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fbcc79e4e24]
+[graphene-104:02416] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fbcc794b547]
+[graphene-104:02416] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fbcc7972ae0]
+[graphene-104:02416] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fbcc799817d]
+[graphene-104:02416] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-104:02416] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fbcc66cbc8d]
+[graphene-104:02416] [ 9] frssj() [0x401329]
+[graphene-104:02416] *** End of error message ***
+[graphene-106:02366] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fe6cdeb9c90]
+[graphene-106:02366] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fe6cdeb9f10]
+[graphene-106:02366] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fe6cdeb9e24]
+[graphene-106:02366] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fe6cde20547]
+[graphene-106:02366] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fe6cde47ae0]
+[graphene-106:02366] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fe6cde6d17d]
+[graphene-106:02366] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-106:02366] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fe6ccba0c8d]
+[graphene-106:02366] [ 9] frssj() [0x401329]
+[graphene-106:02366] *** End of error message ***
+[graphene-106:02362] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fa381597ff0]
+[graphene-106:02362] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fa38255ec90]
+[graphene-106:02362] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fa38255ef10]
+[graphene-106:02362] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fa38255ee24]
+[graphene-106:02362] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fa3824c5547]
+[graphene-106:02362] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fa3824ecae0]
+[graphene-106:02362] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fa38251217d]
+[graphene-106:02362] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-106:02362] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fa381245c8d]
+[graphene-106:02362] [ 9] frssj() [0x401329]
+[graphene-106:02362] *** End of error message ***
+[graphene-106:02368] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7fe60d92aff0]
+[graphene-106:02368] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7fe60e8f1c90]
+[graphene-106:02368] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7fe60e8f1f10]
+[graphene-106:02368] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7fe60e8f1e24]
+[graphene-106:02368] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7fe60e858547]
+[graphene-106:02368] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7fe60e87fae0]
+[graphene-106:02368] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7fe60e8a517d]
+[graphene-106:02368] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-106:02368] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fe60d5d8c8d]
+[graphene-106:02368] [ 9] frssj() [0x401329]
+[graphene-106:02368] *** End of error message ***
+[graphene-106:02361] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f00c486eff0]
+[graphene-106:02361] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f00c5835c90]
+[graphene-106:02361] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f00c5835f10]
+[graphene-106:02361] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f00c5835e24]
+[graphene-106:02361] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f00c579c547]
+[graphene-106:02361] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f00c57c3ae0]
+[graphene-106:02361] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f00c57e917d]
+[graphene-106:02361] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-106:02361] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f00c451cc8d]
+[graphene-106:02361] [ 9] frssj() [0x401329]
+[graphene-106:02361] *** End of error message ***
+[graphene-106:02365] [ 0] /lib/libpthread.so.0(+0xeff0) [0x7f3bc158cff0]
+[graphene-106:02365] [ 1] /home/abouteiller/FTMPI3/lib/libmpi.so.0(+0x108c90) [0x7f3bc2553c90]
+[graphene-106:02365] [ 2] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_disconnect_init+0x6e) [0x7f3bc2553f10]
+[graphene-106:02365] [ 3] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_dpm_base_dyn_finalize+0xd8) [0x7f3bc2553e24]
+[graphene-106:02365] [ 4] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_comm_finalize+0x8a) [0x7f3bc24ba547]
+[graphene-106:02365] [ 5] /home/abouteiller/FTMPI3/lib/libmpi.so.0(ompi_mpi_finalize+0x725) [0x7f3bc24e1ae0]
+[graphene-106:02365] [ 6] /home/abouteiller/FTMPI3/lib/libmpi.so.0(PMPI_Finalize+0x59) [0x7f3bc250717d]
+[graphene-106:02365] [ 7] frssj(main+0xa3) [0x401d1f]
+[graphene-106:02365] [ 8] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f3bc123ac8d]
+[graphene-106:02365] [ 9] frssj() [0x401329]
+[graphene-106:02365] *** End of error message ***
+[graphene-1.nancy.grid5000.fr:02364] 46 more processes have sent help message help-mpi-btl-openib.txt / of error event
+[graphene-1.nancy.grid5000.fr:02364] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

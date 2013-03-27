@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------
+WARNING: There is at least one OpenFabrics device found but there are
+no active ports detected (or Open MPI was unable to use them).  This
+is most certainly not what you wanted.  Check your cables, subnet
+manager configuration, etc.  The openib BTL will be ignored for this
+job.
+
+  Local host: graphene-35.nancy.grid5000.fr
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+At least one pair of MPI processes are unable to reach each other for
+MPI communications.  This means that no Open MPI device has indicated
+that it can be used to communicate between these processes.  This is
+an error; Open MPI requires that all MPI processes be able to reach
+each other.  This error can sometimes be the result of forgetting to
+specify the "self" BTL.
+
+  Process 1 ([[45475,1],2]) is on host: graphene-125.nancy.grid5000.fr
+  Process 2 ([[45475,1],0]) is on host: graphene-125
+  BTLs attempted: openib self
+
+Your MPI job is now going to abort; sorry.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+MPI_INIT has failed because at least one MPI process is unreachable
+from another.  This *usually* means that an underlying communication
+plugin -- such as a BTL or an MTL -- has either not loaded or not
+allowed itself to be used.  Your MPI job will now abort.
+
+You may wish to try to narrow down the problem;
+
+ * Check the output of ompi_info to see which BTL/MTL plugins are
+   available.
+ * Run your application with MPI_THREAD_SINGLE.
+ * Set the MCA parameter btl_base_verbose to 100 (or mtl_base_verbose,
+   if using MTL-based communications) to see exactly which
+   communication plugins were considered and/or discarded.
+--------------------------------------------------------------------------
+[graphene-125.nancy.grid5000.fr:3236] *** An error occurred in MPI_Init
+[graphene-125.nancy.grid5000.fr:3236] *** reported by process [2980249601,2]
+[graphene-125.nancy.grid5000.fr:3236] *** on a NULL communicator
+[graphene-125.nancy.grid5000.fr:3236] *** Unknown error
+[graphene-125.nancy.grid5000.fr:3236] *** MPI_ERRORS_ARE_FATAL (processes in this communicator will now abort,
+[graphene-125.nancy.grid5000.fr:3236] ***    and potentially your MPI job)
+--------------------------------------------------------------------------
+An MPI process is aborting at a time when it cannot guarantee that all
+of its peer processes in the job will be killed properly.  You should
+double check that everything has shut down cleanly.
+
+  Reason:     Before MPI_INIT completed
+  Local host: graphene-125.nancy.grid5000.fr
+  PID:        3239
+--------------------------------------------------------------------------
+[graphene-125.nancy.grid5000.fr:02981] 7 more processes have sent help message help-mpi-btl-openib.txt / no active ports found
+[graphene-125.nancy.grid5000.fr:02981] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[graphene-125.nancy.grid5000.fr:02981] 511 more processes have sent help message help-mca-bml-r2.txt / unreachable proc
+[graphene-125.nancy.grid5000.fr:02981] 511 more processes have sent help message help-mpi-runtime / mpi_init:startup:pml-add-procs-fail
+[graphene-125.nancy.grid5000.fr:02981] 511 more processes have sent help message help-mpi-errors.txt / mpi_errors_are_fatal unknown handle
+[graphene-125.nancy.grid5000.fr:02981] 511 more processes have sent help message help-mpi-runtime.txt / ompi mpi abort:cannot guarantee all killed

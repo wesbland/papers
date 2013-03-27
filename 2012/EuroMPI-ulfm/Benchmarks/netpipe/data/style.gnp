@@ -1,0 +1,15 @@
+#set style line 1 lt rgb "#B03BB0" lw 4
+#
+#set style line 2 lt rgb "#D9B38C" lw 4
+#
+#set style line 3 lt rgb "#D9D98C" lw 4
+#
+#set style line 4 lt rgb "#8CD9D9" lw 4
+#
+#set style line 5 lt rgb "#8CB3D9" lw 4
+
+set style line 1 lt 1 lc rgb "#4040D0" lw 4 pt 4 ps 1
+OMPI=1
+
+set style line 2 lt 4 lc rgb "#FF4040" lw 4 pt 2 ps 1
+FTOMPI=2
