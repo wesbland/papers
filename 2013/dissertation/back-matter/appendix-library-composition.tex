@@ -1,0 +1,56 @@
+\appendixchapter{Library Composition}
+\label{appdx:library}
+
+Library composition in fault tolerance is considered an especially difficult 
+problem. To demonstrate the feasibility of our solution, this appendix includes a 
+sample implementation of a hierarchy of libraries. This code demonstrates token 
+libraries to scale and add two vectors. While the function of the libraries is 
+not important, the initialization and recovery code within the libraries is the 
+key contributed to be noted here. While this is certainly not the only possible 
+implementation of a library and probably not even the most efficient, it is a 
+good reference for developers as an example of how to construct their recovery 
+mechanisms.
+
+\appendixsection{Main application}
+
+This is the main code of the application. When a failure occurs in one of the 
+lower level libraries, they will return control to this library to perform high 
+level recovery (including repairing the MPI communicators) and then call the 
+repair functions for the low level libraries before returning to the partially 
+completed function calls.
+
+\subsubsection*{vector_math.c}
+
+\lstinputlisting[language=C,basicstyle=\ttfamily,showspaces=false,breakatwhitespace=true,showstringspaces=false,showtabs=false,breaklines=true]{back-matter/onelevel.c}
+
+\appendixsection{Library 1}
+
+This section is the header and main code for the first library. This library 
+performs the scaling operation. Note how the library tracks recovery status by 
+using a status object which is actually managed by the calling code. This 
+facilitates recover across instances in cases where a node may be migrated and 
+the data recovered in a new location.
+
+\subsubsection*{lib1.h}
+
+\lstinputlisting[language=C,basicstyle=\ttfamily,showspaces=false,breakatwhitespace=true,showstringspaces=false,showtabs=false,breaklines=true]{back-matter/lib1.h}
+
+\subsubsection*{lib1.c}
+
+\lstinputlisting[language=C,basicstyle=\ttfamily,showspaces=false,breakatwhitespace=true,showstringspaces=false,showtabs=false,breaklines=true]{back-matter/lib1.c}
+
+\appendixsection{Library 2}
+
+This section is the header and main code for the second library. This library 
+performs the addition operation. Again, note how the library tracks recovery status by 
+using a status object which is actually managed by the calling code. This 
+facilitates recover across instances in cases where a node may be migrated and 
+the data recovered in a new location.
+
+\subsubsection*{lib2.h}
+
+\lstinputlisting[language=C,basicstyle=\ttfamily,showspaces=false,breakatwhitespace=true,showstringspaces=false,showtabs=false,breaklines=true]{back-matter/lib2.h}
+
+\subsubsection*{lib2.c}
+
+\lstinputlisting[language=C,basicstyle=\ttfamily,showspaces=false,breakatwhitespace=true,showstringspaces=false,showtabs=false,breaklines=true]{back-matter/lib2.c}

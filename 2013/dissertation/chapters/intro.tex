@@ -1,0 +1,161 @@
+\chapter{Introduction}\label{chap:intro}
+
+As High Performance Computing (HPC) passes petascale and moves on to exascale, new
+challenges have emerged which necessitate a change in the way large scale
+operations are designed. As of the November 2012 Top500
+list~\cite{Nov12Top500}, machines at the top of the list have now
+surpassed the million-core mark. Based on the foreseeable limits of the
+infrastructure costs, an Exaflop-capable machine is expected to be built from
+gigahertz processing cores, with thousands of cores per computing node, thus
+requiring millions more computing cores to reach the needed level of performance. At this scale,
+reliability becomes a major concern. 2007 reliability, availability, and
+serviceability data analyzed by Schroeder and Gibson~\cite{Schroeder:2007tp}
+show an average number of failures per year between 100 and 1000, depending on
+the system. Later projections found in Cappello's paper~\cite{Cappello:2009dd}
+predict a future mean time to failure (MTTF) of approximately one hour. With failures
+of that frequency, capability applications will not be able to complete without
+considering a model for handling hardware failures. 
+Table~\ref{tab:intro:runtime} shows the machine size and runtime of the Linpack 
+benchmark on some of the the top 10 machines in the November 2012 Top500 list. 
+This data shows that while cores counts increase, 
+runtimes approach and sometimes surpass the 24 hour mark for capacity 
+applications. Machines with a shorter time to completion demonstrate an 
+interesting new trend toward including accelerators in HPC machines; however, 
+they also distort the number of cores counted for the purposes of the list. In 
+reality, the number of processors is higher when accelerator cores are included 
+and therefore the mean time to failure is decreased again. The implications of 
+applications running longer than one day with mean time to failures plunging to 
+an hour are not positive for future HPC productivity. 
+
+Capability workloads are not 
+the only applications which motivate the drive for fault tolerance. Current, 
+long running applications already have reached running times of multiple days or 
+weeks on smaller scale machines. Even in this scenario, the likelihood of encountering a failure is 
+non-negligible. For the sake of continued \textbf{scalability}, both in terms of 
+numbers of processors and execution time, applications need to be able to 
+continue executions despite hardware failures.
+
+\begin{table}
+	\centering
+    \captionof{table}{Machine Size and Linpack runtime on top machines of Top500}
+	\label{tab:intro:runtime}
+	\begin{tabular}[t]{| l | c | c | c | r |}
+		\hline
+		\textbf{Rank} & \textbf{Machine Name} & \textbf{Number of Processors} & \textbf{Runtime (hours)} & \textbf{Tflop/s} \\ \hline
+		2 & Sequoia & 1,572,864 & 23.13 & 16,324.8 \\ \hline
+		3 & K Computer & 705,024 & 29.47 & 10,510.0 \\ \hline
+		5 & JUQUEEN & 393,216 & 11.85 & 4,141.2 \\ \hline
+		6 & SuperMUC & 147,456 & 9.00 & 2,897.0 \\ \hline
+		7 & Stampede & 204,900 & 1.56 & 2,660.2 \\ \hline
+		8 & Tianhe-1A & 186,368 & 3.37 & 2,566.0 \\
+		\hline
+	\end{tabular}
+\end{table}
+%\caption{Machine size and Linpack runtime on top machines on Top500}
+
+
+Beyond traditional high performance computing environments, other new areas of
+distributed computation have also emerged which produce similar needs. Volatile
+resources such as cloud and grid computing environments have been considered 
+unsuitable for more traditional distributed computing models because of their 
+constantly changing set of resources. If the underlying programming model could 
+support the kind of drop in, drop out behavior that volatile environments need, 
+they could become a lower cost set of tools available for developers. Previous 
+tools (such as HTCondor~\cite{Thain:2005wz}) have provided an environment for 
+these types of applications, but many codes are already implemented in MPI and the 
+cost of porting the applications to another environment is viewed as too high to 
+warrant the move.
+
+Another area which could benefit from a resiliency model is energy efficient computing. 
+By allowing applications to continue execution beyond failures, expensive 
+recalculations become unnecessary, saving both energy and computation hours. For both 
+of these computing models, a programming model needs to be \textbf{dynamic} to support 
+new types of computing.
+
+As will be discussed in Chapter~\ref{chap:background}, the need for resilience
+at scale is not a new discovery and has been proven through many previous
+studies. However, an important factor required for wide adoption, which is often
+ignored, is \textbf{usability}. Many previous efforts to introduce fault
+tolerance methods into high performance computing have gone un-utilized because
+they were either too difficult to use or required large changes to existing codes. For
+any tool to be employed, it must not only fulfill the need of the community, but
+also be compatible with the other existing tools. Developers need to be able to add
+fault tolerance into their existing codes with as little disruption as possible.
+
+\section{New Fault Tolerant Approaches}\label{sect:intro:newft}
+
+Previously, the problems discussed above were solved by employing strategies such 
+as transparent rollback recovery or explicit checkpoint/restart (both 
+synchronous and asynchronous). These solutions were sufficient because the 
+bottlenecks that are now becoming hindrances to performance were not yet 
+limiting factors. Now, as algorithms strive to reinvent themselves by creating 
+self-healing techniques, they need a communication library which can provide 
+performance and portability to support them.
+
+In this work, we provide two new fault tolerance models from which application and 
+library developers can choose to solve these problems. We use the de-facto
+programming environment for parallel applications, the \mpi, to provide a
+familiar, portable, and high performing programming paradigm on which users can
+base their work. The new models are called \cof and \ulfm.
+
+\begin{description}
+
+\item[\cof]{\cof is an MPI-3 standard compliant method of providing a form of fault
+tolerance which employs traditional checkpointing schemes but does so using an
+optimal number of checkpoints, therefore vastly improving the amount of overhead
+over traditional periodic checkpointing methods.}
+
+\item[\ulfm]{\ulfm is a new chapter proposed for the \mpi Standard which introduces a new set
+of tools to create fault tolerant applications and libraries by allowing the
+applications themselves to design their recovery methods and control them from
+the user level, rather than an automatic form of fault tolerance managed by the
+operating system or communication library itself.}
+
+\end{description}
+
+These two models are designed to serve different types of applications. \cof is 
+for specific classes of applications which need all processes to be available at 
+all times. Many of these applications might currently be using checkpoint/restart 
+style fault tolerance to resolve failures but incur a large overhead 
+from periodically writing checkpoints to disk, waiting through a batch queue 
+after a failure impacts the application, and restarting the application from the 
+checkpoint. 
+
+\cof resolves each of these issues by removing unnecessary 
+checkpoints, maintaining a functional runtime layer to prevent jobs from being 
+reinserted into the batch queue, and allowing checkpoints to stay in local 
+scratch space, possibly even in memory, to improve both checkpoint and restart times.
+
+On the other hand, \ulfm is designed to be a solution for a more broad set of 
+applications. Rather than providing a specific solution to insert fault 
+tolerance into applications, \ulfm is a platform on which many fault tolerance 
+solutions can be built. By implementing a fault tolerant library on top of 
+\ulfm, applications can utilize a portable fault tolerance solution which 
+functions with any MPI implementation that follows the specification.
+
+\section{Dissertation Statement}\label{sect:intro:dissertation}
+
+The goal of the dissertation is to demonstrate novel methods of fault tolerance
+supporting Algorithm Based Fault Tolerance (ABFT) for large scale systems using
+the message passing paradigm with extensions to facilitate concurrent approaches
+to cope with failures. By allowing applications to continue execution after a
+hardware failure, algorithms can support larger scale and longer running
+executions which were previously found to be unattainable.
+
+\section{Outline}\label{sect:intro:outline}
+
+This dissertation will describe the new tools developed to handle failures at
+the application level while evaluating their performance impact against a
+failure agnostic \mpi implementation. Chapter~\ref{chap:background} will provide 
+some background for current and classical
+research including a survey of existing parallel computing and fault tolerance 
+tools. Chapter~\ref{chap:goals} will outline the design goals of the fault 
+tolerance techniques described in this dissertation.
+Chapter~\ref{chap:cof} will introduce and evaluate the \cof method of failure
+management. Chapter~\ref{chap:ulfm} will describe the \ulfm proposal and its
+implementation along with an evaluation of the overhead introduced and an 
+analysis of an application which uses the new \ulfm constructs.
+Chapter~\ref{chap:apps} will describe how some existing fault tolerance 
+techniques could be adapted to use \ulfm. Finally, 
+Chapter~\ref{chap:conclusions} will summarize the research 
+and discuss ongoing and future work related to this dissertation.

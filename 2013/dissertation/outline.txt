@@ -1,0 +1,14 @@
+- Runtime
+    - My Runtime
+    - OMPI Runtime
+- New MPI FT Constructs
+    - Revoke
+    - Shrink
+    - Agree
+    - Ack / Get Acked
+    - Standardization Effort
+- FT Applications & Libraries
+    - CoF applications (CoF-QR)
+    - Thomas Vogel's Application
+    - Resilient Collectives
+    - PetaApps

@@ -1,0 +1,87 @@
+\chapter{Future Work and Conclusions}
+\label{chap:conclusions}
+
+\section{Summary}
+\label{chap:conclusions:summary}
+
+As machine sizes and problem runtimes have increased over the decades, the rise 
+of fault tolerance as a field of study has increased to match. Early on, 
+applications developed methods of error checking and recovery to prevent faults from 
+causing inconsistent results. Later, as the 
+types of machines on which applications were being run evolved from large 
+mainframe types of machines to Networks of Workstations (NoWs), checkpointing 
+became important. Because workstations were considered unreliable as they could 
+quickly become unavailable due either local use, or more common failures due to 
+cheaper hardware, applications needed to be able to save their state during 
+execution and possibly migrate from one machine to another. This started as a 
+transparent feature that automatically performed checkpointing and migration and 
+transitioned into a sophisticated system which could be triggered on-demand by an 
+application, even performing asynchronous checkpoints which could later be used, 
+along with message logging, to roll back applications to previous states.
+
+All of these methods of fault tolerance were sufficient for the machines on which 
+they were designed to function. The scale of the machines did not cause 
+contention for bandwidth to stable storage, and failures did not occur with enough 
+frequency to eclipse the time needed to perform a checkpoint. In recent years and 
+going forward to projected machine architectures in the near future, these 
+statements will not remain true. Machine sizes have already eclipsed the million 
+core mark and runtimes for such large scale, capability applications extend to 
+multiple days. 
+
+To solve this problem, new codes using Algorithm Based Fault Tolerance (\abft) 
+are now being designed which can repair themselves with very little data 
+necessary. These algorithms have been proven to be effective and 
+numerically stable, but to continue their parallel execution, they require a 
+Message Passing Interface (\mpi) library which can consistently provide 
+communication channels, even after a process failure makes some subset of the 
+machine unusable.
+
+As a first step to provide the desired \mpi implementation, we developed a new 
+protocol called Checkpoint-on-Failure (\cof). This protocol provides an 
+opportunity for applications to save their state \textit{after} the application 
+has detected a process failure. By changing the default MPI Error Handler from 
+\mpifunc{MPI\_ERRORS\_ARE\_FATAL} to \mpifunc{MPI\_ERRORS\_RETURN} or another custom 
+error handler, the application is alerted to process failures and can incur the 
+overhead of saving state only when process failures actually occur, rather than 
+periodically throughout the application execution. In Chapter~\ref{chap:cof}, we 
+demonstrated the low overhead and recovery time that \cof provides.
+
+Once the foundational work, such as a resilient runtime, was completed in the 
+\cof implementation, we introduced a more ambitious project. User Level Failure 
+Mitigation (\ulfm), is a new chapter for the \mpi Standard which provides a 
+complete solution for fault tolerance, not just an improved checkpoint/restart 
+protocol. \ulfm allows \abft codes to continue execution on all non-failed 
+processes and replace failed processes with new ones which can be joined with 
+already existing processes using (already standardized) MPI-2 dynamic processing 
+functions. It does this by providing a minimal interface which includes failure 
+detection, failure notification, and deadlock resolution mechanisms, while 
+encouraging the development of new libraries to envision more complex recovery 
+mechanisms, such as transactions, collective consistency, or automatic recovery.
+
+\section{Future Work}
+\label{chap:conclusions:future}
+
+The tools developed in this work are extensive and sufficient for many styles of 
+fault tolerance. However, they are not simple enough for developers not 
+familiar with fault tolerance methods to construct complex recovery mechanisms. 
+For this work to continue to be successful, more libraries will need to follow to 
+provide interfaces which make fault tolerance more accessible.
+
+One of the greatest challenges currently faced by researchers in the field of 
+fault tolerance is apathy from those who they attempt to convince to adopt new fault 
+tolerance techniques. For many years, scientists who develop codes for high 
+performance architectures have been warned about the impending need for fault 
+tolerance and the requirement that their codes be refactored to implement new 
+protocols. However, the problems were largely resolved by implementing new 
+automatic fault tolerance solutions, such as checkpoint/restart, which did not 
+require that existing codes be modified, only that they be recompiled to include 
+a new library.
+
+Now, as new projections demonstrate the need for new methods of fault tolerance 
+rather than an improved automatic solution~\cite{BosilcaINRIARep7950}, the need is not to 
+convince developers to refactor their existing scientific codes to include fault 
+tolerance, but to first convince researchers to develop easy to use, portable 
+libraries which simplify the process of including fault tolerance in existing 
+codes and provide resilience options for new codes being developed. These 
+libraries will be much more adoptable and will speed the inclusion of fault 
+tolerance in codes which already have expressed a need for such tools.

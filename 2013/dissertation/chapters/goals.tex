@@ -1,0 +1,76 @@
+\chapter{Design Goals}\label{chap:goals}
+
+After evaluating the features, strengths and weaknesses of the previous research
+in fault tolerance, four main goals for a successful fault tolerant communication library
+emerge. While not all libraries will fulfill all of these goals, for an \mpi
+library to be successful at supporting a wide variety of fault tolerant
+paradigms, these are foundational principles which should be considered during 
+the design.
+
+\section{Flexibility}\label{sect:goals:flexibility}
+
+A successful fault tolerant library must provide the flexibility to support
+multiple consistency and recovery techniques. For example, a Monte-Carlo
+master-worker application may not require complex recovery after a process
+failure is detected by the master process. Rather, the failed worker process can
+safely be ignored. If an \mpi implementation attempts to perform some method of
+automatic recovery, it would not only introduce a high recovery cost to an
+application which does not require it, but it would also require the application
+to change its behavior in order to support the type of fault tolerance mandated
+by the library. This is not the most flexible approach to fault tolerance and
+therefore limits its usefulness as part of a communication standard.
+Rather, the standard should provide the minimum level of recovery, only
+enough to allow further communication, and then allow the application to choose
+what direction subsequent recovery should take.
+
+\section{Resilience}\label{sect:goals:resiliency}
+
+Resilience refers not only to the ability of the MPI application to survive
+failures, but also to recover into a consistent state from which the execution
+can be resumed. This manifests most profoundly in the effort to ensure that an
+MPI operation cannot stall indefinitely as a consequence of a failure. If an
+operation never returns, the application can take no part in the recovery, and
+fault tolerance is impossible. All operations which perform communication must
+return descriptive error codes to inform the application of any unexpected
+behavior which occurred while the library was executing. As long as some
+processes in the application are informed of a failure, they can initiate
+recovery actions. In addition to being deadlock-free, the library must also
+provide mechanisms to alert other processes to failure when necessary. These
+mechanisms could be automatic within the library or manual via an external construct.
+
+\section{Performance}\label{sect:goals:performance}
+
+The performance impact of any fault tolerance additions to an \mpi communication
+library must be minimal when outside of the recovery path. Internal recovery
+should be triggered only when necessary and normal failure monitoring actions
+should take place out of the performance critical path. As mentioned in
+Section~\ref{sect:goals:resiliency}, not only should the failure-free operations
+introduce insignificant levels of overhead, but recovery operations should also be fast.
+Many automatic fault tolerance techniques exhibit poor performance as they require 
+universal participation in recovery after a failure. Rather than imposing such global
+knowledge on the system, a minimal, local knowledge shows much more promise for
+high performance. When alerted to a failure, if it is necessary to inform other
+processes, appropriate constructs should be called by the application, not the
+library, to ensure that only necessary levels of recovery are executed.
+
+\section{Productivity}\label{sect:goals:productivity}
+
+The last goal is harder to measure empirically, but is nonetheless critical in
+the design of a fault tolerant \mpi library. An enormous number of legacy \mpi
+codes already exist which do not support fault tolerance and would not benefit
+from its support if it were to be implemented. To that end, any new fault
+tolerance additions to the \mpi Standard must not require changes from such
+legacy applications. This means that the behavior of existing \mpi operations
+should not change without a severe need.
+
+In addition, the fault tolerance constructs should be minimal both in terms of
+quantity and complexity. By providing the minimal set of changes to \mpi,
+the chances of the library being used increase and the time required to adopt
+the library decreases.
+
+When designing a minimal set of changes to supply fault tolerance, some 
+convenience functions which might increase programmability will be left out. This 
+does not prohibit such functions from existing. Instead, these functions may be 
+provided as an external library built on the foundation of a minimal standard. 
+These external libraries are not limited only to convenience functions. They can 
+also introduce complex recovery mechanisms not found in a standardized document.

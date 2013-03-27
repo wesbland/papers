@@ -1,0 +1,625 @@
+\chapter{Background \& Related Work}
+\label{chap:background}
+
+Fault tolerance and message passing communication libraries are not new ideas in
+high performance computing. Fault tolerance began as a solution for unreliable 
+hardware, specifically when building Network of Workstation (NoW) clusters where the 
+systems were not high quality machines. As machines evolved and became more reliable, 
+the challenge shifted from the reliability of a specific piece of hardware to the 
+reliability of the system as a whole. The scale of current HPC machines necessitates 
+the study of new methods of fault tolerance to continue execution on functional 
+machines, while excluding failed machines from applications. In this chapter, we will 
+explore previous efforts in these areas to provide adequate context for the 
+subsequently presented work.
+
+\section{Terminology}
+\label{sect:background:terminology}
+
+Whenever a discussion of fault tolerance takes place, the terminology being used 
+must first be well established, as many words have evolved to have overlapping 
+definitions. For the purposes of this dissertation, these words will be defined 
+as follows:
+
+\begin{description}
+
+\item{Fault} -- A fault, or error, occurs when some defect, whether hardware or 
+software, is detected. Examples of faults include memory errors due to radiation, data corruption on a hard disk, or a programming error which causes a program to crash.
+
+\item{Failure} -- A failure is caused by an error when the system cannot 
+mitigate the results of a fault and no longer functions correctly. When a machine ceases to function and the system cannot resolve the issue by automatically repairing the error, it causes a failure.
+
+\item{Fail-stop Fault} -- A fail-stop fault is a fault which impacts one or more 
+processes and will never be repaired without intervention from the application. 
+An example would be component failure or a total system failure, such as loss of 
+power. In this scenario, the failure cannot be resolved without outside 
+intervention, such as hardware replacement or power restoration.
+
+\item{Transient Fault} -- A transient fault occurs periodically, but is resolved 
+without intervention from the application. While the fault is causing the system 
+to conclude that a failure has occurred, it is indistinguishable from a fail-stop 
+fault. The most common form of transient fault is a slow network connection, which 
+causes a process to conclude that another process has failed, later to discover that 
+the process is still alive, but could not communicate within the expected window of 
+time.
+
+\item{Byzantine Fault} -- A Byzantine fault causes unpredictable, often 
+undetectable failures by causing the program to behave incorrectly, but not 
+necessarily to stop functioning. An example of a Byzantine fault is to have malicious 
+software purposely attempt to cause a system to behave incorrectly, or to have a memory 
+corruption error change the system state from one valid state to another valid, but 
+incorrect, state.
+
+\end{description}
+
+\subsection{Failure Model}
+\label{subsec:background:terminology:model}
+
+For the purposes of this dissertation, we will not consider transient or 
+Byzantine faults, only fail-stop faults. Transient faults should be treated as fail-stop faults and be prevented from further participating in an application. Byzantine faults are much more difficult to mitigate and doing so is outside the scope of this work, though research has shown that managing generic Byzantine faults is NP-hard~\cite{Kulkarni:2000wk}.
+
+\section{Message Passing Interface}
+\label{sec:background:mpi}
+
+The Message Passing Interface (MPI)~\cite{MPI30} is a standardized set of routines
+written by its governing body, the MPI Forum, used to simplify communication
+between processes in a parallel application by adopting a message passing
+abstraction. Processes construct messages using the routines found in the
+MPI Standard. These messages are sent through an MPI implementation which
+provides such communication structures as point-to-point messaging, collective
+communication operations, reduction operations, and more recently, process
+management, one-sided communication, and file I/O. 
+
+Periodically, the standard is updated to adopt new technologies as they become 
+more mature and make corrections to previous versions. Version 1.0 was published 
+on May 5, 1994. In 1995 and 1997, versions 1.1 and 1.2, respectively, were 
+published with corrected errata from the previous versions. Also in 1997, 
+version 2.0 of the standard added many new features, in particular, process 
+creation and management, one-sided communication, new collective communication 
+operations, external interfaces, and parallel I/O. Minor edits and errata were 
+corrected in versions 1.3, 2.1, and 2.2, released in 2008 and 2009. In September 
+of 2012, the most recent version, 3.0 was published to add nonblocking 
+collectives, new one-sided communication operations, and new Fortran bindings to 
+the standard. The MPI Forum is currently convening to discuss MPI 3.1 and MPI 
+4.0 for future release.
+
+Many implementations of the MPI Standard have been written to fulfill a wide
+range of purposes. Some, such as Cray MPI, are tightly coupled with a
+particular type of hardware to run most efficiently and have proprietary code
+which is not open to the public. Others, such as Open MPI~\cite{openmpi, Gabriel:2004ub}, 
+MPICH~\cite{mpich, Bridges:1995tr}, MVAPICH~\cite{mvapich2, Huang:cr}
+and older implementations such as LAM/MPI~\cite{burns94:lam, squyres03:compon-archit-lam-mpi}, are designed to run on a
+variety of hardware and are open source, allowing modification by any user who
+wishes to add a feature or fix a bug. Some implementations, such as
+FT-MPI~\cite{FaggFTMPI} and Adaptive MPI~\cite{AmpiIPDPS00}, are designed not only to
+implement the MPI Standard as defined by the MPI Forum, but to add additional
+features such as fault tolerance, process migration, load balancing, and more.
+
+In this dissertation, we use MPI as a basis for all work. It provides the communication
+mechanism which we harden by extending the definition of the MPI Standard to
+include fault tolerance. In the meantime, we gain the experience of the research that has gone into providing a complete and optimized set of communication tools.
+
+\subsection{Other Communication Libraries}
+\label{sec:background:mpi:other}
+
+\subsubsection{PVM}
+
+While MPI has become the most popular communication library, it is not the only
+mechanism available. PVM (Parallel Virtual Machine)~\cite{Sunderam:1990tk} existed before
+MPI and provided a view of the machine as a large ``virtual machine''
+abstracting the underlying hardware and network topologies. In this sense, PVM
+was designed to provide simultaneous, large-scale computing across a range of
+machines while presenting a simple, easy to understand interface for the
+programmer. It accomplished this model by providing tasks as the basis for a PVM
+application. Each task is deployed onto a host from a pool of available hosts, and hosts can
+be dynamically added and removed from the pool at runtime. PVM also used message
+passing to perform its communication, but the task system also facilitated other
+features, including fault tolerance and heterogeneity. By allowing hosts to
+enter and leave the pool dynamically, process failures did not have to cause the entire 
+application to fail. Instead, the failed processes were excluded from the host pool and 
+more hosts were selected to replace them.
+
+\subsubsection{Charm++}
+
+The idea of portable tasks as the fundamental piece of an application was
+expanded on in Charm++~\cite{Kale93charm++:a}. Developed at the University of
+Illinois at Urbana-Champagne, Charm++ is a programming language based on C++.
+Applications are again broken down into tasks, called \textit{chares}, and
+virtually mapped onto processes with an ``intelligent runtime'' system which
+dynamically evaluates all running applications to put chares in the most
+appropriate location on the system. Another feature of the intelligent runtime is that it can
+manage the deployment of chares even after they have started execution. When the
+runtime detects that the deployment of chares is imbalanced among the nodes, it
+can automatically migrate processes on-the-fly to better balance the computation
+load and increase performance. This also provides fault tolerance at a
+fundamental level as chares can be replaced on the fly without restarting the
+entire application. Charm++ was later used to create an MPI implementation
+called Adaptive MPI~\cite{AmpiIPDPS00} which included many of the features from 
+Charm++, such as migratable processes and fault tolerance support.
+
+\subsubsection{Partitioned Global Address Space}
+
+Partitioned Global Address Space (PGAS) languages strive to simplify programming techniques by allowing applications to refer to data arrays as if stored locally, while automatically managing data distribution within the library implementation. A number of programming libraries and languages strive to provide this capability.
+
+Chapel~\cite{Callahan:2004dg} (the Cascade High Productivity Language) is a
+parallel programming language developed collaboratively by Cray, academia,
+industry, and scientific computing centers. Fundamentally, Chapel abstracts away
+much of the challenge of high performance computing. It is specifically designed
+with four main goals: multithreading, locality-awareness, object-orientation,
+and generic programming. These goals allow the user to achieve high performance
+while simplifying programmability. Despite its goals, Chapel has still not
+reached the level of adoption of MPI.
+
+Unified Parallel C (UPC)~\cite{Carlson:1999uf} extends the ISO C 99 Standard by adding, 
+in addition to PGAS abilities, synchronization primitives and simpler memory 
+management. Like Charm++, UPC can be implemented on top of MPI, using MPI as the 
+communication mechanism while simplifying programmability through its language 
+extensions. High Performance Fortran (HPF)~\cite{Richardson96highperformance} tries to 
+provide many of the same capabilities, but with the FORTRAN 90 specification instead of 
+C. Global Arrays (GA)~\cite{GA, Nieplocha:2006vh} is similar, but attempts to provide 
+more portability and interoperability with other parallel programming libraries, such 
+as MPI by providing a library interface, rather than an entirely new language.
+
+\section{Types of Fault Tolerance}
+\label{sec:background:types}
+
+Now that the programming model for our application has been established, we will 
+examine some other fault tolerance solutions which have been produced. The types of 
+fault tolerance available to applications can be overwhelmingly
+numerous. From system-level to user-level, automatic to user-involved, making
+the correct decision about which type of fault tolerance to use in an
+application is important not only from a performance perspective, but also to
+enhance programming productivity by choosing a fault tolerance solution that is
+understandable and most appropriate to the environment in which it is being
+used. Here we describe each of these types of fault tolerance to give context to 
+how the work presented in this dissertation can be categorized.
+
+\subsection{System-Level vs. User-Level Fault Tolerance}
+\label{subsec:background:types:system-user}
+
+Fault tolerance comes in two broad categories: system-level and user-level. 
+System-level fault tolerance includes checkpoint/restart systems that 
+capture the entire range of application memory automatically. They can be executed 
+automatically by some entity other than the user application and are designed to be the 
+simplest to use, though often with a higher cost. Because they capture all of 
+the data used by the application, whether important or not, they can be 
+inefficient when storing and retrieving large amounts of unnecessary data. 
+Examples of system-level fault tolerance include early checkpoint/restart 
+libraries which did not include user selectable checkpointing.
+
+Alternatively, user-level fault tolerance trades simplified, automated fault 
+tolerance for a more efficient, but less automated style. The application 
+determines which parts of its data are most important and protects only those 
+parts, allowing the remainder of the data to be reconstructed using other 
+methods. The application can also control features such as the time and 
+frequency within the execution where checkpoints would be least costly and 
+most effective. Because of this selectiveness, user-level fault tolerance tends 
+to perform better than system-level, but can be more challenging to use.
+
+\subsection{Checkpoint/Restart}
+\label{subsec:background:types:auto}
+
+The most prevalent form of automatic fault tolerance is checkpoint/restart. 
+It is the simplest form of fault tolerance to explain and understand as 
+it so closely resembles an action which all computer users employ constantly, 
+saving the state of an application to disk. While different implementations 
+provide this functionality in different ways, the overarching functionality of 
+checkpoint/restart is to save some subset of the state of an application to a location 
+which will be available at a later time, and retrieved and restarted to continue the 
+application.
+
+\subsubsection{Global State}
+
+All checkpoint/restart libraries rely on the theory of the work done in Chandy and Lamport's global state research~\cite{Chandy85}. In this work, they define a method of capturing a global state of a running computation by monitoring the status of communication channels between nodes. They describe the idea of the work using an photography analogy:
+
+\begin{quotation}
+The state-detection algorithm plays the role of a group of photographers observing a 
+panoramic, dynamic scene, such as a sky filled with migrating birds - a scene so vast 
+that it cannot be captured by a single photograph. The photographers must take several 
+snapshots and piece the snapshots together to form a picture of the overall scene. The 
+snapshots cannot all be taken at precisely the same instant because of synchronization 
+problems. Furthermore, the photographers should not disturb the process that is being 
+photographed; for instance, they cannot get all the birds in the heavens to remain 
+motionless while the photographs are taken. Yet, the composite picture should be 
+meaningful.
+\end{quotation}
+
+From this work, we discover two methods of performing checkpoints. The first, simpler 
+method is to stop the computation and record the global state of the algorithm on all 
+nodes at once. This method is simple to understand, but incurs a high overhead as all 
+computation must stop and the checkpoint operation must be completed before the 
+algorithm may continue. This is analogous to the ``stop the heavens'' solution 
+described above. The second method is more complex, but does not require the 
+running algorithm to be disturbed. Instead the local state of a process is stored and 
+the messages sent between processes are cached using an algorithm similar to that 
+proposed by Chandy and Lamport.
+
+\subsubsection{libckpt}
+
+One of the first available checkpointing libraries was libchkpt~\cite{Plank:1995wz}, a 
+hybrid of system and user-level checkpointing. Like BLCR, though developed before it, 
+libckpt could provide automatic checkpointing in a way that was virtually invisible to 
+the application (the library required modifying one line of code). However, 
+where libckpt differentiated itself from other checkpointing libraries was with an array of 
+other improvements. Incremental checkpointing improved the checkpoint write 
+times and storage requirements by saving only the difference between the current checkpoint and the 
+previous one. Forked checkpointing removed the sequential nature of 
+checkpointing, where the application execution was interrupted to create the 
+checkpoint and resumed upon completion, instead replacing it with a system where a child process is created 
+by the checkpointing library to perform the checkpoint. libckpt also included a 
+relatively new feature at the time to write checkpoints as directed by the 
+application itself. The goal was to minimize the size and frequency of the 
+checkpointing operation. The mechanisms introduced were memory exclusion, where 
+certain portions of memory for which protection was no longer required could be 
+excluded from the checkpoint, and synchronous checkpointing, where the 
+application could take a checkpoint at a specific time in the code where it 
+would be most advantageous. The pairing of these two operations could create a 
+minimal checkpoint, both in terms of time and size.
+
+\subsubsection{Libckp}
+
+Libckp~\cite{Wang:1995gn}, developed at AT\&T Bell Labs, is another user-level 
+checkpoint library that differentiated itself from others by including a more robust 
+file checkpointing system and a design specifically tailored to fault tolerance. 
+First, libckp could not only recover access to files when a process is restored 
+from a checkpoint, but also the status of the files at checkpoint time could be 
+restored to ensure that the environment is consistent with the state in which 
+the checkpoint was made. In addition, libckp could also roll back running 
+applications to a previous state. Other libraries were designed to restart an 
+application from a checkpoint or migrate processes to a new location after a 
+checkpoint was made. libckp could roll any remaining processes back to a 
+consistent state after a failure to reduce the overhead of recovery. This was an 
+important step to facilitating real fault tolerance inside the application.
+
+\subsubsection{Condor}
+
+Condor~\cite{Litzkow:1992ve, Litzkow:1997wda} (now called HTCondor), is a suite 
+of tools developed to reclaim unused computation cycles on a network of 
+workstations. As part of the suite, a checkpoint/restart system was needed. The 
+C/R capabilities would allow an application to move from one workstation to another 
+using process migration. As users would start to use a workstation, the 
+application would be checkpointed by Condor and migrated to another unused 
+workstation where the application would continue. Condor, as with many other user-level 
+implementations, does have some limitations where data from some sources cannot be 
+saved due to inaccessibility outside the system kernel. Condor is still in development today and can be acquired from its website.
+
+\subsubsection{BLCR}
+
+System-level checkpoint/restart systems, such as the Berkeley Lab 
+Checkpoint/Restart (BLCR)~\cite{Duell:tr} library, provide the most complete 
+form of C/R by integrating with the system kernel to capture all available 
+information about a process, from its process and session IDs to the entire 
+contents of its memory. It is able to store all of this information in a way 
+that can later be completely replicated to bring an application to the exact 
+point of execution where the checkpoint was captured. BLCR describes the goals 
+of such functionality to provide not only fault-tolerance, but also gang 
+scheduling, where short interactive jobs can be scheduled on hardware during 
+working hours and longer-running, non-interactive jobs can be rescheduled at 
+night, when the speed of job interaction is not as critical. Also, such system-level 
+checkpointing facilitates job migration between nodes when one node is 
+underperforming or before a failure occurs. The management system can 
+automatically reload the application on a new machine without the application 
+modifying any code or needing to be aware of the migration at all.
+
+\subsubsection{Asynchronous Checkpointing}
+
+Asynchronous checkpointing is similar to the more familiar and traditional synchronous 
+checkpointing when done in user-space. In both models, individual processes are 
+responsible for saving their own data to disk, however the difference comes in the 
+coordination of such checkpoints. For asynchronous checkpointing, all processes do not 
+write the checkpoint at the same time. Instead, they checkpoint their local data at a 
+time which makes sense and then log messages the are sent between the checkpoints. When 
+rollback is necessary, the checkpoint is reloaded and the messages are replayed to 
+bring the recovering processes back to the same point as the remaining processes. Many 
+implementations of asynchronous checkpointing 
+exist~\cite{Bouteiller:2010vo, Rao:1999us} and will be detailed later.
+
+\subsection{Migration}
+\label{subsec:background:types:migration}
+
+Process migration is another automatic solution which takes advantage 
+of rollback recovery techniques in a different way. Classically, after a failure, the 
+job is restarted using largely the same physical machines, but substituting the failed 
+machines for some which are still running. In some instances these issues can be 
+avoided if sufficiently accurate failure predictors are available. In these scenarios, 
+processes can checkpoint automatically and move from a suspected node to a node where 
+the failure probability is lower. Much of the work in this field originated when 
+designing NoW clusters where machine availability was based on the idleness of the 
+workstations~\cite{Wang:1995gn, Litzkow:1992ve, Duell:tr}, however with newer failure 
+predictors, this technique is now being deployed on large-scale HPC machines
+to combat failures through libraries such as Adaptive MPI.
+
+\subsection{Replication}
+\label{subsec:background:types:replication}
+
+Replication has recently been proposed as a solution to the increasing cost of 
+checkpointing, both synchronous and asynchronous~\cite{Ferreira:2011wg}. The idea of replication is 
+that most applications do not use the entire machine size on the machines on which they 
+are run. To take advantage of the ``wasted'' space of the machine, multiple copies of 
+the application are run simultaneously. If a process failure occurs, one of the 
+replicant processes is wired into the original version of the application and the 
+computation can continue without the rollback requirement. This solution has been 
+demonstrated to have merit for some types of machines, especially those where the 
+system utilization is not greater than 50\%. However, for typical HPC deployments, 
+where a machine is not utilized for capability jobs, but for capacity, where smaller 
+jobs fill out the time on the system and very few jobs take advantage of the entire 
+system size, this technique crowds out the other jobs by imposing an overhead of at 
+least 100\% of the original job size (maybe more if more than one replicant is used). 
+Bosilca et al~\cite{BosilcaINRIARep7950} performed a study to demonstrate the overhead of various fault 
+tolerant techniques which demonstrates the tradeoff points between rollback-recovery 
+and replication. In addition to demonstrating these overheads, this paper also points 
+to the need for new fault tolerance techniques for capability applications of the future.
+
+\subsection{Algorithm Based Fault Tolerance}
+\label{subsec:background:types:abft}
+
+All of the above automatic fault tolerant solutions have been productive on existing 
+systems where bottlenecks such as I/O bandwidth did not yet cause issues. Today, new 
+fault tolerance techniques are needed to lower the overhead of resilience and ensure 
+that HP applications will continue to be productive in the future.
+
+\abft began as a field of study to resolve 
+silent errors in linear algebra problems. Since that time, it has expanded to 
+include diskless checkpointing and more sophisticated techniques. This section 
+will examine this progression.
+
+\subsubsection{Silent Error Detection}
+
+While many times errors are thought of as problems which cause catastrophic machine 
+failure of some kind, this is not always the case. Some failures, such as a bit 
+flip due to radiation, do not create an easily detectible failure, rather they 
+introduce a small distortion in the contents of memory. These types of failures 
+must be detected by the algorithm itself to ensure that a correct answer has 
+been reached. The need for this sort of failure detection spawned \abft~\cite{Huang:1984kt}. 
+Huang and Abraham introduced a new method of evaluating the results of linear 
+algebra computations to ensure accurate results. From their work, a new field of 
+study emerged.
+
+\subsubsection{Diskless Checkpointing}
+
+To support \abft, a new set of tools was necessary. Though checkpoint/restart 
+had existed previously, it usually required that the entire application be 
+stopped and restarted by reloading a checkpoint from disk. This could be a very 
+expensive operation as the bandwidth to the stable storage could be a 
+bottleneck, and often, most of the processes were still functioning correctly 
+and did not require a restart. To solve this problem, Plank, Kim, and Dongarra~
+\cite{Plank:1995hv} created a new form of checkpointing called Diskless 
+Checkpointing. Rather than writing the checkpoints to stable storage to be expensively 
+re-read when a failure occurred, often back to the same location as the original copy, 
+the checkpoints would be stored directly in the memory of 
+the remaining processes. Supported by their previous work~\cite{Plank:1995wz}, 
+this facilitated fast retrieval and no longer required all of the processes 
+to restart, regardless of which processor suffered the failure.
+
+As \mpi techniques for recovery became more sophisticated (see 
+Section~\ref{subsec:background:types:mpi-level} for more details), new algorithms were 
+developed to take advantage of the new features using diskless checkpointing. One of 
+the first to do this was a Preconditioned Conjugate Gradient solver~\cite{Chen:2005ux}. 
+This algorithm used weighted checksums and additional \mpi processes to calculate and 
+store checksums which could be retrieved after a process failure. FT-MPI provided the 
+mechanism to replace failed processes and allowed the application to continue 
+communication. This technique expanded to other applications, including the QR 
+Factorization used as an example in this work.
+
+\subsection{Transactional Fault Tolerance}
+\label{subsec:background:types:transactions}
+
+Transactional fault tolerance has been in existence for decades. It began as a 
+way of ensuring data consistency within distributed 
+databases~\cite{Bernstein:1981ut}. Each operation submitted to the database was either 
+applied completely and successfully, or the database was rolled back to a state 
+before the operation was attempted. By 
+performing updates in this atomic fashion, the database was protected from 
+corruption in the case where the operation failed. Later, as concurrency became  
+more popular in computing, transactional memory was 
+introduced~\cite{Herlihy:ug} to assist the programmer when attempting to ensure 
+that multiple concurrently running processes did not attempt to write to the 
+same piece of memory at the same time. The ideas of transactions are currently 
+moving into HPC, including preliminary discussions of transactional fault 
+tolerance in the MPI Standard.
+
+\section{MPI Level Fault Tolerance}
+\label{subsec:background:types:mpi-level}
+
+As research in fault tolerance matured and developers started to integrate it into 
+their codes, new efforts began to bring the ideas of fault tolerance into the most 
+popular distributed communication library, MPI. Though fault tolerance has never been 
+an official part of the \mpi Standard, work toward achieving fault tolerance within 
+\mpi has continued for many years. In this section, we will examine some of the efforts 
+made to extend \mpi.
+
+\subsubsection{FT-MPI \& HARNESS}
+
+FT-MPI~\cite{FaggFTMPI} has been one of the most successful (in terms of number 
+of users) implementations of fault tolerance within the MPI stack, to date. 
+FT-MPI provided a number of options for users to recover from failures. All of 
+the options provided mostly automatic recovery within the MPI library itself, 
+minimizing the impact of fault tolerance on existing codes. To trigger the 
+recovery, the user only needed to call a new communicator creation function 
+(such as \mpifunc{MPI\_COMM\_DUP} or \mpifunc{MPI\_COMM\_CREATE}) and the MPI 
+implementation would automatically construct the new communicator in such a way 
+that it would be functional for MPI communication.
+
+The first recovery mode option is SHRINK. In this recovery mode, failed 
+processes are removed from any new communicator, and the communicator returned 
+from the creation function will compress the remaining processes to create a 
+monotonically increasing set of ranks. For some applications, this could cause problems 
+due to calculations that depend on a consistent value for the local rank.
+
+The second recovery mode option is BLANK. This mode is similar to SHRINK in that 
+all failed processes are removed from the new communicators. However, rather 
+than compressing the remaining processes, the failure mode replaces them with an 
+invalid process. Any attempts to communicate with the invalid ranks will cause 
+an error. This failure mode provides the opportunity to replace invalid ranks 
+with new processes at a later time, but maintains the ranks of existing processes 
+where such a value is important for the computation.
+
+The third and most well-supported recovery mode is REBUILD. This recovery mode 
+automatically creates new processes to replace any processes which have failed. 
+The goal of this recovery mode is to support applications where a consistent 
+number of processes with consistently numbered ranks can be guaranteed. New processes 
+are automatically restarted with the same command line parameters as the original 
+processes; however, they are not automatically reinserted into all of the 
+subcommunicators of the processes which they replace. Any communicators other than 
+\mpifunc{MPI\_COMM\_WORLD} must be reconstructed manually.
+
+When FT-MPI was first written, it was actually built on top of PVM due to the 
+lack of an appropriate MPI runtime. Later, the HARNESS 
+runtime~\cite{Fagg:2001wk}, originally implemented in Java, was rewritten in C and adopted as the foundation for 
+FT-MPI. This runtime provided key functionality such as the ability to create 
+new processes, monitor their health, and track the status of all processes from 
+any node.
+
+FT-MPI was a successful project in the sense that it started an important area 
+of research into fault tolerance included in the MPI specification, though it 
+was never adopted into the MPI Standard itself. Because of the lack of 
+standardization, its availability and financial support was eventually crippled 
+and the project is no longer maintained.
+
+\subsubsection{MPI with Checkpoint/Restart}
+
+Alongside the efforts described in Section~\ref{subsec:background:types:auto} have been 
+similar efforts to integrate coordinated Checkpoint/Restart mechanisms into the \mpi 
+implementations themselves. One of the first attempts to accomplish this involved BLCR 
+and LAM/MPI~\cite{Sankaran:2005el}. A team of researchers from Indiana University and 
+Lawrence Berkeley National Laboratory integrated BLCR's kernel-level process 
+checkpointing with the LAM/MPI implementation using coordinated checkpointing to 
+automatically preserve an application after failure. These checkpoints can either be 
+triggered transparently by the \mpi implementation or manually by the user. Upon 
+failure, the user can restart the application from a saved process context using the 
+BLCR utility \texttt{cr\_restart}.
+
+In addition to the work to integrate checkpoint/restart functionality into the \mpi 
+library itself, there has been work to improve the performance of such checkpointing 
+operations, both when writing checkpoints and later reading them back. 
+In~\cite{Walters:gd}, the authors claim the the primary overhead of checkpoint/restart 
+implementations is the bottleneck of accessing the data storage device with many nodes 
+at once. To resolve this issue, they proposed an algorithm using LAM/MPI which would 
+instead distribute the checkpoints to a number of nodes. This would improve the 
+performance because the data was no longer being sent to the same point, but 
+distributed among the entire system. In addition, the resiliency was improved because 
+multiple copies of the data ensured that even if one node experienced a fault, the 
+other nodes would still be available to provide the data on recovery.
+
+Later, LAM/MPI was merged with many other \mpi implementations to form Open MPI and the 
+work on checkpoint/restart systems was revived in this new 
+context~\cite{Hursey:2007wp}. In addition to supporting BLCR, the new work focused on 
+providing a framework to allow other forms of checkpoint/restart to function as well, 
+including asynchronous checkpoints. The new system had five primary tasks on which it 
+focused: a snapshot coordinator to initialize, monitor, and aggregate checkpoint data, 
+file management tools to ensure that snapshot data is available on the correct nodes at 
+the correct time, a distributed checkpoint/restart protocol to coordinate the 
+checkpointing itself, implemented at the \mpi layer to provide the most support for the 
+intended system, a local checkpoint/restart system to actually perform the 
+checkpointing operation on the nodes, and a notification mechanism for the \mpi library 
+itself to preserve its own state for the checkpointing operation. 
+This system was successful in its implementation, integrating tightly with all 
+components of the Open MPI implementation.
+
+\subsubsection{MPICH-V}
+
+MPICH-V~\cite{Bosilca:vy} was designed to be an \mpi implementation providing 
+automatic, transparent fault tolerance via asynchronous checkpointing and message 
+logging. It accomplished this by starting with a well-known implementation, MPICH, and 
+adding the needed mechanisms. Checkpoints were performed locally using the Condor 
+Stand-alone Checkpointing Library (CSCL), using the forked checkpointing method 
+described earlier, and sent to a checkpoint server where they are stored until needed 
+upon a node failure. Similarly, to achieve a total ordering of messages and maintain a 
+complete record, messages are routed through Channel Memory (CM) nodes. These nodes 
+maintain a record of the messages and provide them to restarted processes when 
+necessary. In addition to its fault tolerance features, MPICH-V was also designed to 
+create grids of workstations, including handling local firewalls when routing messages.
+
+\subsubsection{MPI/FT}
+
+Another \mpi implementation, MPI/FT~\cite{Batchu:2004wm}, tried to create a hybrid of 
+available fault tolerance solutions to support different styles of applications. It 
+targeted two specific models. The first model was a master-worker style application 
+where a single master process communicates directly with worker processes but does not 
+use collective operations. For this type of application, the \mpi library would notify 
+only the master process of failures and automatically relaunch failed workers and 
+repair the communication channels of \mpifunc{MPI\_COMM\_WORLD} on the master process. 
+Checkpointing was unnecessary for this type of application as the worker processes did 
+not have critical data which could be easily recalculated. The second model of 
+application was the more traditional, Single Program Multiple Data (SPMD) application, where any 
+process may communicate with any other process. For this type of application, the \mpi 
+library expected the application to perform synchronous loops on all processes where 
+communication was clustered at the beginning and end of each loop. This model did 
+include checkpointing which was coordinated by the process at rank 0. When a failure 
+occurred, the failed process was replaced from the checkpoint and 
+\mpifunc{MPI\_COMM\_WORLD} was also repaired to include the replaced process on all 
+ranks. Recovery was not handled automatically, but done via new API calls to 
+coordinate recovery, query the system about process status, and other interfaces. While 
+MPI/FT provided an interesting solution for specific models of applications, it was not 
+a complete solution for applications which required more exotic executions.
+
+\subsubsection{Egida}
+
+Egida~\cite{Rao:1999us} is a toolkit, integrated with MPICH, designed to provide 
+fault tolerance for non mission-critical applications that run on NoW clusters rather than large scale machines. It provides 
+transparent recovery through log-based rollback recovery. To perform all the 
+tasks necessary to accomplish this, it uses a series of modular building block 
+kernels to support a monolithic event handler. As events are ordered from the software API, failure 
+detector, network monitor, or timers, the event handler executes a grammar to 
+determine the appropriate course of action, and activates the necessary kernel 
+to perform the action.
+
+\subsubsection{Starfish}
+
+Starfish~\cite{Agbaria:1999th} is another fault tolerance solution targeting NoW 
+clusters. The main contribution to differentiate Starfish from other solutions 
+is that it was one of the first such implementations to support MPI-2 dynamic 
+processes. It is constructed by deploying Starfish daemons on each machine which 
+function to deploy and manage application processes, including MPI processes. 
+The daemons are also responsible for the deployment of the fault tolerance 
+solution. Starfish is designed to use checkpointing (either synchronous or 
+asynchronous) and can interchangeably deploy new checkpoint/restart systems as they are 
+implemented. Without modification, MPI applications integrating with Starfish 
+can only use transparent, system checkpoints. To use additional functionality, 
+such as user-initiated checkpointing and dynamic process reconfiguration, the 
+application must be modified to use Starfish specific up-calls and down-calls.
+
+\subsubsection{DejaVu}
+
+DejaVu~\cite{Ruscio:2007wm} is a transparent checkpoint/restart system incorporated 
+with MPI. It provides low-overhead checkpointing and message logging to ensure 
+resilience across any number of failures. By bringing the checkpointing into the 
+library, it can provide the portability not available from traditional system or user-
+level checkpointing solutions. Also, by including message logging, DejaVu can support 
+process migration in the event that a process cannot be relaunched on its original 
+node.
+
+\subsubsection{Proactive Fault Tolerance}
+
+Not all fault tolerance techniques require that the failure has already occurred before 
+reacting. In~\cite{Chakravorty:2006tj}, the authors demonstrate a scheme where the \mpi 
+implementation can take advantage of highly accurate failure predictors, using existing hardware 
+monitors such as temperature sensors, to predict when a failure might occur and 
+preemptively move the running task to another node. This work uses Charm++ and Adaptive 
+MPI as a basis for its work to take advantage of its built-in task migration 
+capabilities. When the failure prediction techniques cannot predict a failure, the 
+implementation relies on traditional checkpointing techniques to recover from failures.
+
+\subsection{Open MPI}
+
+In this dissertation, we base our work on the Open MPI implementation of the MPI Standard. 
+Open MPI~\cite{openmpi, Gabriel:2004ub} has been designed to be a collaboration between 
+industry, academic, and research partners to design an \mpi implementation which 
+facilitates both high performance communications, but also research involving future 
+technologies which could be involved with \mpi. Open MPI has a modular design which is 
+intended to facilitate easy replacement of specific parts of the implementation in 
+order to develop new modules. This has lead to a large number of systems which are 
+supported by the implementation and thus, a large user base. Recently, Open MPI was used 
+as the basis for the \mpi implementation which led to the Japanese K-Computer becoming 
+the fastest machine in the world for the June 2011 Top500 list~\cite{June11Top500}.
+
+\section{Conclusions}
+
+The thread that unites all of these fault tolerance solutions (other than 
+FT-MPI) is that none is designed to allow MPI applications to continue 
+communication \textit{after} a process failure. They allow recovery by 
+redeploying the application after a failure and restoring from a previous state. 
+In this sense, they are not solutions to fix MPI itself, but to fix the 
+applications running on it. In the remaining chapters, we will demonstrate a 
+solution using both existing MPI implementations to repair applications after a 
+failure, and a new MPI proposal which provides continuous communication 
+across process failures.

@@ -1,0 +1,19 @@
+\chapter*{Abstract}
+\label{chap:abstract}
+
+As machine sizes have increased and application runtimes have lengthened, 
+research into fault tolerance has evolved alongside. Moving from result checking, 
+to rollback recovery, and to algorithm based fault tolerance, the type of recovery 
+being performed has changed, but the programming model in which it executes has remained 
+virtually static since the publication of the original Message Passing Interface 
+(MPI) Standard in 1992. Since that time, applications have used a message passing 
+paradigm to communicate between processes, but they could not perform process 
+recovery within an MPI implementation due to limitations of the MPI Standard. 
+This dissertation describes a new protocol using the exiting MPI Standard called 
+Checkpoint-on-Failure to perform limited fault tolerance within the current framework of MPI, 
+and proposes a new platform titled User Level Failure Mitigation (ULFM) to build 
+more complete and complex fault tolerance solutions with a true fault tolerant 
+MPI implementation. We will demonstrate the overhead involved in using these 
+fault tolerant solutions and give examples of applications and libraries which 
+construct other fault tolerance mechanisms based on the constructs provided in 
+ULFM.
