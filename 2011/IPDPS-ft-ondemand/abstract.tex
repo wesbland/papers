@@ -1,0 +1,19 @@
+\begin{abstract}
+The International Exascale Software Project roadmaps predicts, as soon
+as 2014, billion way parallel machines encompassing not only millions
+of cores, but also tens of thousands of nodes. Even considering
+extremely optimistic advances in hardware reliability, probabilistic
+amplification entails that failures will be unavoidable. Consequently,
+software fault tolerance is of paramount importance to maintain future
+scientific productivity. Currently, two major problems hinder
+ubiquitous adoption of fault tolerance techniques: 1) traditional
+checkpoint based approaches incur a steep overhead on failure free
+operations and 2) the dominant programming paradigm for parallel
+applications (the MPI standard and its implementations) offers
+extremely limited support of software-level fault tolerance
+approaches.  In this paper, we present an approach that relies
+exclusively on the current MPI standard definition of a high quality
+implementation and enables algorithmic based recovery to complete the
+computation despite failures without incurring the overhead of
+customary periodic checkpointing.
+\end{abstract}

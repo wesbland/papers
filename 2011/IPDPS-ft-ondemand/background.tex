@@ -1,0 +1,171 @@
+\section{Background \& Related Work}
+\label{sect:background}
+
+% Discuss some MPI-3 related proposals and issues
+
+%Among the issues
+%raised during the readings of the proposals, were the fact that these
+%approaches will still incur a significant overhead on failure free
+%operations, by requiring periodic \emph{consensus}
+
+\subsection*{Background}
+
+Message passing is the dominant form of communication used in parallel
+applications, and MPI is the most popular library used to implement
+it. However, as fault tolerance becomes a growing concern for
+application developers, users have encountered some challenges with
+the current MPI Standard that limit their options of fault tolerance
+methods. The primary form of fault tolerance today is to periodically
+write a checkpoint to disk.  While this method is effective in
+allowing applications to recover from failures by restarting the work
+from a previously saved point, it causes serious concerns on the
+scalability~\cite{ExaScaleResilience09}. Moreover, such proactive
+approach to fault tolerance requires a good idea of how many faults
+might hurt the system, with which frequency and on what nodes. Many
+works have discussed the optimal checkpointing period in the hope that
+as few as possible of these preventive actions are taken by the
+application~\cite{Young:1974, Gelenbe:1979, Plank01, Daly:2006,
+  PreventiveCheckpointing11}. Unlike these works, the work presented
+here focuses on {\it forward recovery}: checkpoint actions are taken
+only {\emph after} a failure is detected, make it unnecessary to
+hypothesize on an optimal checkpoint interval. The checkpoint interval
+is optimal, by definition, as there will be one checkpoint interval by
+effective fault.
+
+An alternative approach to rollback recovery is to take advantage of
+the properties of the application to design it as naturally fault-tolerant. This
+technique is traditionally called \abft \cite{huang1984algorithm}. The
+algorithm itself includes modifications, or additional steps, to cope
+with the loss of some of its data. It includes a modification of the
+algorithm, usually to maintain redundant information in the data
+during the life of the application, and a recovery procedure that
+works only with the data remaining after the failure is detected, and
+reconstructs the missing data using additional computation and
+communication. To support such an algorithm, the underlying
+programming environment must however provide a way to communicate
+after the failure occurs on one of the processes.
+
+The current MPI Standard (MPI-2.2,~\cite{MPI22}) does not provide
+significant help to deal with that type of behavior. Section~2.8
+states in the first paragraph: ``\emph{MPI does not provide mechanisms
+  for dealing with failures in the communication system. [...]
+  Whenever possible, such failures will be reflected as errors in the
+  relevant communication call. Similarly, MPI itself provides no
+  mechanisms for handling processor failures.}'' Failures, be they due
+to a broken link or a dead process are considered as resource
+errors. Later, in the same section: ``\emph{This document does not
+  specify the state of a computation after an erroneous MPI call has
+  occurred. The desired behavior is that a relevant error code be
+  returned, and the effect of the error be localized to the greatest
+  possible extent.}'' So, for the current standard, process or
+communication failures are to be handled as errors, and the behavior
+of the MPI application after an error has been returned is left
+unspecified by the standard. However, the standard does not prevent
+implementations to go beyond its requirements, and on the contrary,
+encourages high-quality implementations \emph{to return} errors once a
+failure is detected.
+
+Unfortunately, most of the implementations of the MPI Standard have
+taken the path of considering process failures as unrecoverable
+errors, and the processes of the application are most often killed by
+the runtime system, when a failure hits any of them. The runtime
+system then returns with an error code, signaling the failure of the
+run, leaving no other choice to the user but to run a new parallel
+execution.
+
+The MPI forum is currently examining options for the future direction
+of MPI for MPI-3. One of the workgroups is dedicated to propose a
+standard form of MPI-supported fault tolerance. The proposal outlines
+a method of run-through stabilization which allows the application to
+acknowledge and repair communications, both collectively and between
+specific ranks in a point-to-point way~\cite{Hursey11MPI3FT}. The
+emphasis of the proposal is a set of "validation" functions which the
+application is required to call to repair and re-enable communication within
+an MPI communicator containing a failed process. To repair point to
+point wildcard receives, the application needs to collectively call the function
+MPI\_COMM\_REENABLE\_ANY\_SOURCE. To repair collective communication
+within a communicator, the application needs to call the function
+MPI\_COMM\_VALIDATE.  These functions give the MPI implementation an
+opportunity to acknowledge failures and discover or ensure that other
+MPI processes also acknowledge the same failures. It also gives the
+MPI library a chance to repair communication channels between
+remaining processes, optimizing communication topologies if possible
+and necessary.
+
+While this method of fault tolerance is sufficient for \abft, it is
+not without its drawbacks. The calls necessary to recover from
+collectives incur a non-trivial overhead even during the fault free
+case. MPI\_COMM\_VALIDATE requires a distributed consensus algorithm
+which is currently best implemented at log
+scale~\cite{Hursey11LogConsensus}. While this level of overhead is
+better than the current state of the art of periodic checkpointing, it
+still presents a significant cost that not all applications want or
+need to pay to check the validity of the communicators. Most
+importantly, this proposal does not yet include process recovery,
+which is left to a future proposal to the MPI forum.
+
+% Discuss issues in general with FT-MPI like approaches, besides the 
+% sheer problem of standard adoption
+
+% Explain why it is not believed that ABFT can perform without REPLACE 
+% or BLANK, or leave it for next section ?
+
+\subsection*{Related Work}
+
+FT-MPI~\cite{fagg2000ft} is an MPI-1 implementation which added
+extensions to the MPI standard to give users options for their
+\abft. FT-MPI proposed to change the MPI semantics of some of the
+calls, to enable continuing the execution of the parallel application
+after a failure hits the system, and to rebuild the communicators, thus
+re-enabling communications. This approach has been proven successful,
+and some applications have been implemented relying on the features of
+FT-MPI. However, these modifications of the standard were not imported
+in the official MPI standard, and no other MPI implementation took the
+same approach. The lack of large distribution of the FT-MPI
+implementation prevented a large base of users from implementing their
+solution based on this proposition.
+
+%  One of
+% the solutions implemented in FT-MPI was to introduce a new MPI\_Errhandler
+% called MPI\_ERRORS\_BLANK. This MPI\_Errhandler replaced the position of the
+% failed processes inside a communicator with MPI\_PROC\_NULL. By using this
+% semantic, the remaining MPI calls could function normally as communication with
+% MPI\_PROC\_NULL always succeeds. When FT-MPI encountered a fault, it destroyed
+% all MPI Communicators and required that the application recreate them to account
+% for the failed processes. While this was a useful step in allowing the most
+% level of flexibility from the application's perspective, it made recovery very
+% complex and added a large overhead.
+
+% FT-MPI is another form of fault tolerance that can be successful for some, but in
+% applications that require that all processes be running to reach successful
+% completion, having a hole in the communicator is not a valid solution. The
+% failed processes need to somehow be recovered.
+
+%\TBD{Anything needed from the QR side of things?}
+
+Besides the works that have been cited previously to present the
+problem statement, the different approaches that have been proposed,
+and how this approach is original, the article by W. Gropp and E. Lusk
+in 2004 \cite{Gropp:2004:FTM:1080704.1080714} is the work closest to
+the On-Demand Checkpointing, from the MPI requirement perspective.  In
+this article, the authors explain how the standard can be interpreted,
+or slightly modified, to allow for a form of fault tolerance. They
+consider different approaches: periodical checkpointing; using
+inter-communicators and separate MPI applications to contain an error
+in an MPI application; modifying the MPI semantics; or propose new
+extensions. However, the last three propositions demand more from the
+MPI implementation than we require in this work: for example, the MPI
+library is supposed to continue its normal execution, if the error was
+located in another MPI application, connected with the one subject to
+the error through an inter-communicator. In our work we do not even
+require such a step: the only
+demand on the MPI implementation is that it does not forcibly kill the
+living processes without letting them take a checkpoint, but returns
+an error. Once this is ensured, no requirement from any MPI call is
+needed.
+
+Moreover, we illustrate the well soundness of our approach using a
+non-trivial algorithm: a QR factorization, that is made fault tolerant
+using the modified \ompi, and the On-Demand Checkpointing
+technique. We demonstrate that this approach is functional, and
+evaluate its performance at large scale.

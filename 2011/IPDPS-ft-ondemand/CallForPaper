@@ -1,0 +1,47 @@
+The highlight are on the deadline, and the fact that this year there
+will be a rebuttal period.
+
+Abstracts due September 24, 2011 by 11:59pm EDT (required)
+Submissions due October 1, 2011 by 11:59pm EDT (hard deadline, no extensions)
+Rebuttal Period: November 9-11, 2011
+Author notification: December 19, 2011
+Camera-ready papers: February 1, 2012
+Conference dates: May 21-25, 2012
+ 
+
+
+IPDPS 2012 CALL FOR PAPERS: SCOPE
+
+Authors are invited to submit manuscripts that present original unpublished research in all areas of parallel and distributed processing, including the development of experimental or commercial systems. Work focusing on emerging technologies is especially welcome. Topics of interest include, but are not limited to:
+
+    Parallel and distributed algorithms, focusing on issues such as: stability, scalability, and fault-tolerance of algorithms and data structures for parallel and distributed systems, communication and synchronization protocols, network algorithms, scheduling, and load balancing.
+
+    Applications of parallel and distributed computing, including web applications, peer-to-peer computing, cloud and grid computing, scientific applications, and mobile computing. Papers focusing on applications using novel commercial or research architectures, or discussing scalability toward the exascale level are encouraged.
+
+    Parallel and distributed architectures, including architectures for instruction-level and thread-level parallelism; petascale and exascale systems designs; special-purpose architectures, including graphics processors, signal processors, network processors, media accelerators, and other special purpose processors and accelerators; impact of technology on architecture; network and interconnect architectures; parallel I/O and storage systems; architecture of the memory hierarchy; power-efficient architectures; dependable architectures; and performance modeling and evaluation.
+    Parallel and distributed software, including parallel and multicore programming languages and compilers, runtime systems, operating systems, resource management, middleware for grids and clouds, libraries, performance modeling and evaluation, parallel programming paradigms, and programming environments and tools.
+
+IMPORTANT DATES
+
+    Abstracts due September 24, 2011 by 11:59pm EDT (required)
+    Submissions due October 1, 2011 by 11:59pm EDT (hard deadline, no extensions)
+    Rebuttal Period: November 9-11, 2011
+    Author notification: December 19, 2011
+    Camera-ready papers: February 1, 2012
+    Conference dates: May 21-25, 2012
+
+Best Papers Awards
+
+Awards will be given for one best paper in each of the four conference technical tracks: algorithms, applications, architectures, and software.  Selected papers will be considered for possible publication in a special issue of the Journal of Parallel and Distributed Computing.
+What/Where to Submit
+
+Submitted manuscripts may not exceed 12 single-spaced double-column pages using 10-point size font on 8.5x11 inch pages (IEEE conference style), including figures, tables, and references.
+
+    See style templates for details:
+    LaTex Package (ZIP)
+    Word Template (ZIP)
+
+IPDPS will again require submission of abstracts one week before the paper submission deadline without any late exceptions (see above).
+Review of Manuscripts
+
+All submitted manuscripts will be reviewed. Submissions will be judged on correctness, originality, technical strength, significance, quality of presentation, and interest and relevance to the conference scope. Submitted papers must NOT have been previously published nor may they be under consideration for another conference, workshop, or journal. Abstracts are due September 24, 2011 by 11:59 EDT (required), and full manuscripts must be received by October 1, 2011 by 11:59 EDT (hard deadline, no extensions).  This is a final, hard deadline; to ensure fairness, no extensions will be given. There will be a rebuttal period from November 9-11, 2010. Notification of review decisions will be mailed by December 19, 2011, and camera-ready papers will be due February 1, 2012. 

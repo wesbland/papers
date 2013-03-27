@@ -1,0 +1,33 @@
+\section{Concluding Remarks}
+
+In this paper, we presented an original scheme to deal with failures
+using the current MPI standard, and still avoiding periodical
+checkpointing. Periodical checkpointing is subject to a critical
+parameter that is particularly hard to assess: the ideal period of
+checkpoint. A period too short will loose time and resources, doing
+unnecessary Input/Output. A period too long will also loose time and
+resources, by increasing the amount of the execution that must be
+re-done, if a failure hits the system a long time after the last
+successful checkpoint.
+
+On-Demand Checkpointing takes checkpoint images at optimal times by
+design: only after a failure has been detected. It relies on \abft
+techniques to complement this checkpoint with redundant information
+and enable recovering the whole application data at restart
+time. This simple scheme is easily integrable with high quality MPI
+implementations, as long as they let the application survive (even
+with MPI non-functionning) when a failure is detected and reported. We
+proposed performance models to evaluate and compare the benefits and
+limitations of On-Demand Checkpointing and periodical
+Checkpoint. These models highlight another feature of On-Demande
+Checkpointing: since the checkpoint images of the processes that were
+not subject to failure is needed to recover the state, local disks can
+be used, providing a much higher bandwidth than the remote storage
+needed by periodical Checkpointing. Last, but not least of the
+advantages of On-Demand Checkpointing, the restart does not trigger a
+rollback recovery, since the recovery procedure is able to reconstruct
+the data at the moment of the crash.  The performance evaluation,
+based on the \abft version of the QR factorization show that the
+disk Input/Output required by the method after a fault occured does
+not prevent to obtain excellent performance, and that a high quality
+MPI implementation can be obtained without decreasing its efficiency.

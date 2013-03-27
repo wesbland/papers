@@ -1,0 +1,84 @@
+\section{Introduction}
+
+The insatiable processing power needs of domain science has pushed High
+Performance Computing (HPC) systems to feature a significant
+performance increase over the years, even outpacing "Moore's law"
+expectations. Leading HPC systems, whose architectural history is listed
+in the Top500~\footnote{www.top500.org} ranking, illustrate how massive
+parallelism has been embraced in the recent years, leading to ever
+growing systems featuring an impressive number of computing units;
+current number 1, the K-computer has half a million cores, and even with
+the advent of GPU accelerators, it requires no less than 73,000
+cores for the Tsubame 2.0 system (\#5) to breach the Petaflop
+barrier. Indeed, the International Exascale Software Project, a group
+created to evaluate the challenges on the path toward Exaflop class
+machines, has published a public report outlining that a massive
+increase in scale will be necessary, when considering probable advances
+in chip technology, memory and interconnect speeds, as well as
+limitations in power consumption and thermal envelope~\cite{iesp}.
+According to these projections, as soon as 2014, billion way parallel
+machines, encompassing not only millions of cores, but also tens of
+thousands of nodes, will be necessary to achieve the desired level of
+performance. Even considering extremely optimistic advances in hardware
+reliability, probabilistic amplification entails that failures will be
+unavoidable, becoming common events. Hence, fault tolerance is paramount
+to maintain scientific productivity.
+
+Already, for Petaflop scale systems the issue has become pivotal. On
+one hand, the capacity type of workload, composed of a large amount of
+medium to small scale jobs, which often represent the bulk of the
+activity on many HPC systems, has traditionally been left unprotected
+from failures, resulting in diminished throughput due to failures. On
+the other hand, selected capability applications whose significance is
+motivating the construction of supercomputing systems are protected
+against failures by ad-hoc, application-specific approaches, at the
+cost of straining engineering efforts, translating in high software
+development expenditures. Two long lasting issues have hindered
+ubiquitous adoption of streamlined fault tolerance techniques: first,
+the traditional checkpoint based approaches incur a steep overhead on
+failure-free operations; second, the dominant approach for programming
+parallel distributed memory systems, the MPI standard~\cite{MPI22} and
+its implementations, offer extremely limited support for software
+fault tolerance approaches, which effectively limit the spectrum of
+options available to applications to periodic checkpointing and
+rollback recovery.
+
+Several propositions have emerged from the ongoing MPI-3
+forum\footnote{\url{http://meetings.mpi-forum.org/mpi3.0\_ft.php}},
+toward improving the expressivity of MPI with regard of fault tolerant
+techniques. However, it is yet unclear as to wether these propositions
+will prove successful enough to be blessed by the forum as they still
+incur synchronization overhead on failure-free scenarios. The current
+MPI-2 standard leaves open an optional behavior to qualify as a "high
+quality implementation", regarding failures: according to this
+specification in the case of an MPI\_ERRORS\_RETURN error handler,
+when the MPI library detects a failure it should return control to the
+caller. This is at the opposite of the default mass-suicide action
+that all notable MPI implementations undergo in case of a failure. In
+this paper, we investigate the modifications that are required, inside
+the MPI implementation, to enable this behavior strictly within the
+scope of the current standard. We then describe how algorithm-based
+recovery techniques, illustrated by the most useful QR factorization,
+are able to leverage this behavior, to perform an inexpensive recovery
+that completely avoids costly periodic checkpointing, and rollback
+recovery. Although the proposed technique uses checkpointing to save
+the state of the application, it does so only after the system was
+affected by a failure, and the recovery operation could be qualified as forward
+recovery, since it does not make the application rollback.
+
+The remainder of this paper is organized as follows. The next section
+presents typical fault tolerant approaches and related works to discuss
+their requirements and limitations. Then, we present in
+Section~\ref{sect:ompi} the On-Demand Checkpointing approach, and the
+minimal support required from the MPI implementation. 
+Section~\ref{sec:ftla} presents the use case: a fault tolerant
+version of the QR algorithm, and how it has been modified to fit the
+proposed paradigm. Section~\ref{sec:model} presents a performance model to
+assess the efficiency of both periodic checkpointing with rollback
+recovery and On-Demand Checkpointing, and
+Section~\ref{sec:experiments} presents an experimental evaluation of
+the implementation.
+%Section~\ref{sec:ompi} investigates
+%the intricacies of the MPI runtime
+
+

@@ -1,0 +1,87 @@
+3 Reviews
+
+-------------------------------------------------------------------------------------------
+Review 1 (Reviewer A)
+
+The paper shows how one within the existing MPI standard can make the system more fault tolerant 
+by using on-demand checkpointing and algorithmic failure recovery (AFR). The main contribution of 
+the paper is to show how an MPI implementation can be modified so that once it discovers a local error, 
+it will signal the remaining processes so that they can make a controlled halt. By using AFR it is then 
+possible to resume the computation without much loss of time.
+
+It is surprising that MPI implementations do not already have the possibility of letting the user 
+determine how to end the computation once (a local) problem occurs. As the paper describes this is 
+possible within the existing standard.
+
+Although the paper describes how the AFR technique from [16] can be used in such a setting to resume 
+work quickly, it is not immediate to me that this has all the stated advantages over regular checkpointing.  
+The reason for this is that there seems to be a substantial cost in developing and implementing AFR techniques. 
+Also, AFR techniques can only handle certain types of errors, while checkpointing is more fail-safe. 
+Still, this is no reason why it should not be up to the user to determine how to end a faulty computation.
+
+-------------------------------------------------------------------------------------------
+Review 2 (Reviewer C)
+
+Creative and light-weight schemes for fault-tolerance are needed and welcome.  So this contribution 
+is interesting enough to warrant consideration.  The approach here is to not require changes to the 
+current MPI standard, and to support algorithm-based fault tolerance (ABFT).  The latter is the term 
+for checksum-based schemes whereby algorithms can detect and recover from errors, at the cost of a bit 
+more computation en route, but not requiring expensive periodic checkpoints and rollback.
+
+My lack of high enthusiasm for this paper stems from the low potential impact and some serious questions 
+about the details of the idea.
+
+First the questions about what is actually supposed to happen.  The paper is way to vague about some tricky 
+details communication on message-passing systems.  For example, on page 4 we read that in the case of a link failure "... 
+all processes are able to save the local state, and the recovery procedure will simply consist in determining the 
+global state at the moment of failure."  How exactly do you determine the global state at the moment of failure?  
+Then on page 5 the claim is made that canceling outstanding communication requests involving the communicator 
+with the failed process will prevent any future dependency issues.  I'm pretty sure it's not that simple.  
+The many communication modes in MPI, and the fact that messages may be "in flight" in several ways, make this 
+problem subtle and difficult.  At best, details are lacking in terms of how the proposed system handles handle these issues.
+
+Now regarding impact.  A big concern about ABFT is that its scope is limited: some algorithms have ABFT versions 
+(linear algebra being a heavily mined example), many as yet do not.  And constructing ABFT versions of complex 
+industrial-strength codes is an even more daunting challenge.  A second issue regarding impact is simply to 
+note that the proposed approach requires modifications to most current implementations of MPI 
+(though no change to the standard itself), so I don't know how much of a win that is (vs. waiting for 
+whatever fault-tolerance stuff comes out of current MPI3 discussions).
+
+Finally, a few more miscellaneous questions/issues ...
+
+It would help if a few more details were given about the "dry run" restart process.  Would some floating-point 
+have to be redone, depending on where the fault occurs?  Does the programmer have to generate a separate 
+version of the code to be executed on restart?
+
+It's too bad the experimental results on the larger (than 16 nodes) system were not usable.  Fault-tolerance is 
+obviously of bigger concern on larger systems, and scalability of the solution could be evaluated with experiments on larger systems.
+
+Spell check please: compleixty, mtraix, restars, Demande
+
+-------------------------------------------------------------------------------------------
+Review 3 (Reviewer B)
+
+This paper presents a QR-factorization algorithm with redundancy carefully built into it in order to recover 
+from failure using forward-recovery. The authors project the paper along the lines of on-demand checkpointing 
+without changing the MPI standard. Though there are interesting contributions along these aspects (maybe not 
+for an algorithmic track but an applications track), I really feel the novelty aspects are pretty low along 
+these dimensions -- and that the real contribution lies in the clever introduction of redundancy for QR. The 
+algorithmic discussions in the paper are mostly related to QR and these are not extendable as is for other 
+applications (maybe for a few numerical linear algebra subroutines); these are not generic techniques but 
+require careful changes in the specific code. I don't find the paper contents to be as generic as the title seems to suggest.
+
+Comments:
+1. The experimental results do not consider large system sizes
+2. No direct performance comparison has been done with periodic checkpointing
+3. Notation Q is overloaded.
+4. Page 5, were >>where
+5. Page 9: Alpha >> \alpha
+6. Page 10: benchmark 'on' a small cluster
+7. Page 10: On demande
+8. Et al. has been used in references. Please provide complete list of authors.
+9. There is no ordering of the references
+Rebuttal
+
+The rebuttal can be edited until November 13, 2011 23:59:00 EST.
+
+EDAS at 72.233.114.26 (Wed, 09 Nov 2011 11:09:55 -0500 EST) [0.081/0.135 s] Request help

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/icl/!svn/ver/7561/papers/2011/ipdps/ft-ondemand/data
+END
+test.tgz
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/icl/!svn/ver/7561/papers/2011/ipdps/ft-ondemand/data/test.tgz
+END
+create_data_file.pl
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/icl/!svn/ver/7498/papers/2011/ipdps/ft-ondemand/data/create_data_file.pl
+END
+binomial_grid5000.tgz
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/icl/!svn/ver/7498/papers/2011/ipdps/ft-ondemand/data/binomial_grid5000.tgz
+END
+linear_grid5000.tgz
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/icl/!svn/ver/7498/papers/2011/ipdps/ft-ondemand/data/linear_grid5000.tgz
+END
+binomial_dancer.tgz
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/icl/!svn/ver/7498/papers/2011/ipdps/ft-ondemand/data/binomial_dancer.tgz
+END
+linear_dancer.tgz
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/icl/!svn/ver/7498/papers/2011/ipdps/ft-ondemand/data/linear_dancer.tgz
+END
+binomial.gnp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/icl/!svn/ver/7498/papers/2011/ipdps/ft-ondemand/data/binomial.gnp
+END
+linear.gnp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/icl/!svn/ver/7498/papers/2011/ipdps/ft-ondemand/data/linear.gnp
+END
