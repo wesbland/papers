@@ -1,0 +1,71 @@
+\section{Related Work}\label{sect:related}
+
+% Why coordinated checkpointing is no longer scalable
+
+The current industry standard for failure handling is rollback recovery with
+periodic checkpoints to disk, and many libraries have been implemented to
+support this behavior~\cite{Duell:tr, Litzkow:1997wd, Plank:1994wz,
+Zhong:2001tq}. This has been an effective recovery model for many years and
+continues to be an area of research to prolong its
+usefulness~\cite{BautistaGomez:2011hg, BuntinasFGCS2008, Elnozahy:2002p3769},
+despite the increase in fault frequency and the hierarchization of the
+underlying hardware architecture.  However as machines continue to scale,
+concerns have been raised about the scalability of rollback
+recovery~\cite{Cappello:2009hs}.  The time spent performing recovery operations
+is expected to exceed the MTBF in the next generation of supercomputers, causing
+any large-scale applications to enter a cycle of recovery where no useful
+computation occurs.
+
+% Resilience workshop report
+
+In February 2012, the Department of Defense and Department of Energy conducted
+research~\cite{Daly:2012vg} to outline the necessity for resilience at extreme
+scale, specifically for exascale computing. They affirmed the likelihood that
+exascale systems will have a shorter MTBF than existing systems. They also
+recommended that ``a `light-weight' approach, i.e., effective and easy to
+implement, is preferable to a `full-featured' alternative.'' By attempting fewer
+features, each library can focus on creating a scalable and efficient
+implementation while promoting simplicity and reducing unnecessary features. The
+agencies also discussed possible redundancy approaches (discussed
+in~\cite{BosilcaINRIARep7950, Ferreira:2011fb}), describing them as ``not
+practical because they require 2-3x more energy''. The price of redundancy must
+not only include the obvious loss of computing time from executing duplicate
+codes across multiple processors, but also the up-front costs of purchasing
+extra hardware on which to execute the redundancy.
+
+% Describe ABFT
+
+Out of these problems have arisen a new class of algorithms that allow different
+methods of resilience. These algorithms support what is called Algorithm Based
+Fault Tolerance (ABFT). They have been designed to support a recovery model that
+does not require all processes to participate in the recovery simultaneously or,
+perhaps, ever at all. Huang and Abraham first explored these
+algorithms~\cite{Huang:1984kt} for soft errors in systolic arrays, but research
+has expanded to create ABFT techniques for many algorithms~\cite{Du:2012je, Plank:1995hv}.
+
+% RTS Proposal
+
+To support these new algorithms, applications require support from their
+libraries. One of the most popular communication libraries used by large scale
+applications is the Message Passing Interface (MPI), the contents of which are
+determined by the MPI Forum. The MPI Forum has previously considered proposals
+to add fault tolerance capabilities to the MPI Standard. In 2011, a proposal was
+brought forth~\cite{Hursey2011RTS} titled ``Run-Through Stabilization'' which
+discussed a wide range of fault tolerance capabilities to provide for users by
+defining the behavior of MPI following a process failure as well as introducing
+new constructs to provide strong consensus between processes. The MPI Forum
+decided to reject the proposal, but the work led to more research in the field
+of resilience in MPI, including the work being proposed in
+Section~\ref{sect:ulfm}.
+
+% FT-MPI
+
+Outside of the MPI Forum, work has been done to provide fault tolerance to MPI
+applications. FT-MPI~\cite{FaggFTMPI} was an MPI-1 compliant implementation of
+the MPI Standard which added new capabilities for fault tolerance. It included
+automatic recovery models for failures including: shrinking MPI communicators to
+automatically remove failed processes, leaving holes in the communicators while
+allowing communication to continue, and destroying and rebuilding the
+communicators to retain communication patterns and groups. FT-MPI was never
+adopted into the MPI Standard but continued as a research project for many
+years. 

@@ -1,0 +1,81 @@
+\section{User Level Failure Mitigation}\label{sect:ulfm}
+
+% Overview of ULFM (need for standardized MPI FT, implementation building on CoF
+% work)
+While \cof can be useful for many types of applications which aim to include
+some level of fault tolerance in their execution, many other applications could
+benefit from a more complete fault tolerance solution that allows their
+application to continue normal execution beyond a process failure. For these
+applications, we propose an addition to the MPI Standard titled User Level
+Failure Mitigation (\ulfm). 
+
+% New MPI Constructs
+When constructing \ulfm, we had three primary requirements of the proposal. In
+all correct applications, the MPI library must not uncontrollably deadlock due
+to process failure. The proposal makes no guarantees about incorrect MPI codes
+being deadlock-free, but the library must provide tools that, whenever
+possible, can help resolve deadlocks. Furthermore, for most simple cases, \ulfm
+should be understandable and should solve the needs of applications. For more
+complex applications, \ulfm should be flexible and extensible enough to allow
+other fault tolerance models to build upon the proposal. 
+
+The last two goals, simplicity and extensibility, have always been foundational
+ideas of the MPI Standard. The standard has always provided the ability for
+library extensions to allow developers to add their own MPI constructs. We
+encourage this behavior to give developers more freedom to construct their own
+fault tolerance libraries which provide more complex consistency levels than
+ULFM provides.
+
+To this end, the following set of MPI functions is considered to be the minimum
+necessary to achieve our goals:
+
+\paragraph{\mpifunc{MPI\_COMM\_FAILURE\_ACK} \&
+\mpifunc{MPI\_COMM\_FAILURE\_GET\_ACKED}}
+
+These two calls allow the application to determine which processes within a
+communicator have failed. The acknowledgement function serves to mark a point in
+time which will be used as a reference. The function to get the acknowledged
+failures refers back to this reference point and returns the group of processes
+which were locally known to have failed.  After acknowledging failures, the
+application can resume \mpifunc{MPI\_ANY\_SOURCE} point-to-point operations
+between non-failed processes, but operations involving failed processes (such as
+collective operations) will likely continue to raise errors.
+
+\paragraph{\mpifunc{MPI\_COMM\_REVOKE}}
+
+Because failure detection is not global to the communicator, some processes may
+raise an error for an operation, while others may not. This inconsistency in
+error reporting may result in some processes continuing their normal,
+failure-free execution path, while others have diverged to the recovery
+execution path. As an example, if a process, unaware of the failure, posts a
+reception from another process that has switched to the recovery path, the
+matching send will never be posted. Yet no failed process participates in the
+operation and therefore it will not raise an error. The receive operation is
+effectively deadlocked.  The \mpifunc{MPI\_COMM\_REVOKE} operation provides a
+mechanism for the application to resolve such situations before entering the
+recovery path. A revoked communicator can not be used for further communication,
+and all future or pending communications on this communicator will be
+interrupted and completed with the new error code \mpifunc{MPI\_ERR\_REVOKED}.
+It is notable that although this operation is not collective (a process will
+enter it alone), it affects remote ranks without a matching call.
+
+\paragraph{\mpifunc{MPI\_COMM\_SHRINK}}
+
+The shrink operation allows the application to create a new, working
+communicator by removing all failed processes from a revoked communicator. The
+operation is collective and executes a consensus algorithm to ensure that all
+participating processes complete the operation with equivalent groups in the new
+communicator.  This function cannot return an error due to process failure.
+Instead, such failures are absorbed as part of the consensus algorithm and will be
+excluded from the new communicator.
+
+\paragraph{\mpifunc{MPI\_COMM\_AGREE}}
+
+This operation provides an agreement algorithm which can be used to determine a
+consistent state between processes when such strong consistency is necessary.
+The function is collective and forms an agreement over a boolean value, even
+when failures have happened.  The agreement can be used to resolve a number of
+consistency issues after a failure, such as uniform completion of an algorithmic
+phase or collective operation, or as a key building block for strongly
+consistent failure handling approaches (such as transactional fault tolerance).
+

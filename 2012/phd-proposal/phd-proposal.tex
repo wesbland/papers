@@ -1,0 +1,91 @@
+\documentclass[conference, compsocconf]{IEEEtran}
+%\documentclass{llncs}
+
+\newif\ifnoTBD \noTBDfalse
+
+% Uncomment to remove TBD macros
+%\noTBDtrue
+
+\ifnoTBD
+\def\TBD#1{\typeout{TBD not done: #1}}
+\else
+\def\TBD#1{\textcolor{blue}{TBD: #1}}
+\AtEndDocument{\typeout{ *** ATTENTION: compilation is in DRAFT
+    mode. There might still be TBD that appear in the document ***}}
+\fi
+
+\usepackage[usenames]{color}
+\usepackage{xspace}
+\usepackage{listings}
+%\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{latexsym}
+%\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+%\usepackage{amsthm}
+%\usepackage{amsfonts} 
+%\usepackage{amssymb}
+%\usepackage{amsmath} 
+\usepackage{underscore}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{flushend}
+\usepackage{setspace}
+
+%\setlength{\oddsidemargin}{0in}   % origin is (1",1") from top-left corner
+%\setlength{\evensidemargin}{0.0in}
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9in}
+%\setlength{\topmargin}{0.0in}
+%\setlength{\headheight}{0pt}
+%\setlength{\headsep}{0pt}
+
+\newcommand{\ompi}{Open\,MPI\xspace}
+\newcommand{\ftla}{FT-LA\xspace}
+\newcommand{\scalapack}{ScaLAPACK\xspace}
+\newcommand{\abft}{ABFT\xspace}
+\newcommand{\cof}{CoF\xspace}
+\newcommand{\ulfm}{ULFM\xspace}
+\newcommand{\mpifunc}[1]{{\tt #1}}
+
+%\doublespacing
+
+\begin{document}
+
+\title{Toward Recovery Capabilities in Message Passing Environments}
+\author{
+  \IEEEauthorblockN{Wesley Bland}
+  \IEEEauthorblockA{Department of Electrical Engineering and Computer Science\\
+  					University of Tennessee, Knoxville\\
+					wbland@icl.utk.edu}
+}
+%\author{Wesley Bland}
+%\institute{Department of Electrical Engineering and Computer Science\\
+%University of Tennessee, Knoxville\\
+%wbland@icl.utk.edu}
+
+\maketitle
+
+\input{dissertation}
+\input{motivation}
+\input{related}
+\input{cof}
+\input{ulfm}
+\input{results}
+\input{conclusion}
+\input{publications}
+
+\clearpage
+
+\newcommand{\BIBdecl}{\setlength{\itemsep}{0.03\baselineskip}} 
+\bibliographystyle{IEEEtranS}
+\bibliography{phd-proposal}
+
+\end{document}
+

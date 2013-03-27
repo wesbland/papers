@@ -1,0 +1,49 @@
+\section{Motivation}\label{sect:motivation}
+
+%Outline need for FT based on machine scale
+As High Performance Computing (HPC) reaches petascale and exascale, new
+challenges have emerged which necessitate a change in the way large scale
+operations are designed. As of the June 2012 Top500
+list\footnote{http://www.top500.org}, machines at the top of the list have now
+surpassed the million-core mark. At this \textbf{scale}, reliability becomes a
+major concern. Reliability, availability and serviceability data mainly provided
+by the Los Alamos National Laboratory, National Energy Research Scientific
+Computing Center, Pacific Northwest National Laboratory, Sandia National
+Laboratory, and Laurence Livermore National Laboratory analyzed by Schroeder and
+Gibson~\cite{Schroeder:2007tp} show an average number of failures per year
+between 100 and 1000 depending on the system. Projections found in Cappello's
+paper~\cite{Cappello:2009dd} predict a future mean time to failure of
+approximately one hour. With failures of that frequency, capacity applications
+will not be able to complete without considering a model for handling hardware
+failures.
+
+Beyond traditional high performance computing environments, other new areas of
+distributed computation have also emerged which produce similar needs. Volatile
+resources such as cloud computing environments have been considered unsuitable
+for more traditional distributed computing models because of their constantly
+changing set of resources. If the underlying programming model could support the
+kind of drop in, drop out behavior that volatile environments need, they could
+become a lower cost set of tools available for developers. Another area which
+could benefit from a resiliency model is energy efficient computing. An
+application could choose exactly the number of processors necessary at any point
+in the application lifecycle and allow unnecessary resources to shut down,
+vastly reducing cost and energy consumption. In addition to more efficiently
+using processors when designing an application, by allowing applications to
+become \textbf{resilient} and continue execution beyond failures, expensive
+recalculations become unnecessary, saving energy and computation hours. For both
+of these computing models, a new, resilient programming model is necessary.
+
+While the need for resilience at scale has been proven through many previous
+studies, an important factor for wide adoption which is often ignored is
+\textbf{usability}. Many previous efforts to introduce fault tolerance methods into high
+performance computing have gone unutilized because they were too difficult to
+use or required large changes to existing codes. For any tool to be employed, it
+must not only fulfill the need of the community, but also be compatible with
+the other existing tools.
+
+In this work, we provide two new fault tolerance models for application and
+library developers to choose from to solve these problems. We used the de-facto
+programming environment for parallel applications, the Message Passing Interface
+(MPI), to provide a familiar, portable, and high performing programming paradigm
+on which users can base their work. The new models are called
+Checkpoint-on-Failure (\cof) and User Level Failure Mitigation (\ulfm). 

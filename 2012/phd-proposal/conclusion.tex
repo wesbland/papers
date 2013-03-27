@@ -1,0 +1,35 @@
+\section{Conclusion and Ongoing Work}\label{sect:conclusion}
+
+To support exascale executions, applications must now consider resilience in
+their designs. Current fault tolerant models, including rollback recovery, are
+not expected to remain productive at extreme scales. Other efforts to introduce
+scalable resilience have not seen ubiquitous adoption due, in part, to their
+high barrier to entry from the large code additions they require, or the new
+levels of complexity which they introduce. Balancing the needs of usability and
+scalability in resilience has led to the work presented here.
+
+This work has presented two new programming models to support resiliency in
+parallel computing when using the Message Passing Interface.
+Checkpoint-on-Failure shows how the current MPI standard can be used to create a
+resilient application by taking advantage of a ``high quality implementation'' of
+the MPI Standard. When failures occur, the application performs local
+checkpoints, restarts MPI, loads its local checkpoints, performs Algorithm Based
+Fault Tolerance recovery procedures to regenerate any lost data and continues
+application execution. For more complete failure handling, User Level Failure
+Mitigation provides extensions to the MPI Standard which give the application
+the ability to continue execution after a process failure. By repairing
+communicators when necessary, the application does not need to roll back to a
+checkpoint but can continue to run to completion.
+
+These two new resilient programming models provide many useful new tools for
+developers to enhance their applications. More investigation is necessary to
+measure the exact impact of these tools on application performance. \ulfm will
+also continue to be presented to the MPI Forum with the intention of eventually
+being adopted as a new chapter in the MPI Standard so developers will have a
+truly portable resilient parallel programming library. There are still
+challenges to overcome before the standardization process can take place. \ulfm
+must be proven to not impact performance on a wide variety of communication
+environments. Also, it will be applied to more real world applications to prove
+that it can be helpful in a production environment. However, when the process is
+finished, it will provide many opportunities for new types of applications which
+were previously either impossible or difficult to architect.
