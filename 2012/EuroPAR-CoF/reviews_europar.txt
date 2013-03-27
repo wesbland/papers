@@ -1,0 +1,83 @@
+======= Review 1 =======
+
+*** Comments: Comments to author
+
+This paper suggests an implementation scheme for the MPI interface in which, when a failure of one of the processes occurs, the other processes are not killed, but they can continue executing, possibly without the opportunity of using MPI calls. Given this behaviour, it is possible to implement a scheme in which surviving processes perform a checkpoint after a failure has been detected, to enable Algorith-Based Fault Tolerance.
+
+The paper describes the MPI requirements involved by this scheme, and the necessary changes to MPI implementations. It also provides an implementation by modifying OpenMPI, and it shows experimental results on an application performing QR Factorisation for dense matrices. Numerical results show that the impact of Checkpoint-on-Failure is small compared to a failure-free execution. This is used to assess the initial claim of this paper, for which Checkpoint-on-Failure has a minimal impact w.r.t. a failure-free execution.
+
+In synthesis, the paper contribution can be subsumed as "when a failure of an MPI process occurs, don't stop the processes", and on the chances that this alternative behaviour opens to fault tolerance techniques and their performance impact. 
+
+To improve the content of this paper the author should address the following issues:
+
+- The checkpoint-on-failure can only be executed when the processes are at the MPI level, i.e. after lower-level functions which are application-specific, finish. Given this, it appears that the recovery time required by this protocol depends on the the time needed to execute those low-level routines, and the subsequent dry run phase. It might be then possible that a full-stop and restart from a last valid checkpoint, i.e. the standard procedure in rollback/recovery protocols, would incur in a lower recovery overhead. To improve the paper, the authors should show a comparison of the end-to-end performance of the classical check pointing with rollback/recovery scheme, and their solution. This would give strength to the proposed MPI modification.
+
+- Studying the performance impact of the proposed technique on a single application, which happens to be a well-known one, does not help with the generality of the contributions of this paper. I suggest the authors to consider multiple applications with different performance profiles to strengthen the low-overhead claims.
+
+- The description does not specify the number of failures that can occur at the same time, and how these can affect the performance. Assuming that the ABFT scheme supports multiple concurrent failures, the authors should study the performance impact on the checkpoint-on-failure scheme, or tell why this is not important (e.g. because the performance behaviour doesn't change with the number of failures happening at the same time).
+
+Minor remarks:
+
+The figures are hardly readable, and the captions are not really helping in understanding what is shown in the related figures. Also, figure 1 reports the failure detection time under different network topologies. This has been studied many times, and I suggest the authors to only report the average failure detection time and their trends in different topologies, to enable performance analysis of the proposed technique.
+
+======= Review 2 =======
+
+*** Comments: Comments to author
+
+This paper presents a novel approach for fault-tolerant MPI applications, called Checkpoint on Failure (CoF).
+Unlike other approaches, CoF stipulates minimal requirements for the MPI implementation and complies with the MPI-2 standard.
+Also, failed applications have to be restarted explicitly.
+Using a modified implementation of OpenMPI and a fault tolerant QR factorization application, the minimal impact of CoF on application performance is demonstrated.
+
+The paper is properly structured and well written.
+Though some minor questions arise, the presented CoF approach is promising and convincing.
+I suggest to accept this paper.
+
+
+Detailed comments
+page 6:
+* Has the self-healing capability, i.e. updating the OOB topology of the OpenMPI runtime, been implemented by the authors, or is it part of the OpenMPI implementation?
+ This should be clarified, as minimal requirements for the MPI implementations are claimed in the paper.
+
+page 9:
+* The term 'FT-QR' suggests a relationship to the FT-MPI implementation, which - as I understood - is not present.
+ Why didn't you name it CoF QR?
+ Please clarify or just use another name for the algorithm, e.g. ABFT QR (see Section 6).
+
+page 10:
+* The colors in Figure 3b are hard to distinguish when printed in gray. Increase contrast or use patterns to fill the graph.
+* "This demonstrates that the CoF protocol enables efficient, practical recovery schemes on supercomputers":
+ This has been shown for the QR factorization. Is there any general measure for the impact of CoF on ABFT applications?
+
+page 11:
+* "... an existing ABFT QR algorithm ..." Does this refers to FT-QR or CoF QR (see Section 5.3)? Are all the same? Please clarify.
+
+======= Review 3 =======
+
+*** Comments: Comments to author
+
+The authors describe a checkpointing protocol for Algorithm-based Fault-Tolerance (ABFT) that plays well with MPI.
+
+What can I say? Checkpointing is indeed important, MPI is indeed dominant in this context, and they show that their system implements an efficient checkpointing mechanism for ABFT code, despite some restrictions in the current MPI standard that make this tricky. The requirement that the code is ABFT restricts the usablilty of this work, but I can hardly fault the authors for not finding the holy grail in this area. A solid and practical contribution to the research in this area.
+
+The text is well-written, I rarely come across texts that are this clear and faultless.
+
+One minor issue:the figures in Fig 1,2, and 3 are rather small, and at least the text in graphs needs to be enlarged. More detailed caption texts would also be helpful.
+
+======= Review 4 =======
+
+*** Comments: Comments to author
+
+A good paper with an elegant solution but suffers from over complexity in its description.
+
+Key areas to address:
+* need single clear definition of what is required for CoF (Sects 2.2 and 3 give mixed messages)
+* title should include "high quality" since appears to be key requirement over and above any standard MPI implmentation
+* mention of other than OpenMPI eg would mpich2 derivatives support CoF?
+* OpenMPI section mixed "how to" with discussion of performance - rearrange to read better
+* what about multiple failures?
+* need timings for non-CoF FT QR
+* need to clarify in abstract that many CoF details in QR example section
+* suspect is more contemporary ref than [3] (20 years' old) and the FTWG of MPI Forum should be mentioned too
+
+

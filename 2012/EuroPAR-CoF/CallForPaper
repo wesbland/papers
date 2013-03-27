@@ -1,0 +1,60 @@
+Call for Papers
+
+18th International European Conference on Parallel and Distributed Computing 
+Euro-Par 2012 
+Rhodes Island, Greece
+August 27th-31st, 2012
+http://europar2012.cti.gr/
+europar2012@cti.gr
+Submission Deadlines
+Abstracts: January 31, 2012
+Full papers: February 7, 2012
+
+Euro-Par is an annual series of international conferences dedicated to the promotion and advancement of all aspects of parallel and distributed computing. Euro-Par focuses on all aspects of hardware, software, algorithms and applications in this field. The objective of Euro-Par is to provide a forum for the promotion of parallel and distributed computing both as an industrial technique and an academic discipline, extending the frontier of both the state of the art and the state of the practice.
+
+The following topics will be covered by regular Euro-Par 2012 sessions:
+Support Tools and Environments
+Performance Prediction and Evaluation
+Scheduling and Load Balancing
+High-Performance Architecture and Compilers
+Parallel and Distributed Data Management
+Grid, Cluster and Cloud Computing
+Peer to Peer Computing
+Distributed Systems and Algorithms
+Parallel and Distributed Programming
+Parallel Numerical Algorithms
+Multicore and Manycore Programming
+Theory and Algorithms for Parallel Computation
+High Performance Network and Communication
+Mobile and Ubiquitous Computing
+High Performance and Scientific Applications
+GPU and Accelerators Computing
+Full details on the topics, including topic descriptions and chairs, are available on the Euro-Par 2012 website (europar2012.cti.gr). The conference will feature tutorials and invited talks. Co-located workshops are also planned.
+
+Paper Submission Guidelines
+Full papers should not exceed 12 pages in the Springer LNCS style. Paper submission has to be performed electronically via the conference website in PDF format. Papers accepted for publication must also be supplied in source form(LaTeX or Word).
+
+The 12 pages limit is a hard limit. It includes everything (text, figures, references) and will be strictly enforced by the EDAS submission system.
+
+Download LNCS Latex style here.
+
+Papers must offer original contributions regarding the theory and practice of parallel and distributed computing. Full submission guidelines are available on the conference website. Only contributions not submitted elsewhere for publication will be considered.
+
+Authors must submit their papers to the specific topic they judge most appropriate. Details on the topics, including descriptions and chairs, are available on the conference website.
+
+All accepted papers will be included in the conference proceedings, published by Springer in the LNCS series. Authors of accepted papers will be requested to sign a Springer copyright form.
+
+Important dates
+Deadline for abstracts: January 31, 2012
+Deadline for full papers: February 7, 2012
+Decision notification: May 11, 2012
+Camera-ready full papers: June 1, 2012
+Conference: August 27-31, 2012
+
+Location
+The Euro-Par 2012 conference will take place on Rhodes Island, Greece. It is organized by the Computer Technology Institute & Press "Diophantus" (CTI).
+
+Conference Co-Chairs
+Christos Kaklamanis, CTI and University of Patras
+Theodore Papatheodorou, University of Patras
+Paul Spirakis, CTI and University of Patras
