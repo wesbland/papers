@@ -1,0 +1,52 @@
+\section{Concluding Remarks}
+
+In this paper, we presented an original scheme to enable forward
+recovery using only features of the current MPI Standard.
+Rollback recovery, which relies on periodic checkpointing, has a variety
+of issues. The ideal period between checkpoints, a critical parameter, is
+particularly hard to assess. Too short a period wastes time and
+resources on unnecessary Input/Output. Overestimating the period results
+in dramatically increasing the lost computation when returning to the
+distant last successful checkpoint. Although Checkpoint-on-Failure
+involves checkpointing, it takes checkpoint images at optimal times by
+design: only after a failure has been detected. This small modification
+enables the deployment of \abft techniques, without requiring a complex,
+unlikely to be available MPI implementation that itself survives
+failures. The MPI library needs only to provide the feature set of a
+high quality implementation of the MPI Standard: the MPI communications
+may be dysfunctional after a failure, but the library must return
+control to the application instead of aborting brutally.
+
+We demonstrated, by providing such an implementation in \ompi, that this
+feature set can be easily integrated without noticeable impact on
+communication performance. We then converted an existing \abft QR
+algorithm to the \cof protocol. Beyond this example, the \cof protocol
+is applicable on a large range of applications that already feature an
+\abft version, for example the dense direct solvers LLT,
+LU~\cite{fthpl2011} and the dense iterative solver
+CG~\cite{Chen:2005:FTH:1065944.1065973}. Similarly, \abft algorithms
+exist for sparse computation~\cite{Shantharam:2012:FTP:2304576.2304588}.
+Beside \abft, many master-slave and iterative methods enjoy an extremely
+inexpensive forward recovery strategy where the damaged domains are
+simply discarded, and therefore can also benefit from the \cof protocol.
+
+The performance on the Kraken supercomputer reaches
+90\% of the non-fault tolerant algorithm, even when including the cost
+of recovering from a failure (a figure similar to regular, non-compliant MPI \abft). In addition, on a platform featuring node local storage, the
+\cof protocol can leverage low overhead checkpoints (unlike rollback
+recovery that requires remote storage). To the extreme, the cost of 
+checkpointing can be completely avoided when the application uses a 
+master process to actively retain the dataset in memory during the MPI 
+restart. 
+
+The MPI standardization body, the MPI Forum, is currently considering
+the addition of new MPI constructs, functions and semantics to support
+fault-tolerant applications\footnote{https://svn.mpi-forum.org/trac/mpi-forum-web/wiki/FaultToleranceWikiPage}. While these additions may decrease the cost
+of recovery, they are likely to increase the failure-free overhead on
+fault tolerant application performance. It is therefore paramount to
+compare the cost of the \cof protocol with prospective candidates to
+standardization on a wide, realistic range of applications, especially
+those that feature a low computational intensity.
+
+% unlike dense factorizations where the size of the dataset incurs a cubic
+% amount of computation, while checkpoint cost is always linear.

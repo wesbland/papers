@@ -1,0 +1,108 @@
+Dear editors of Concurrency and Computation: Practice and Experience,
+special issue on Euro-Par 2012.
+
+Please find enclosed a paper entitled "Extending the Scope of the
+Checkpoint-on-Failure Protocol for Forward Recovery in Standard MPI."
+
+This article is the extended version of the work "A
+Checkpoint-on-Failure protocol for Algorithm-Based Recovery in
+standard MPI", distinguished paper at Euro-Par 2012: 18th
+International Conference on Parallel Processing.
+
+Throughout the document, we applied many text and figure changes to
+improve the presentation and readability of the work. We updated the
+related work to reflect the most recent publications in the area,
+especially the recent, but unfortunately postponed, efforts of the
+MPI Forum to address Fault Tolerance.
+ 
+Moreover, compared to the original article, we added a new section
+(Section 5), and updated the experimental evaluation accordingly. The
+goal of Section 5 is to place the CoF protocol in a broader horizon,
+showing how it can be used to compose non-MPI based, resilient
+applications that can benefit from a resilient MPI implementation of
+some of the operations they need to apply. This approach, as explained
+in the text presents two benefits for CoF: it broadens the scope of
+applicability of the method, and almost completely avoids the cost of
+checkpointing. This second aspect is demonstrated in the
+performance evaluation, where the new technique is compared to the
+previous experiments already published.
+
+Altogether, we consider that the additions represent more than 20% of
+original material.
+
+With best regards,
+Wesley Bland, Peng Du, Aurelien Bouteiller, Thomas Herault, George Bosilca, and
+Jack J. Dongarra
+
+
+
+==== REBUTTALS ====
+Dear Editors and Reviewers, 
+
+We are pleased to announce that we have accounted for your thoughtful comments
+and have improved the paper as follows: 
+
+As reviewers r#2 and r#3 noted, the extended paper already featured
+significant additions compared to the conference version (the new
+concept of shared-memory CoF, its description in the new Section 5
+(including the addition of Fig.1), and the new experimental result of
+Fig.5 to evaluate the benefit of such an approach in the SciDB
+application; overall totaling more than 25% addition in terms of
+volume). Following the constructive reviewer comments, we nonetheless
+further modified the text of the original submission in the following
+ways:
+
+* We have augmented the discussion on applicability of CoF (r#1) in the 
+  conclusion to precise that a) it also applies to sparse and iterative 
+  methods (new citation 23, second question of r#1), and b) all forward
+  recovery techniques can benefit from the CoF protocol.
+
+* We would like to point that the applicability and behavior of a
+  variety of ABFT algorithms (question of r#1) have been
+  presented in the cited related work (3,12,13,21,22), in the context of
+  fully fault tolerant MPI libraries (14,16), which are more feature
+  rich than CoF (at the expense of limited portability for supported
+  applications). 
+
+* The background section notes that other well known MPI implementations, 
+  such as MPICH, may be used to support CoF (r#1)
+
+* We have of course applied typographic and editorial suggestions from
+  r#3 through the entire text
+
+* The intuitive description of the CoF approach is introduced much
+  earlier, as suggested by r#3. The abstract and introduction
+  have been expanded to include this description.
+
+* Section 3.3 has been thoroughly rewritten and expanded to clarify the
+  mandatory and optional requirements for implementing CoF. Elements listed in
+  3.2 are the sole requirements (to answer r#3). We first give the
+  motivation for integrating the optional features in 3.3 by describing
+  the performance consequences of offering strictly the core
+  requirements of CoF.
+
+* A paragraph about the checkpoint mechanism (user or system level) has 
+  been added to 3.2 (r#3)
+
+* Section 3.2 has been modified to clarify the termination protocol, and
+  explain why no collective semantic is required (r#3).
+
+* The subsection about QR application using algorithm-specific checkpoint
+  procedure in 4.2 (r#3) has been extended, consistently with the changes
+  made in 3.2
+
+* Section 4.2 on State Restoration has been clarified. Processes do not
+  need to enter a BSP phase (r#3), they just need to roll forward to
+  reach their (independent) state before the failure and complete the
+  current iteration.
+
+* The first paragraph of Section 5 has been rewritten to better
+  introduce the scope and the relationship of this new section with the
+  rest of the work (r#3). Similarly the depiction of the goal of this section
+  has been updated in the introduction so that the extent of the new
+  contribution is better emphasized.
+
+We believe that these modifications fully address the comments of the
+reviewers and even further widen the significant difference with the
+conference work.
+

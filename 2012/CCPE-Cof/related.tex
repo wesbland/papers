@@ -1,0 +1,65 @@
+%\section{Related Works}\label{section:related}
+
+%\paragraph{{\bf Related Work}}
+
+In the past, some efforts have been undertaken to enable \abft support in MPI. 
+FT-MPI~\cite{fagg2000ft} was an MPI-1 implementation which proposed
+changes to the MPI semantics to enable repairing communicators, thus
+re-enabling communications for applications damaged by failures. This
+approach has proven successful and applications have been
+implemented using FT-MPI. However, these modifications were not adopted by
+the MPI standardization body, and the resulting lack of portability
+undermined user adoption for this fault tolerant solution.
+
+%  One of
+% the solutions implemented in FT-MPI was to introduce a new MPI\_Errhandler
+% called MPI\_ERRORS\_BLANK. This MPI\_Errhandler replaced the position of the
+% failed processes inside a communicator with MPI\_PROC\_NULL. By using this
+% semantic, the remaining MPI calls could function normally as communication with
+% MPI\_PROC\_NULL always succeeds. When FT-MPI encountered a fault, it destroyed
+% all MPI Communicators and required that the application recreate them to account
+% for the failed processes. While this was a useful step in allowing the most
+% level of flexibility from the application's perspective, it made recovery very
+% complex and added a large overhead.
+
+% FT-MPI is another form of fault tolerance that can be successful for some, but in
+% applications that require that all processes be running to reach successful
+% completion, having a hole in the communicator is not a valid solution. The
+% failed processes need to somehow be recovered.
+
+%\TBD{Anything needed from the QR side of things?}
+
+During the process that recently resulted in the MPI-3 Standard, a specific
+working group was assembled to investigate the issues of Fault Tolerance support
+in MPI. Some of the early results are outlined in the following
+publication~\cite{Hursey11MPI3FT}. Late in the process, promising results had
+been demonstrated toward effective support of process failures and continued MPI
+operations with acceptable overhead~\cite{DBLP:conf/pvm/BlandBHHBD12}. However,
+these propositions were in too early a state to meet the calendar requirements
+of MPI-3 and their adoption (and according availability in production systems)
+is, at best, postponed to the restart of the MPI Forum toward the next version
+of the MPI standard. 
+
+In %the article by W. Gropp and E. Lusk in 2004
+\cite{Gropp:2004:FTM:1080704.1080714}, the authors discuss alternative
+or slightly modified interpretations of the MPI Standard that enable
+some forms of fault tolerance. 
+One core idea is that process failures happening in another MPI world,
+connected only through an inter-communicator, should not prevent the
+continuation of normal operations. The complexity of this approach, for
+both the implementation and users, has prevented these ideas from having
+a practical impact.
+
+In the \cof approach, the only requirement from the MPI implementation
+is that it does not forcibly kill the living processes without returning
+control. No strong support from the MPI stack is required, in particular
+the state of the library is left undefined and further communication is
+impossible without a restart. This simplicity has enabled us to actually
+implement our proposition, and then experimentally support and evaluate
+a real \abft application. Similarly, little effort would be required to
+extend MPICH-2 to support \cof (see Section 7 of the MPICH
+Readme\footnote{\url{http://www.mpich.org/documentation/guides/files/mpich2-1.5-README.txt}}).
+
+
+
+

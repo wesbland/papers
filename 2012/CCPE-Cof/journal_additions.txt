@@ -1,0 +1,42 @@
+The driving idea will be to show that one way or the other an investment should
+be made, either on hardware or software. As such, starting with the current code
+we will try to improve it, getting rid of everything that is impeding the
+performance.
+
+At the scale we are working on, C/R is out of the question as it will an
+overkill. The code we have today will be run on Kraken (with and without the I/O
+optimization Peng referred to: files in different directories). Based on these
+results the figure 4 will be redone, to show the I/O cost on Kraken instead of
+dancer. Then, instead of files, we will put the data in (named) shared memory
+regions, that will remain after the processes are removed because of the
+failure. New processes will be spawned on the same set of nodes, and they will
+reuse the same shared memory regions. Hopefully, this regions will remove the
+I/O cost (hopefully all of it). If time permit the QR used for the PPoPP will be
+added to the graphs already inside.
+
+Based on the discussion this will be enough to explain the 20% improvement on
+the journal over the EuroPar paper. If we need more we can try to model the ABFT
+and compare them at exascale with the models from the SC paper, bsed on the same
+architectures we used for Parco.
+
+
+
+
+\abft is not the only technique that can benefit from a \cof deployment.
+The range of applicable techniques obviously includes all forward
+recovery techniques, from master-worker programs to iterative solvers
+whose convergence is monotonous over restarts; but interestingly, even
+periodic checkpoint-restart rollback recovery can benefit. One of the
+most stringent requirement of rollback recovery is that, in order to
+protect the application, the checkpoints must be stored in a safe
+repository, that remains accessible, even from a different set of
+resources, as the application is deployed in a new batch scheduler
+allocation. As a result, periodic checkpointing often entails heavy I/O
+traffic toward a centralized cluster filesystem. With \cof,
+decentralized checkpointing techniques, such as diskless
+checkpointing~\cite{planckdiskless}, become effective. In diskless 
+checkpointing, each process protects its dataset by storing checksums 
+in the memory of neighbor processes within the application. When the 
+\cof generated checkpoint is reloaded, these checksums are restored
+without ever involving cluster filesystem accesses.
+

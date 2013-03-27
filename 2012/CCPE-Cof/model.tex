@@ -1,0 +1,168 @@
+\section{Models of Fault Tolerance Approaches\label{sec:model}}
+
+In this section, we present a simple model that can be used evaluate the
+efficiency of our approach and its behavior under specific circumstances
+that are not accessible yet to direct experimentation. For the
+following, we will consider an application with a fixed number of
+processes, and a fixed amount of work to execute. We consider that
+without any fault-tolerance approach enabled, the execution time of this
+work with this number of processes is $T$.
+%
+The execution time of an application managed with the \cof approach 
+can be characterized with a few parameters:
+\begin{itemize}
+\item $C$, the time it takes the living processes, to save their state after the
+  failure occurs, exit, and for the runtime system to discover that all
+  processes have exited with an error code
+\item $\alpha$, a multiplicative factor, that encompasses all costs related to
+  making the operation ABFT-capable. Such modification of the operation
+  introduces additional operations and communications, distributed among the
+  processes. Based on our experience with ABFT, we consider, in this model, that
+  these operations introduce a slowdown of the execution time that can be
+  captured with a single multiplicative factor, $\alpha > 1$, 
+  representing the slowdown on the execution time. As this is inherently 
+  tied to the type of fault tolerant approach used in the application, 
+  other algorithms may behave differently and require a different modeling 
+  of the slowdown. 
+\item $R$, the time it takes for processes to restart from scratch, load the
+  state of all the processes alive at the last failure, and recover the missing
+  data (the data lost due to the failure of a process)
+\end{itemize}
+Since the number of processors and the problem size are fixed, $C, R,$
+and $\alpha$, can all be considered as constants. The downtime incurred 
+by provisioning a replacement resource is ignored from the model for two
+reasons. First, it can be reduced to a negligible overhead (same order 
+of magnitude as the failure detection time, presented in 
+Section~\ref{sec:experiments:fd}), simply by reserving some nodes of the 
+machine as spares immediately available to replace a failure on any 
+application currently running. Second, it can be integrated into $R$ 
+without loss of generality, in cases it cannot be neglected. 
+
+
+Our approach is deterministic, given these assumptions: the time it takes to
+complete the execution of the work with a number $n$ of failures is
+\begin{eqnarray}
+T^{CoF}(n) &=& \alpha T + n ( C + R )
+\end{eqnarray}
+
+Indeed, the execution is slowed down by the $\alpha$ parameter to
+maintain the different checksums incurred by the ABFT approach, and
+each failure triggers first a \cof checkpoint phase, that is immediately
+followed by a recovery phase. At the end of the recovery phase, the
+algorithm is ready to proceed at the step that follows the failure, so
+no additional cost is incurred.
+
+\begin{comment}
+The periodical coordinated blocking checkpointing technique can be characterized
+with the following parameters:
+\begin{itemize}
+\item $c$, the time it takes for all processes to save their state
+  when the timer expires
+\item $r$, the time it takes all processes to restart from this
+  checkpoint (load the checkpoint from file)
+\item $t$ is the time interval between two checkpoints. This value is
+  usually set to something as close as possible to the expected MTBF,
+  to avoid unnecessary overheads. It must be set low enough, though,
+  to allow for progress.
+\end{itemize}
+In the coordinated checkpointing approach, the duration of the
+execution depends upon the moment of the failures: if a failure hits
+the system just after a checkpoint, little time is spent recomputing the
+lost progress between the last checkpoint and the failure step. If a
+failure hits the system just before a checkpoint,
+then the recovery restarts from the last checkpoint and the last
+time interval must be entirely re-executed. To model this, we define
+two extreme cases: the best case, noted $T^{CC}_B(n)$ (for Time,
+Coordinated Checkpointing, Best case), and $T^{CC}_W(n)$ (for Time,
+Coordinated Checkpointing, Worst case). These functions can be defined
+recursively as follows:
+$$
+\left\{\begin{array}{l}
+T^{CC}_B(0) = T + c T/t\\
+T^{CC}_B(n) = T^{CC}_B(n-1) + r + c r/t\\
+\end{array}\right.$$
+$$\left\{\begin{array}{l}
+T^{CC}_W(0) = T + c T/t\\
+T^{CC}_W(n) = T^{CC}_W(n-1) + r + t+ c (r+t)/t\\
+\end{array}\right.
+$$
+
+The cost on the execution without failures is to stop the execution
+every $t$ times units, and take a checkpoint. The recovery cost
+depends upon the case that is considered. In the best case, all
+failures will happen just after the last valid checkpoint. Hence the
+cost of recovery will be simply the time to load this checkpoint. In
+the worst case, all failures will happen just before the next
+checkpoint is completed, hence the cost of recovery will be the time
+to load the checkpoint, plus the time to redo the missing part of the
+execution, every time. Since recoveries increase the duration of the
+execution, they also increase the total number of checkpoints that are
+taken.
+
+We can solve these recursive definitions to obtain the following
+general forms:
+\begin{eqnarray}
+T^{CC}_B(n) &= & (c+t)(n r +T)/t\\
+T^{CC}_W(n) & = & (c+t) (n (r+t) + T) /t
+\end{eqnarray}
+
+To compare the two models, we can assume that if a local storage is
+present, $C \ll c$: in the case of the ABFT approach, if the same nodes
+remain accessible to the application to restart its runs, and a local
+storage is accessible, saving the checkpoint will be a local,
+embarrassingly parallel, operation. The Coordinated Checkpointing
+approach, however, cannot rely on local storage: a checkpoint image of
+all the nodes, including the failed nodes, will be necessary at recovery
+time. Thus, in the best case, with local storage, a "buddy algorithm",
+where each node stores the checkpoint of a neighbor node; therefore,
+supplementary communications are added to the checkpointing time which
+is expected to be larger in that case.
+
+On the other hand, if a local storage is not accessible, one can safely
+assume that $C \sim c$, since they save the same amount of information
+(we are considering a user-level checkpointing in both cases). The \cof
+protocol spares the cost of saving the checkpoint of the failed
+processes, which could decrease the pressure on the I/O subsystem;
+however, as the number of simultaneous failures is assumed very small
+compared to the total number or processors, this effect is neglected
+here.
+
+% We cannot account for Incremental checkpoint in CC (depends on t, makes c
+% (potentially) smaller than C)
+
+Similarly, if no local storage is available, $R \gg r$: they both
+incur the communication cost linked to loading the checkpoint image,
+but then the ABFT technique needs to introduce additional
+communications to recover the state. If a local storage is available,
+this will strongly depend on the amount of data saved, and the amount
+of communication required by the ABFT algorithm to implement its
+recovery. 
+
+Both models present a linear progression with the number of
+faults. When $n=0$, the On-Demand Checkpointing approach slowdown
+is the factor $\alpha$, while the slowdown in the periodical Checkpointing 
+approach is proportional to $(c+t)/t = 1+c/t$. As was
+demonstrated in~\cite{lawn253}, $alpha$ decreases when the number of
+processes increase. In the case of the QR factorization, it increases
+with the square root of the problem size, to maintain the checksum
+operation. $c/t$ is proportional to the duration of the checkpoint
+operation, hence to the problem size, and in non-scalable storage
+system with the number of processes. Moreover, it is highly dependent
+on the $t$ parameter, that is often set conservatively to guarantee
+progress in case of failures.
+\end{comment}
+
+When the system is subject to failures, the cost of the recovery of the
+On-Demand Checkpointing technique is proportional to the number of failures, and
+to the duration of the recovery, $R$. As stated above, this overhead depends on
+the disk capabilities, but also on the efficiency of the recovery procedure
+given by the \abft algorithm, and on the runtime system of the MPI to detect the
+incomplete termination, and launch a new application, efficiently. In the case
+of $QR$, this recovery increases with the size of the problem and the square
+root of the number of computing elements. The periodical checkpointing approach
+on the other hand incurs a recovery cost that is constant, but must redo part of
+the execution. A large $t$ parameter in this case is damageable because it
+increase the probability that a long part of the computing time is lost. The
+On-Demand Checkpointing technique does not suffer from this parameter, and the
+cost of recovery is entirely defined by the size of the problem and the number
+of processors.

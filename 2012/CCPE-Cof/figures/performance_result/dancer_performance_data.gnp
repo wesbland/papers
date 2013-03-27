@@ -1,0 +1,31 @@
+set terminal postscript eps enhanced color "Helvetica-Bold" 26 linewidth 2  size 5in,3.8in clip
+
+set offsets 0, 0, 0, 0
+#set size square
+
+#set origin 0.65,0.15
+#set size 0.3,0.58
+
+#set title "Failure Detection Time (Binomial Routing)"
+set output "dancer_performance_data.eps"
+
+set key title ""
+set key inside bottom right vertical Right noreverse enhanced autotitles nobox
+
+set ylabel "Performance (Gflops/s)" offset 1.5
+#set yrange [1:3.5]
+set grid y
+
+set xlabel "Matrix Size (N)"
+set xrange [6:50]
+set xtics 10 norangelimit
+set mxtics 5
+set format x "%gk"
+
+plot "dancer_performance_data" using ($1/1000):2 title "ScaLAPACK QR" with lines lw 2 lt 2 lc 0, \
+     "" using ($1/1000):3 title "ABFT-QR (w/o failure)" with linespoints lw 2 ps 1.8 pt 7 lt 1 lc 1, \
+     "" using ($1/1000):4 title "ABFT-QR (w/1 CoF recovery)" with linespoints lw 2 ps 2.2 pt 9 lt 1 lc 3
+
+!epstopdf dancer_performance_data.eps
+
+#    EOF

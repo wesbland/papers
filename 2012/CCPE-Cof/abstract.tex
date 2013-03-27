@@ -1,0 +1,36 @@
+\begin{abstract}
+
+  Most predictions of Exascale machines picture billion way parallelism,
+  encompassing not only millions of cores, but also tens of thousands of
+  nodes. Even considering extremely optimistic advances in hardware reliability,
+  probabilistic amplification entails that failures will be
+  unavoidable. Consequently, software fault tolerance is paramount to
+  maintain future scientific productivity.  Two major problems hinder ubiquitous
+  adoption of fault tolerance techniques: 1) traditional checkpoint based
+  approaches incur a steep overhead on failure free operations and 2) the
+  dominant programming paradigm for parallel applications (the MPI Standard)
+  offers extremely limited support of software-level fault tolerance approaches.
+  % The International Exascale Software Project roadmaps predicts, as soon as
+  % 2014, billion way parallel machines encompassing not only millions of cores,
+  % but also tens of thousands of nodes. Even considering extremely optimistic
+  % advances in hardware reliability, probabilistic amplification entails that
+  % failures will be unavoidable. Consequently, software fault tolerance is of
+  % paramount importance to maintain future scientific productivity. Currently,
+  % two major problems hinder ubiquitous adoption of fault tolerance techniques:
+  % 1) traditional checkpoint based approaches incur a steep overhead on failure
+  % free operations and 2) the dominant programming paradigm for parallel
+  % applications (the MPI Standard and its implementations) offers extremely
+  % limited support of software-level fault tolerance approaches.
+  In this paper, we present an approach that relies exclusively on the features
+  of a high quality implementation, as defined by the current MPI Standard, to
+  enable advanced forward recovery techniques, without incurring the 
+  overhead of customary periodic checkpointing.
+  With our approach, when failure strikes, applications regain control to make
+  a checkpoint before quitting execution. This checkpoint is in
+  reaction to the failure occurrence rather than periodic. This checkpoint 
+  is reloaded in a new MPI application, which restores a sane environment 
+  for the forward, application-based recovery technique to repair the failure 
+  damaged dataset.
+  The validity and performance of this approach are evaluated on large scale
+  systems, using the QR factorization as an example.
+\end{abstract}
