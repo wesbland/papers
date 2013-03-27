@@ -1,0 +1,15 @@
+\section{Runtime} \label{sect:runtime}
+
+This section summarizes the modifications that were necessary for us to create our resilient runtime layer. Details of our implementation of the work outlined in this section can be found in~\cite{Bland:CCGrid12}. The major requirements fall into three categories: failure detection, failure notification, and failure handling.
+
+\subsection{Failure Detection} \label{subsect:failure_detection}
+
+While failure detection can take place throughout an applications layers, the runtime layer is the most well positioned to discover failure quickly. Because it manages process launching and communication channels, it can quickly detect failures. Once it detects a failure, it can begin the process of failure notification. 
+
+\subsection{Failure Notification} \label{subsect:failure_notification}
+
+When a failure is detected, the runtime environment is responsible for propagating knowledge of the failure to all appropriate parts of the application. This includes the runtime environments on other nodes, as well as to the MPI layer of the application.
+
+\subsection{Failure Handling} \label{subsect:failure_handling}
+
+Concurrently with failure notification, the runtime must also perform failure handling tasks to stabilize the runtime environment and allow the application to continue. This includes route healing, where communication channels within the runtime environment must adapt to losing a node as a potential routing hop. It also includes ensuring message consistency to prevent repeated failure notification and to prevent loss of messages as much as possible.

@@ -1,0 +1,36 @@
+\section{Concluding Remarks \& Future Work} \label{sect:conclusion}
+
+This work has outlined some of the improvements being performed within \ompi to
+create a fault tolerant environment in order to allow applications to continue
+their execution in the face of process failures. Our work requires modifications
+to the runtime environment to stabilize message routing and provide reliable
+fault detection and notification.
+
+%The work will continue on as the MPI layer of \ompi needs to be modified to
+%include support for the updated runtime layer, as well as to provide new
+%capabilities not already described in the current MPI standard. This work
+%includes creating fault tolerant collective communications patterns and a
+%notification system to alert applications to the status of other processes
+%within the application.
+%
+%As work progresses within \ompi, the resilient runtime layer will also improve.
+%As an example, the current implementation of the runtime layer cannot withstand
+%a failure of the manager, the HNP. This is not a major problem as this is the
+%only node that is required to remain alive and while the probability of a
+%failure occurring somewhere within the system might be high, the probability of
+%a failure occurring specifically on the HNP is relatively low. This requirement
+%could change as one of the potential projects within \ompi is to create a
+%distributed HNP, removing the single point of failure.
+
+These improvements provide the tools necessary for application developers to
+implement algorithms that can run reliably at a larger scale than is currently 
+possible due to the inability to handle the inherent failures which occur at
+such extreme scales. Developers have new and more diverse options to allow them
+to choose the appropriate resilience method for their application.
+
+In the near future a system for process recovery will be included to
+allow applications not only to stabilize themselves after a process failure, but
+to replace the failed process with a new one. Such a process can use other forms of fault
+tolerance (checkpointing, message logging, etc.) to recover lost data and
+continue with minimal interruption to the living processes.
+

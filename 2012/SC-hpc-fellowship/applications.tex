@@ -1,0 +1,5 @@
+\section{Applications and Libraries} \label{sect:applications}
+
+These two methods of handling failures target two different communities. CoF is designed to be used directly by applications to recover from failures. In~\cite{Bland:EuroPar12}, we discuss our use of CoF in a linear algebra QR algorithm to allow recovery during large matrix factorizations while introducing low levels of overhead. This technique can be applied to other applications which can support Application Based Fault Tolerance (ABFT).
+
+ULFM provides a more extensible interface which allows library developers to create new levels of fault tolerance. It provides the minimal complete set of tools necessary for recovery. For example, a library may choose to provide collective operations which provide consistent return codes to all processes. While this would be an expensive burden to place on applications which do not require it, by providing library developers the tools necessary to implement such fault tolerance, applications that choose to can have the form of consistency they need.

@@ -1,0 +1,18 @@
+\section{MPI} \label{sect:mpi}
+
+This section describes two new fault tolerance methods we developed: a method contained in the Message Passing Interface (MPI) standard version 2.2 and one which goes beyond the current standard.
+
+\subsection{Checkpoint-on-Failure} \label{subsect:cof}
+
+The current MPI standard does not provide much guidance for applications in presence of faults. According to the standard, when implementing a high-quality MPI library, the application should regain control following a process failure but the state of the library is undefined. This makes continuing meaningful execution very difficult and usually requires the application to restart itself. However, for applications which can take advantage of it, this provides the opportunity to perform last chance checkpointing. Using a technique called Checkpoint-on-Failure (CoF)~\cite{Bland:EuroPar12}, applications can register an MPI error handler to receive notifications about process failures. When the error handler is triggered, the application saves a minimal amount of state to stable storage, restarts itself with the correct number of processes, and performs the necessary recovery operations to continue execution. The advantage of this approach is that while it does require some code changes to support ABFT, it has similar semantics to existing checkpointing methods while removing the necessity of discovering the optimal checkpoint interval. By only checkpointing after a known failure, the checkpoint is always taken optimally.
+
+\subsection{User Level Failure Mitigation} \label{subsect:ulfm}
+
+For some applications, CoF is not the best method of failure recovery. These applications may require recovery models that allow the application to continue execution. To support these applications, another method of MPI level fault tolerance has been created name User Level Failure Mitigation (ULFM)~\cite{Bland:EuroMPI12}. ULFM is more extensive than CoF and requires modifications to the current MPI standard. While ULFM contains many pieces, it revolves around three new MPI functions:
+
+\begin{itemize}
+    \item {\bf MPI\_COMM\_REVOKE:} The revoke operation prevents deadlock either at the application level or the MPI library level by stopping further communication on a communicator containing a failed process.
+    \item {\bf MPI\_COMM\_SHRINK:} The shrink operation allows continued collective communication by creating a new communicator from a communicator containing known failed processes while leaving out any known failures.
+    \item {\bf MPI\_COMM\_AGREE:} An agreement operation provides a mechanism to create a consistent view between processes so a decision can be reached when such a strong consistency is required (e.g. during algorithm completion).
+\end{itemize}
+

@@ -1,0 +1,26 @@
+res:	Overall potential for research excellence: [1-10]
+trel:	Degree to which their technical interests align with those of the HPC community: [1-10]
+prog:	Academic progress to-date, as evidenced by publications and endorsements from their faculty advisor and department head as well as a plan of study to enhance HPC related skills: [1-10]
+hpcr:	Demonstration of their anticipated use of HPC resources: [1-10]
+
+
+Reviewer	res	trel	prog	hpcr
+Reviewer 1	9	9	10	9
+Reviewer 2	9	10	9	9
+Reviewer 3	8	9	7	8
+Averages:	8.7	9.3	8.7	8.7
+
+Review of hpcf144s1 by Reviewer 1	
+
+Comments for Authors:
+Good work. Keep it up.
+
+Review of hpcf144s1 by Reviewer 2	
+
+Comments for Authors:
+Congratulations on a very high quality application. It provided the requested elements for the evaluation of your proposal: the project, needed background information, motivation, the need for HPC resources and the formal courseworkthat enhanced your HPC skills. It was nicely presented and the quality of research described is high on a problem that is very important in HPC.
+
+Review of hpcf144s1 by Reviewer 3	
+
+Comments for Authors:
+Outstanding candidate with relevant research topic.

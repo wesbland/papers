@@ -1,0 +1,73 @@
+\documentclass[10pt, conference, compsocconf]{IEEEtran}
+
+\newif\ifnoTBD \noTBDfalse
+
+% Uncomment to remove TBD macros
+%\noTBDtrue
+
+%\ifx\pdftexversion\undefined
+%  \usepackage[dvips]{graphicx}
+%\else
+%  \usepackage[pdftex]{graphicx}
+%  \usepackage{epstopdf}
+%\fi
+
+\ifnoTBD
+\def\TBD#1{\typeout{TBD not done: #1}}
+\else
+\def\TBD#1{\textcolor{blue}{TBD: #1}}
+\AtEndDocument{\typeout{ *** ATTENTION: compilation is in DRAFT
+    mode. There might still be TBD that appear in the document ***}}
+\fi
+
+\usepackage[usenames]{color}
+\usepackage{xspace}
+\usepackage{listings}
+%\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{latexsym}
+%\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{graphicx}
+
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{color}
+\usepackage{amsthm}
+\usepackage{amsfonts} 
+\usepackage{amssymb,amsmath} 
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{Toward Message Passing Failure Management}
+\author{
+  \IEEEauthorblockN{Wesley Bland, Jack J. Dongarra (Advisor)}
+  \IEEEauthorblockA{Innovative Computing Laboratory, University of Tennessee, Knoxville\\
+					wbland@eecs.utk.edu, dongarra@eecs.utk.edu}\\
+}
+
+\maketitle
+
+%\input{abstract}
+
+%\begin{IEEEkeywords}
+%Fault Tolerance, Message Passing Interface, Distributed Runtime
+%\end{IEEEkeywords}
+
+\input{intro}
+%\input{runtime}
+\input{mpi}
+\input{applications}
+\input{academics}
+\input{planofstudy}
+
+\newcommand{\BIBdecl}{\setlength{\itemsep}{0.03\baselineskip}} 
+\bibliographystyle{IEEEtran}
+\bibliography{sc12-hpc-fellowship}
+
+\end{document}
+
