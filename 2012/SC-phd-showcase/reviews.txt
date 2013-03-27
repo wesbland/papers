@@ -1,0 +1,40 @@
+Review Categories (higher is better):
+rel:	Relevance to SC: [1-5]
+rec:	Recommendation [1-5]
+conf:	Level of confidence in your recommendation: [1-5]
+
+Summary of reviews of drs101s1	
+Reviewer	rel	rec	conf
+Reviewer 1	5	3	5
+Reviewer 2	4	3	3
+Reviewer 3	5	3	4
+Averages:	4.7	3.0	4.0
+
+Review of drs101s1 by Reviewer 1	
+
+Comments for Authors:
+This is a very important research topic. However, the contribution of this work is unclear. The author is encouraged to pursue this direction and resubmit with additional results.
+
+Review of drs101s1 by Reviewer 2	
+
+Comments for Authors:
+The proposed work to manage failures in distributed memory settings is highly relevant and well motivated. The student's work-plan seems well established and on the right path. Also, much of the work seems to be progressing well.
+
+I would like to see some more connections to the related work and the fundamentals in distributed memory computing. For example, how are Fisher's impossibility results addressed by this work? Timeouts? Anlexandrov's work may be relevant here.
+
+Review of drs101s1 by Reviewer 3	
+
+Comments for Authors:
+I'm on the fence regarding this submission. It is clearly relevant to the SC and also timely given the increasing emphasis on fault tolerance. However, the submitted two-page document seems to be spending too much space on the introduction and overall considerations instead of going straight to the chase of enumerating in as much detail as possible the contributions made by the author. It just doesn't provide enough info to get me interested. CoF and ULFM simply aren't described in enough detail to make me go "that's cool!"
+
+I realize that there is only so much info that can be provided on two pages. Nevertheless, I would've liked to hear more about:
+
+- Why only collective communication is considered a problem, and not point to point? What happens if a p2p message is sent to a dead task?
+
+- Does the upcoming MPI 3.0 standard change anything for you?
+
+- The explanation of MPI_COMM_AGREE is unclear. I have no idea what it is actually for.
+
+How about using "best" instead of "most well"?
+
+Please capitalize "MPI" properly in References.
